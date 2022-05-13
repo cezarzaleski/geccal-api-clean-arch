@@ -1,0 +1,18 @@
+{
+  "name": "geccal-api",
+  "version": "1.0.0",
+  "description": "API Biblioteca Infantil do Geccal",
+  "main": "index.js",
+  "scripts": {
+    "ts-node": "ts-node",
+    "tsc": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}
