@@ -14,7 +14,7 @@ export type BookProperties = {
 }
 
 export class Book extends Entity<BookProperties>{
-  constructor(props: BookProperties, id: UniqueEntityId) {
+  constructor(props: BookProperties, id?: UniqueEntityId) {
     super(props, id);
   }
 

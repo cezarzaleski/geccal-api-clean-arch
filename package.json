@@ -1,31 +1,18 @@
 {
-  "name": "geccal-api",
+  "name": "geccal-api-clean-arch",
   "version": "1.0.0",
-  "description": "API Biblioteca Infantil do Geccal",
+  "description": "",
   "main": "index.js",
+  "workspaces": [
+    "./src/@core",
+    "./src/nestjs"
+  ],
   "scripts": {
-    "ts-node": "ts-node",
-    "tsc": "tsc",
+    "prestart:dev": "npm run build -w @geccal/core",
+    "start:dev": "npm run build:w -w @geccal/core & npm run start:dev -w nestjs",
     "test": "jest"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@swc/core": "^1.2.172",
-    "@swc/jest": "^0.2.20",
-    "@types/jest": "^27.4.0",
-    "@types/lodash": "^4.14.178",
-    "@types/node": "14.14.31",
-    "@types/uuid": "^8.3.4",
-    "create-ts-index": "^1.14.0",
-    "jest": "^27.5.1",
-    "regenerator-runtime": "^0.13.9",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
-  },
-  "dependencies": {
-    "class-validator": "^0.13.2",
-    "uuid": "^8.3.2"
-  }
+  "license": "ISC"
 }
