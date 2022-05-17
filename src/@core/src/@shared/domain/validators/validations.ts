@@ -1,6 +1,6 @@
-import ClassValidatorFields from '../../../@shared/domain/validators/class-validator-fields';
-import { FieldsErrors } from '../../../@shared/domain/validators/validator-field-interface';
-import { EntityValidationError } from '../../../@shared/domain/errors/validation-error';
+import ClassValidatorFields from '@shared/domain/validators/class-validator-fields';
+import { FieldsErrors } from '@shared/domain/validators/validator-field-interface';
+import { EntityValidationError } from '@shared/domain/errors/validation-error';
 // @ts-ignore
 import { objectContaining } from 'expect'
 
