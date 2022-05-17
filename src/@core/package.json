@@ -5,11 +5,13 @@
   "main": "index.js",
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
-    "#book/*": "./dist/book/*.js"
+    "#book/*": "./dist/book/*.js",
+    "#acervo/*": "./dist/acervo/*.js"
   },
   "exports": {
     "./@shared/domain": "./dist/@shared/domain/index.js",
-    "./book/domain": "./dist/book/domain/index.js"
+    "./book/domain": "./dist/book/domain/index.js",
+    "./acervo/livro/domain": "./dist/acervo/livro/domain/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -18,6 +20,9 @@
       ],
       "book/domain": [
         "./dist/book/domain/index.d.ts"
+      ],
+      "acervo/livro/domain": [
+        "./dist/acervo/livro/domain/index.d.ts"
       ]
     }
   },
