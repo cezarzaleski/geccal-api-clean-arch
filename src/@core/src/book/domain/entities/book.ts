@@ -1,5 +1,5 @@
-import Entity from '../../../@shared/domain/entity/entity';
-import UniqueEntityId from '../../../@shared/domain/value-objects/unique-entity-id.vo';
+import { Entity } from "#shared/domain/entity/entity";
+import { UniqueEntityId } from "#shared/domain";
 
 export type BookProperties = {
   name: string,

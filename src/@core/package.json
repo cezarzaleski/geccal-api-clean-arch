@@ -10,19 +10,18 @@
   },
   "exports": {
     "./@shared/domain": "./dist/@shared/domain/index.js",
-    "./book/domain": "./dist/book/domain/index.js",
-    "./acervo/livro/domain": "./dist/acervo/livro/domain/index.js"
+    "./book/domain": "./dist/book/domain/index.js"
   },
   "typesVersions": {
     ">=4.0": {
+      "@shared/application": [
+        "./dist/@shared/application/index.d.ts"
+      ],
       "@shared/domain": [
         "./dist/@shared/domain/index.d.ts"
       ],
       "book/domain": [
         "./dist/book/domain/index.d.ts"
-      ],
-      "acervo/livro/domain": [
-        "./dist/acervo/livro/domain/index.d.ts"
       ]
     }
   },
@@ -50,6 +49,7 @@
     "@types/uuid": "^8.3.4",
     "create-ts-index": "^1.14.0",
     "jest": "^27.5.1",
+    "jest-mock-extended": "^2.0.6",
     "regenerator-runtime": "^0.13.9",
     "ts-node": "^10.5.0",
     "ttypescript": "^1.5.13",

@@ -20,4 +20,3 @@ export abstract class Entity<Props = any> {
 }
 
 export default Entity;
-//entity para object

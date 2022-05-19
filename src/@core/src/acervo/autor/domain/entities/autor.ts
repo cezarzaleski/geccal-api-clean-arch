@@ -1,5 +1,7 @@
 import Entity from '../../../../@shared/domain/entity/entity';
 import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
+import { AutorValidatorFactory } from "../validators/autor.validator";
+import { EntityValidationError } from "../../../../@shared/domain/errors/validation-error";
 
 export type AutorProperties = {
   nome: string,
@@ -10,6 +12,9 @@ export type AutorProperties = {
 export class Autor extends Entity<AutorProperties>{
   constructor(props: AutorProperties, id?: UniqueEntityId) {
     super(props, id);
+    Autor.validate(props);
+    this.props.ativo = this.props.ativo ?? true;
+    this.props.criadoEm = this.props.criadoEm ?? new Date();
   }
 
   ativar() {
@@ -18,6 +23,14 @@ export class Autor extends Entity<AutorProperties>{
 
   desativar() {
     this.props.ativo = false;
+  }
+
+  static validate(props: AutorProperties) {
+    const validator = AutorValidatorFactory.create();
+    const isValid = validator.validate(props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
   get nome() {

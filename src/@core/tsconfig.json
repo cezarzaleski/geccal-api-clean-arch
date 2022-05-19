@@ -8,6 +8,9 @@
       ],
       "#book/*": [
         "./book/*"
+      ],
+      "#acervo/*": [
+        "./acervo/*"
       ]
     },
     "outDir": "./dist",

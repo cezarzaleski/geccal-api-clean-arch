@@ -1,4 +1,5 @@
-import { Book } from './book'
+import {Book} from "#book/domain";
+
 
 describe('Book Unit Tests', function () {
   test('constructor of book', () => {

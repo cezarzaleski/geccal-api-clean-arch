@@ -7,10 +7,10 @@
         "baseUrl": "./src",
         "paths": {
             "#shared/*": [
-                "@shared/*"
+                "./@shared/*"
             ],
-            "#category/*": [
-                "./category/*"
+            "#book/*": [
+                "./book/*"
             ],
             "#acervo/*": [
                 "./acervo/*"
