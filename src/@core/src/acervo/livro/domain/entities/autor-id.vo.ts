@@ -1,3 +1,4 @@
-import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
+import { UniqueEntityId } from '#shared/domain';
+
 
 export default class AutorId extends UniqueEntityId {}

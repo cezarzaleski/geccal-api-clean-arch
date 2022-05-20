@@ -1,4 +1,4 @@
-import { Autor } from '../../domain/entities/autor';
+import { Autor } from '#acervo/autor/domain';
 
 export type AutorOutput = {
   id: string;

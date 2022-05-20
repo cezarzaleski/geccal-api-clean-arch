@@ -1,7 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
-import { AutorRepository } from '../../domain/repository';
-import { Autor } from '../../domain';
-import { AutorOutput, AutorOutputMapper } from '../dto';
+import { Autor, AutorRepository } from '#acervo/autor/domain';
+import { AutorOutput, AutorOutputMapper } from '#acervo/autor/application';
 
 export namespace CreateAutorUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {

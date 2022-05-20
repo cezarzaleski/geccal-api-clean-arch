@@ -1,7 +1,7 @@
-import Entity from '../../../../@shared/domain/entity/entity';
-import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
-import EditoraId from './editora-id.vo';
-import AutorId from './autor-id.vo';
+import EditoraId from '#acervo/livro/domain/entities/editora-id.vo';
+import { Entity, UniqueEntityId } from '#shared/domain';
+import AutorId from '#acervo/livro/domain/entities/autor-id.vo';
+
 
 export type LivroProperties = {
   nome: string,

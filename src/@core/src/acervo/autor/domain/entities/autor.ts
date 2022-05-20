@@ -1,7 +1,5 @@
-import Entity from '../../../../@shared/domain/entity/entity';
-import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
-import { AutorValidatorFactory } from '../validators/autor.validator';
-import { EntityValidationError } from '../../../../@shared/domain/errors/validation-error';
+import { Entity, EntityValidationError, UniqueEntityId } from '#shared/domain';
+import { AutorValidatorFactory } from '#acervo/autor/domain';
 
 export type AutorProperties = {
   nome: string,

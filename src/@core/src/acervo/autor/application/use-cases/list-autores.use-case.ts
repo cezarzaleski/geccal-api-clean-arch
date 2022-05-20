@@ -1,8 +1,7 @@
-import { default as DefaultUseCase } from '../../../../@shared/application/use-case';
-import { SearchInputDto } from '../../../../@shared/application/dto/search-input';
-import { PaginationOutputDto, PaginationOutputMapper, } from '../../../../@shared/application/dto/pagination-output';
-import { AutorRepository } from '../../domain/repository';
-import { AutorOutput, AutorOutputMapper } from '../dto';
+import { default as DefaultUseCase } from '#shared/application/use-case';
+import { AutorRepository } from '#acervo/autor/domain';
+import { AutorOutput, AutorOutputMapper } from '#acervo/autor/application';
+import { PaginationOutputDto, PaginationOutputMapper, SearchInputDto } from '#shared/application';
 
 export namespace ListAutoresUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
