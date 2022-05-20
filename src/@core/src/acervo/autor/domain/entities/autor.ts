@@ -1,7 +1,7 @@
 import Entity from '../../../../@shared/domain/entity/entity';
 import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
-import { AutorValidatorFactory } from "../validators/autor.validator";
-import { EntityValidationError } from "../../../../@shared/domain/errors/validation-error";
+import { AutorValidatorFactory } from '../validators/autor.validator';
+import { EntityValidationError } from '../../../../@shared/domain/errors/validation-error';
 
 export type AutorProperties = {
   nome: string,
@@ -54,5 +54,10 @@ export class Autor extends Entity<AutorProperties>{
 
   private set criadoEm(value) {
     this.props.criadoEm = value
+  }
+
+  update(nome: string) {
+    Autor.validate({nome});
+    this.nome = nome;
   }
 }

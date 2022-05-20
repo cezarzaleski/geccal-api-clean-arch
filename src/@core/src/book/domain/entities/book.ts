@@ -1,5 +1,5 @@
-import { Entity } from "#shared/domain/entity/entity";
-import { UniqueEntityId } from "#shared/domain";
+import { Entity, UniqueEntityId } from '../../../@shared/domain';
+
 
 export type BookProperties = {
   name: string,
@@ -13,7 +13,7 @@ export type BookProperties = {
   createdAt?: Date,
 }
 
-export class Book extends Entity<BookProperties>{
+export class Book extends Entity<BookProperties> {
   constructor(props: BookProperties, id?: UniqueEntityId) {
     super(props, id);
   }
@@ -29,6 +29,7 @@ export class Book extends Entity<BookProperties>{
   get name() {
     return this.props.name
   }
+
   private set name(value) {
     this.props.name = value
   }

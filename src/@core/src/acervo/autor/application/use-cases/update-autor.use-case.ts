@@ -1,21 +1,24 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import { AutorRepository } from '../../domain/repository';
-import { Autor } from '../../domain';
 import { AutorOutput, AutorOutputMapper } from '../dto';
 
-export namespace CreateAutorUseCase {
+export namespace UpdateAutorUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
     constructor(private autorRepository: AutorRepository.Repository) {
     }
 
     async execute(input: Input): Promise<Output> {
-      const entity = new Autor(input);
-      await this.autorRepository.insert(entity);
-      return AutorOutputMapper.toOutput(entity);
+      const autor = await this.autorRepository.findById(input.id);
+      autor.update(input.nome);
+      if (input.ativo === true) autor.ativar();
+      if (input.ativo === false) autor.desativar();
+      await this.autorRepository.update(autor);
+      return AutorOutputMapper.toOutput(autor);
     }
   }
 
   export type Input = {
+    id: string;
     nome: string;
     ativo?: boolean;
   };
@@ -23,4 +26,4 @@ export namespace CreateAutorUseCase {
   export type Output = AutorOutput;
 
 }
-export default CreateAutorUseCase;
+export default UpdateAutorUseCase;
