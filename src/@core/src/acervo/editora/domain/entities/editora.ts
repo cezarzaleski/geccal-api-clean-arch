@@ -1,7 +1,4 @@
-// import Entity from '../../../../@shared/domain/entity/entity';
-// import UniqueEntityId from '../../../../@shared/domain/value-objects/unique-entity-id.vo';
-
-import {Entity, UniqueEntityId} from "#shared/domain";
+import { Entity, UniqueEntityId } from '#shared/domain';
 
 export type EditoraProperties = {
   nome: string,
@@ -9,7 +6,7 @@ export type EditoraProperties = {
   criadoEm?: Date,
 }
 
-export class Editora extends Entity<EditoraProperties>{
+export class Editora extends Entity<EditoraProperties> {
   constructor(props: EditoraProperties, id?: UniqueEntityId) {
     super(props, id);
   }
@@ -25,6 +22,7 @@ export class Editora extends Entity<EditoraProperties>{
   get nome() {
     return this.props.nome
   }
+
   private set nome(value) {
     this.props.nome = value
   }

@@ -10,7 +10,8 @@
   },
   "exports": {
     "./@shared/domain": "./dist/@shared/domain/index.js",
-    "./book/domain": "./dist/book/domain/index.js"
+    "./book/domain": "./dist/book/domain/index.js",
+    "./acervo/livro/domain": "./dist/acervo/livro/domain/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -22,6 +23,9 @@
       ],
       "book/domain": [
         "./dist/book/domain/index.d.ts"
+      ],
+      "acervo/livro/domain": [
+        "./dist/acervo/livro/domain/index.d.ts"
       ]
     }
   },
