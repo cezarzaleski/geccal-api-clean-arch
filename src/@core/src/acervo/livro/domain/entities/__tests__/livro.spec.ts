@@ -24,7 +24,7 @@ describe('Livro Unit Tests', function () {
     const subject = Livro.from(props)
 
     expect(subject.nome).toBe('livro')
-    expect(subject.autores).toBe(autores)
+    expect(subject.autores.map(autor => autor.value)).toEqual(autores)
     expect(subject.exemplar).toBe(1)
     expect(subject.situacao.value).toBe(situacao)
     expect(subject.edicao).toBe('1ª')

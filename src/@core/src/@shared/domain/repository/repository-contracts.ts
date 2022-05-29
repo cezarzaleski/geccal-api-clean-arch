@@ -1,7 +1,8 @@
-import { Entity, UniqueEntityId } from '#shared/domain';
+import { UniqueEntityId } from '#shared/domain';
+import Entityy from '#shared/domain/entity/entityy';
 
 
-export interface RepositoryInterface<E extends Entity> {
+export interface RepositoryInterface<E extends Entityy> {
   insert(entity: E): Promise<void>;
   findById(id: string | UniqueEntityId): Promise<E>;
   findAll(): Promise<E[]>;
@@ -100,7 +101,7 @@ export class SearchParams<Filter = string> {
   }
 }
 
-type SearchResultProps<E extends Entity, Filter> = {
+type SearchResultProps<E extends Entityy, Filter> = {
   items: E[];
   total: number;
   current_page: number;
@@ -110,7 +111,7 @@ type SearchResultProps<E extends Entity, Filter> = {
   filter: Filter | null;
 };
 
-export class SearchResult<E extends Entity = Entity, Filter = string> {
+export class SearchResult<E extends Entityy = Entityy, Filter = string> {
   readonly items: E[];
   readonly total: number;
   readonly current_page: number;
@@ -148,7 +149,7 @@ export class SearchResult<E extends Entity = Entity, Filter = string> {
 //Entidade e Objetos
 
 export interface SearchableRepositoryInterface<
-  E extends Entity,
+  E extends Entityy,
   Filter = string,
   SearchInput = SearchParams,
   SearchOutput = SearchResult<E, Filter>

@@ -4,6 +4,7 @@ import Origem from '#acervo/livro/domain/entities/origem.vo';
 import SituacaoLivro from '#acervo/livro/domain/entities/situacao-livro.vo';
 import { LivroValidatorFactory } from '#acervo/livro/domain/validators';
 import Entityy from '#shared/domain/entity/entityy';
+import Autor from '#acervo/livro/domain/entities/autor.vo';
 
 
 export type LivroProperties = {
@@ -19,26 +20,16 @@ export type LivroProperties = {
 }
 
 export class Livro extends Entityy {
-  public readonly nome: string
-  public readonly exemplar: number
-  public situacao: SituacaoLivro
-  public readonly edicao: string
-  public readonly observacao?: string
-  public readonly editoraId: EditoraId
-  public readonly autores: Array<string>
-  public readonly origem: Origem
-  public readonly criadoEm: Date
-
-  constructor(
-    nome: string,
-    exemplar: number,
-    situacao: SituacaoLivro,
-    edicao: string,
-    observacao: string,
-    editoraId: EditoraId,
-    autores: Array<string>,
-    origem: Origem,
-    criadoEm: Date,
+  private constructor(
+    public readonly nome: string,
+    public readonly exemplar: number,
+    public situacao: SituacaoLivro,
+    public readonly edicao: string,
+    public readonly observacao: string,
+    public readonly editoraId: EditoraId,
+    public readonly autores: Array<Autor>,
+    public readonly origem: Origem,
+    public readonly criadoEm: Date,
     id: UniqueEntityId
   ) {
     super(id);
@@ -57,10 +48,11 @@ export class Livro extends Entityy {
     props.criadoEm = props.criadoEm ?? new Date();
     Livro.validate(props);
     const editoraId = new EditoraId(props.editoraId)
+    const autoresVo = props.autores.map(autor => new Autor(autor))
     const origem =  new Origem(props.origem)
     const situacaoLivro =  SituacaoLivro.from(props.situacao)
-    const {nome, exemplar, edicao, observacao, autores, criadoEm} = props
-    return new Livro(nome, exemplar, situacaoLivro, edicao, observacao, editoraId, autores, origem, criadoEm, id)
+    const {nome, exemplar, edicao, observacao, criadoEm} = props
+    return new Livro(nome, exemplar, situacaoLivro, edicao, observacao, editoraId, autoresVo, origem, criadoEm, id)
   }
 
   static validate(props: LivroProperties) {
