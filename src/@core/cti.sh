@@ -8,6 +8,6 @@ npm run cti create './src/book/application' -- -i '*spec.ts' -b &&
 npm run cti create './src/book/domain' -- -i '*spec.ts' -b &&
 npm run cti create './src/book/infra' -- -i '*spec.ts' -b &&
 
-npm run cti create './src/acervo/autor/application' -- -i '*spec.ts' -b &&
-npm run cti create './src/acervo/autor/domain' -- -i '*spec.ts' -b
-npm run cti create './src/acervo/autor/domain' -- -i '*spec.ts' -b
+npm run cti create './src/acervo/editora/application' -- -i '*spec.ts' -b &&
+npm run cti create './src/acervo/editora/domain' -- -i '*spec.ts' -b &&
+npm run cti create './src/acervo/editora/domain' -- -i '*spec.ts' -b
