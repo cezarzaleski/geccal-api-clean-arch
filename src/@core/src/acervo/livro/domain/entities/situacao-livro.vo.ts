@@ -26,8 +26,6 @@ export default class SituacaoLivro extends ValueObject<string> {
 
   static validate(value) {
     const situacaoInvalida = !Object.values(SituacaoEnum).includes(value)
-    if (situacaoInvalida) {
-      throw new InvalidSituacaoLivroError();
-    }
+    if (situacaoInvalida) throw new InvalidSituacaoLivroError();
   }
 }

@@ -33,15 +33,6 @@ export class Livro extends Entityy {
     id: UniqueEntityId
   ) {
     super(id);
-    this.nome = nome;
-    this.exemplar = exemplar;
-    this.situacao = situacao;
-    this.edicao = edicao;
-    this.observacao = observacao;
-    this.editoraId = editoraId;
-    this.autores = autores;
-    this.origem = origem;
-    this.criadoEm = criadoEm;
   }
 
   static from(props: LivroProperties, id?: UniqueEntityId): Livro {
