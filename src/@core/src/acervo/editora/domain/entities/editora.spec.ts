@@ -10,7 +10,7 @@ describe('Editora Unit Tests', function () {
       criadoEm: criadoEm
     }
 
-    const subject = new Editora(props)
+    const subject = Editora.from(props)
 
     expect(subject.nome).toBe('some editora')
     expect(subject.ativo).toBe(true)
