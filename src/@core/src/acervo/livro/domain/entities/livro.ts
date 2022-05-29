@@ -19,16 +19,18 @@ export type LivroProperties = {
   criadoEm?: Date,
 }
 
+type LivroPropertiesUpdate = Omit<LivroProperties, 'criadoEm'>
+
 export class Livro extends Entityy {
   private constructor(
-    public readonly nome: string,
-    public readonly exemplar: number,
+    public nome: string,
+    public exemplar: number,
     public situacao: SituacaoLivro,
-    public readonly edicao: string,
-    public readonly observacao: string,
-    public readonly editoraId: EditoraId,
-    public readonly autores: Array<Autor>,
-    public readonly origem: Origem,
+    public edicao: string,
+    public observacao: string,
+    public editoraId: EditoraId,
+    public autores: Array<Autor>,
+    public origem: Origem,
     public readonly criadoEm: Date,
     id: UniqueEntityId
   ) {
@@ -52,6 +54,25 @@ export class Livro extends Entityy {
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
     }
+  }
+
+  update(
+    props: LivroPropertiesUpdate
+  ) {
+    Livro.validate(props);
+    const {nome, exemplar, edicao, observacao, editoraId, autores, origem, situacao} = props
+    const editoraIdVo = new EditoraId(editoraId)
+    const autoresVo = autores.map(autor => new Autor(autor))
+    const origemVo =  new Origem(origem)
+    const situacaoLivro =  SituacaoLivro.from(situacao)
+    this.nome = nome
+    this.exemplar = exemplar
+    this.situacao = situacaoLivro
+    this.edicao = edicao
+    this.observacao = observacao
+    this.editoraId = editoraIdVo
+    this.autores = autoresVo
+    this.origem = origemVo
   }
 
   perder() {

@@ -10,7 +10,6 @@ export type EditoraProperties = {
 
 export class Editora extends Entityy {
 
-
   private constructor(
     public nome: string,
     public ativo: boolean,
