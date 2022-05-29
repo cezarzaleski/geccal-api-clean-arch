@@ -1,5 +1,6 @@
-import { UniqueEntityId } from '#shared/domain';
+import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entityy from '#shared/domain/entity/entityy';
+import { EditoraValidatorFactory } from '#acervo/editora/domain';
 
 export type EditoraProperties = {
   nome: string,
@@ -21,6 +22,8 @@ export class Editora extends Entityy {
   static from(props: EditoraProperties, id?: UniqueEntityId): Editora {
     let {nome, ativo, criadoEm} = props
     if (ativo === undefined) ativo = true
+    props.criadoEm = props.criadoEm ?? new Date();
+    Editora.validate(props);
     return new Editora(nome, ativo, criadoEm, id)
   }
 
@@ -32,8 +35,16 @@ export class Editora extends Entityy {
     this.ativo = false;
   }
 
+  static validate(props: EditoraProperties) {
+    const validator = EditoraValidatorFactory.create();
+    const isValid = validator.validate(props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
+  }
+
   update(nome: string) {
-    // Editora.validate({nome});
+    Editora.validate({nome});
     this.nome = nome;
   }
 }
