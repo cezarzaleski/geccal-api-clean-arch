@@ -46,7 +46,6 @@ describe('UpdateLivroUseCase Unit Tests', () => {
       origem: 'update',
       editoraId: editoraId.value,
       nome: 'update',
-      situacao: 'disponivel',
       observacao: 'update'
     }
 

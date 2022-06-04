@@ -19,7 +19,7 @@ export type LivroProperties = {
   criadoEm?: Date,
 }
 
-type LivroPropertiesUpdate = Omit<LivroProperties, 'criadoEm'>
+type LivroPropertiesUpdate = Omit<LivroProperties, 'criadoEm' | 'situacao'>
 
 export class Livro extends Entityy {
   private constructor(
@@ -59,15 +59,14 @@ export class Livro extends Entityy {
   update(
     props: LivroPropertiesUpdate
   ) {
-    Livro.validate(props);
-    const {nome, exemplar, edicao, observacao, editoraId, autores, origem, situacao} = props
+
+    Livro.validate({...props, situacao: this.situacao.value});
+    const {nome, exemplar, edicao, observacao, editoraId, autores, origem} = props
     const editoraIdVo = new EditoraId(editoraId)
     const autoresVo = autores.map(autor => new Autor(autor))
     const origemVo =  new Origem(origem)
-    const situacaoLivro =  SituacaoLivro.from(situacao)
     this.nome = nome
     this.exemplar = exemplar
-    this.situacao = situacaoLivro
     this.edicao = edicao
     this.observacao = observacao
     this.editoraId = editoraIdVo
