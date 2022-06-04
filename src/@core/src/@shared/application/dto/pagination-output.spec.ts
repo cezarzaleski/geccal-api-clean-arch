@@ -1,5 +1,6 @@
-import { SearchResult } from '../../domain/repository/repository-contracts';
-import { PaginationOutputMapper } from './pagination-output';
+import { EditoraRepository } from '#acervo/editora/domain';
+import SearchResult = EditoraRepository.SearchResult;
+import { PaginationOutputMapper } from '#shared/application';
 
 describe('PaginationOutputMapper Unit Tests', () => {
   it('should convert a SearchResult in output', () => {
