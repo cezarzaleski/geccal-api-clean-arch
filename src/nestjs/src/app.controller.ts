@@ -2,7 +2,6 @@ import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Livro } from '@geccal/core/dist/acervo/livro/domain';
 import EditoraId from '@geccal/core/dist/acervo/livro/domain/entities/editora-id.vo';
-import { Book } from '@geccal/core/dist/book/domain';
 
 @Controller()
 export class AppController {
@@ -10,17 +9,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    const props = {
-      author: 'some author',
-      createdAt: new Date(),
-      edition: '1ª',
-      exemplary: 1,
-      isActive: true,
-      origin: 'donation',
-      publishingCompany: 'some publishing Company',
-      name: 'book',
-      description: 'some description',
-    };
     const criadoEm = new Date();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -42,7 +30,6 @@ export class AppController {
 
     const livro = Livro.from(propsLivro);
     console.log(livro.nome);
-    const book = new Book(props);
 
     return this.appService.getHello();
   }

@@ -15,6 +15,5 @@ export default {
   moduleNameMapper: {
     '#shared/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/@shared/$1',
     '#acervo/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/acervo/$1',
-    '#book/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/book/$1',
   }
 };
