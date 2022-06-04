@@ -1,36 +1,21 @@
 import { Livro } from '#acervo/livro/domain/entities/livro';
-import EditoraId from '#acervo/livro/domain/entities/editora-id.vo';
+import LivroPropertiesFake from '#acervo/livro/domain/entities/__tests__/livro.properties.fake';
 
 
 describe('Livro Unit Tests', function () {
-  test('constructor of book', () => {
-    const criadoEm = new Date()
-    const editoraId = new EditoraId()
-    const autores = ['maria', 'pedro']
-    const origem = 'donation'
-    const situacao = 'disponivel'
-    const props = {
-      autores: autores,
-      criadoEm: criadoEm,
-      edicao: '1ª',
-      exemplar: 1,
-      origem: origem,
-      editoraId: editoraId.value,
-      nome: 'livro',
-      situacao: situacao,
-      observacao: 'some description'
-    }
+  test('constructor of livro', () => {
 
-    const subject = Livro.from(props)
+    const livroProps = LivroPropertiesFake.build()
+    const subject = Livro.from(livroProps)
 
     expect(subject.nome).toBe('livro')
-    expect(subject.autores.map(autor => autor.value)).toEqual(autores)
+    expect(subject.autores.map(autor => autor.value)).toEqual(livroProps.autores)
     expect(subject.exemplar).toBe(1)
-    expect(subject.situacao.value).toBe(situacao)
+    expect(subject.situacao.value).toBe(livroProps.situacao)
     expect(subject.edicao).toBe('1ª')
     expect(subject.observacao).toBe('some description')
-    expect(subject.editoraId.value).toBe(editoraId.value)
-    expect(subject.origem.value).toBe(origem)
-    expect(subject.criadoEm).toBe(criadoEm)
+    expect(subject.editoraId.value).toBe(livroProps.editoraId)
+    expect(subject.origem.value).toBe(livroProps.origem)
+    expect(subject.criadoEm).toBe(livroProps.criadoEm)
   })
 });
