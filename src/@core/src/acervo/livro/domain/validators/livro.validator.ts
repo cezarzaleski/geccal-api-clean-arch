@@ -1,34 +1,39 @@
-import { IsArray, IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString,   NotEquals} from 'class-validator';
 import { LivroProperties } from '#acervo/livro/domain';
 import { ClassValidatorFields } from '#shared/domain';
 
 export class LivroRules {
+
   @IsString()
   @IsNotEmpty()
+  @NotEquals(null)
   nome: string;
 
   @IsString()
   @IsOptional()
   observacao: string;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @NotEquals(null)
   exemplar: number;
 
   @IsString()
   @IsNotEmpty()
+  @NotEquals(null)
   editoraId: string;
 
-  @IsArray()
+  @IsArray({message:"autores should not be list"})
   @IsNotEmpty()
+  @NotEquals(null)
   autores: Array<string>;
 
   @IsString()
   @IsNotEmpty()
+  @NotEquals(null)
   origem: string;
 
   @IsString()
   @IsNotEmpty()
+  @NotEquals(null)
   edicao: string;
 
   @IsBoolean()
@@ -49,7 +54,8 @@ export class LivroRules {
                 autores,
                 origem,
                 criadoEm
-              }: LivroProperties) {
+              }: LivroProperties
+  ) {
     Object.assign(this, {
       nome,
       exemplar,
