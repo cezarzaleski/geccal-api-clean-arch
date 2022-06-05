@@ -30,6 +30,4 @@ export namespace UpdateLivroUseCase {
   };
 
   export type Output = LivroOutput;
-
 }
-export default UpdateLivroUseCase;

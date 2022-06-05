@@ -1,6 +1,5 @@
 import { Livro } from '#acervo/livro/domain';
 
-
 export type LivroOutput = {
   id: string
   nome: string

@@ -29,4 +29,3 @@ export namespace CreateLivroUseCase {
   export type Output = LivroOutput;
 
 }
-export default CreateLivroUseCase;
