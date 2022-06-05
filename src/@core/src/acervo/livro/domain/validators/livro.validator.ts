@@ -82,5 +82,3 @@ export class LivroValidatorFactory {
     return new LivroValidator();
   }
 }
-
-export default LivroValidatorFactory;
