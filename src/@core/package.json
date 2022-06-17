@@ -23,9 +23,6 @@
       ],
       "book/domain": [
         "./dist/book/domain/index.d.ts"
-      ],
-      "acervo/livro/domain": [
-        "./dist/acervo/livro/domain/index.d.ts"
       ]
     }
   },
