@@ -1,8 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { GetEditoraUseCase } from '#acervo/editora/application';
-import { EditoraRepository } from '#acervo/editora/domain/repository';
 import { NotFoundError } from '#shared/domain';
-import { Editora } from '#acervo/editora/domain';
+import { GetEditoraUseCase } from '#acervo/application';
+import { Editora, EditoraRepository } from '#acervo/domain';
 
 describe('GetEditoraUseCase Unit Tests', () => {
   let useCase: GetEditoraUseCase.UseCase;

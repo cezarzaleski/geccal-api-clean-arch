@@ -1,6 +1,6 @@
 import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { EditoraProperties } from '#acervo/editora/domain';
 import { ClassValidatorFields } from '#shared/domain';
+import { EditoraProperties } from '#acervo/domain';
 
 export class EditoraRules {
   @IsString()

@@ -2,8 +2,8 @@ import {
   SearchableRepositoryInterface,
   SearchParams as DefaultSearchParams,
   SearchResult as DefaultSearchResult,
-} from '../../../../@shared/domain/repository/repository-contracts';
-import { Editora } from "../entities/editora";
+} from '#shared/domain/repository/repository-contracts';
+import { Editora } from "#acervo/domain/entities/editora";
 
 export namespace EditoraRepository {
   export type Filter = string;

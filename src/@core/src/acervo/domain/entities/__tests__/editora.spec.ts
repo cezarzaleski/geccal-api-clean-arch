@@ -1,4 +1,4 @@
-import { Editora } from './editora';
+import { Editora } from '#acervo/domain';
 
 
 describe('Editora Unit Tests', function () {

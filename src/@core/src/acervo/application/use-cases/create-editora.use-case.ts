@@ -1,7 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
-import { EditoraRepository } from '#acervo/editora/domain/repository';
-import { Editora } from '#acervo/editora/domain';
-import { EditoraOutput, EditoraOutputMapper } from '#acervo/editora/application/dto/editora-output';
+import { EditoraOutput, EditoraOutputMapper } from '#acervo/application/dto/editora-output';
+import { Editora, EditoraRepository } from '#acervo/domain';
 
 export namespace CreateEditoraUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {

@@ -1,7 +1,7 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import { PaginationOutputDto, PaginationOutputMapper, SearchInputDto } from '#shared/application';
-import { EditoraRepository } from '#acervo/editora/domain/repository';
-import { EditoraOutput, EditoraOutputMapper } from '#acervo/editora/application/dto/editora-output';
+import { EditoraOutput, EditoraOutputMapper } from '#acervo/application/dto/editora-output';
+import { EditoraRepository } from '#acervo/domain';
 
 export namespace ListEditorasUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {

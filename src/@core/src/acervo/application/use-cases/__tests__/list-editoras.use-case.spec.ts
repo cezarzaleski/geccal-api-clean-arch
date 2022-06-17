@@ -1,7 +1,6 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { EditoraOutputMapper, ListEditorasUseCase } from '#acervo/editora/application';
-import { EditoraRepository } from '#acervo/editora/domain/repository';
-import { Editora } from '#acervo/editora/domain';
+import { EditoraOutputMapper, ListEditorasUseCase } from '#acervo/application';
+import { Editora, EditoraRepository } from '#acervo/domain';
 
 describe('ListEditorasUseCase Unit Tests', () => {
   let useCase: ListEditorasUseCase.UseCase;

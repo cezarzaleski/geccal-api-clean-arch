@@ -1,6 +1,6 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entityy from '#shared/domain/entity/entityy';
-import { EditoraValidatorFactory } from '#acervo/editora/domain';
+import { EditoraValidatorFactory } from '#acervo/domain';
 
 export type EditoraProperties = {
   nome: string,

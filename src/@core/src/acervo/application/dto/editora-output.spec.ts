@@ -1,5 +1,5 @@
-import { EditoraOutputMapper } from '#acervo/editora/application/dto/editora-output';
-import { Editora } from '#acervo/editora/domain';
+import { EditoraOutputMapper } from '#acervo/application/dto/editora-output';
+import { Editora } from '#acervo/domain';
 
 
 describe('EditoraOutputMapper Unit Tests', () => {

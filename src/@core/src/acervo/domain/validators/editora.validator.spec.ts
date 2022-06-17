@@ -2,7 +2,7 @@ import {
   EditoraRules,
   EditoraValidator,
   EditoraValidatorFactory
-} from '#acervo/editora/domain/validators/editora.validator';
+} from '#acervo/domain/validators/editora.validator';
 
 
 describe("EditoraValidator Tests", () => {

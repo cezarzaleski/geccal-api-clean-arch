@@ -1,4 +1,5 @@
-import { Editora } from '#acervo/editora/domain';
+import { Editora } from '#acervo/domain';
+
 
 export type EditoraOutput = {
   id: string;
