@@ -1,5 +1,5 @@
 import { LivroProperties } from '#acervo/domain';
-import EditoraId from '#acervo/domain/entities/editora-id.vo';
+import { EditoraId } from '#acervo/domain/entities/value-objects';
 
 
 export default class LivroPropertiesFake {

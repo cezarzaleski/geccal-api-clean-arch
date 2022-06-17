@@ -1,10 +1,8 @@
-import EditoraId from '#acervo/domain/entities/editora-id.vo';
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
-import Origem from '#acervo/domain/entities/origem.vo';
 import SituacaoLivro from '#acervo/domain/entities/situacao-livro.vo';
 import { LivroValidatorFactory } from '#acervo/domain/validators';
 import Entityy from '#shared/domain/entity/entityy';
-import Autor from '#acervo/domain/entities/autor.vo';
+import { Autor, EditoraId, Origem } from '#acervo/domain/entities/value-objects';
 
 
 export type LivroProperties = {

@@ -1,7 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { CreateLivroUseCase } from '#acervo/application';
 import { Livro, LivroRepository } from '#acervo/domain';
-import EditoraId from '#acervo/domain/entities/editora-id.vo';
+import { EditoraId } from '#acervo/domain/entities/value-objects';
 
 describe('CreateLivroUseCase Unit test', function () {
 

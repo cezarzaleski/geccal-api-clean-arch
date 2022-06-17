@@ -2,8 +2,8 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { NotFoundError } from '#shared/domain';
 import { UpdateLivroUseCase } from '#acervo/application';
 import LivroRepository from '#acervo/domain/repository/livro.repository';
-import EditoraId from '#acervo/domain/entities/editora-id.vo';
 import { Livro } from '#acervo/domain/entities';
+import { EditoraId } from '#acervo/domain/entities/value-objects';
 
 describe('UpdateLivroUseCase Unit Tests', () => {
   let subject: UpdateLivroUseCase.UseCase;
