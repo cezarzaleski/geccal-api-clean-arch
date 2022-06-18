@@ -20,9 +20,6 @@
       ],
       "@shared/domain": [
         "./dist/@shared/domain/index.d.ts"
-      ],
-      "book/domain": [
-        "./dist/book/domain/index.d.ts"
       ]
     }
   },
