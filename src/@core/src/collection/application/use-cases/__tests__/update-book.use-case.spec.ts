@@ -5,7 +5,7 @@ import BookRepository from '#collection/domain/repository/book.repository';
 import { Book } from '#collection/domain/entities';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
-describe('UpdateLivroUseCase Unit Tests', () => {
+describe('UpdateBookUseCase Unit Tests', () => {
   let subject: UpdateBookUseCase.UseCase;
   let repository: MockProxy<BookRepository.Repository>
   let livro: Book

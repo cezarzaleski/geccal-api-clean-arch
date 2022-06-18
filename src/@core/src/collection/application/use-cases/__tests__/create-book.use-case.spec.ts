@@ -3,7 +3,7 @@ import { CreateBookUseCase } from '#collection/application';
 import { Book, BookRepository } from '#collection/domain';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
-describe('CreateLivroUseCase Unit test', function () {
+describe('CreateBookUseCase Unit test', function () {
 
   let subject: CreateBookUseCase.UseCase;
   let repository: MockProxy<BookRepository.Repository>
