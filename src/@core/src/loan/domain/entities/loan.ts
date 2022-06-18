@@ -11,6 +11,7 @@ export type LoanProperties = {
   returnedAt?: Date,
   createdAt?: Date,
 }
+//
 
 type LoanPropertiesUpdate = Omit<LoanProperties, 'createdAt'>
 
@@ -26,7 +27,8 @@ export class Loan extends Entity {
     super(id);
   }
 
-  static from(props: LoanProperties, id?: UniqueEntityId): Loan {
+  static from(props: LoanProperties, countPendingLoanRegistration: number = 0, id?: UniqueEntityId): Loan {
+    if (countPendingLoanRegistration >= 2) throw new Error("Registration with 2 loans pending")
     props.createdAt = props.createdAt ?? new Date();
     Loan.validate(props);
     const registrationId = new RegistrationId(props.registrationId)
