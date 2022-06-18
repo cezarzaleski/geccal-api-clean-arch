@@ -12,8 +12,8 @@
             "#book/*": [
                 "./book/*"
             ],
-            "#acervo/*": [
-                "./acervo/*"
+            "#collection/*": [
+                "./collection/*"
             ]
         }
     }

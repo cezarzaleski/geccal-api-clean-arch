@@ -9,8 +9,8 @@
       "#book/*": [
         "./book/*"
       ],
-      "#acervo/*": [
-        "./acervo/*"
+      "#collection/*": [
+        "./collection/*"
       ]
     },
     "outDir": "./dist",

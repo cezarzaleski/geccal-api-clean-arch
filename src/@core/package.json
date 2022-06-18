@@ -6,12 +6,12 @@
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
     "#book/*": "./dist/book/*.js",
-    "#acervo/*": "./dist/acervo/*.js"
+    "#collection/*": "./dist/collection/*.js"
   },
   "exports": {
     "./@shared/domain": "./dist/@shared/domain/index.js",
     "./book/domain": "./dist/book/domain/index.js",
-    "./acervo/livro/domain": "./dist/acervo/livro/domain/index.js"
+    "./collection/livro/domain": "./dist/collection/livro/domain/index.js"
   },
   "typesVersions": {
     ">=4.0": {

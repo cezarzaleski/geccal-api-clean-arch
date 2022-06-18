@@ -14,6 +14,6 @@ export default {
   testEnvironment: 'node',
   moduleNameMapper: {
     '#shared/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/@shared/$1',
-    '#acervo/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/acervo/$1',
+    '#collection/(.*)$': '<rootDir>/../../../node_modules/@geccal/core/dist/collection/$1',
   }
 };

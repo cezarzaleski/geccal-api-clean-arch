@@ -1,7 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Livro } from '@geccal/core/dist/acervo/domain';
-import EditoraId from '@geccal/core/dist/acervo/domain/entities/editora-id.vo';
+import { EditoraId, Livro } from '@geccal/core/dist/collection/domain';
 
 @Controller()
 export class AppController {
