@@ -11,17 +11,17 @@ enum SituacaoEnum {
   DOADO = 'doado',
 }
 
-export default class SituacaoLivro extends ValueObject<string> {
-  static EMPRESTADO = new SituacaoLivro(SituacaoEnum.EMPRESTADO)
-  static DISPONIVEL = new SituacaoLivro(SituacaoEnum.DISPONIVEL)
-  static PERDIDO = new SituacaoLivro(SituacaoEnum.PERDIDO)
-  static INAPROPRIADO = new SituacaoLivro(SituacaoEnum.INAPROPRIADO)
-  static EXTRAVIADO = new SituacaoLivro(SituacaoEnum.EXTRAVIADO)
-  static DOADO = new SituacaoLivro(SituacaoEnum.DOADO)
+export default class StatusBook extends ValueObject<string> {
+  static EMPRESTADO = new StatusBook(SituacaoEnum.EMPRESTADO)
+  static DISPONIVEL = new StatusBook(SituacaoEnum.DISPONIVEL)
+  static PERDIDO = new StatusBook(SituacaoEnum.PERDIDO)
+  static INAPROPRIADO = new StatusBook(SituacaoEnum.INAPROPRIADO)
+  static EXTRAVIADO = new StatusBook(SituacaoEnum.EXTRAVIADO)
+  static DOADO = new StatusBook(SituacaoEnum.DOADO)
 
   static from (value: string) {
-    SituacaoLivro.validate(value)
-    return new SituacaoLivro(value)
+    StatusBook.validate(value)
+    return new StatusBook(value)
   }
 
   static validate(value) {

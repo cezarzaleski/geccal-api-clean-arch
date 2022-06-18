@@ -2,5 +2,5 @@
 
 export * from './book';
 export * from './editora';
-export * from './situacao-livro.vo';
+export * from './status-book.vo';
 export * from './value-objects';

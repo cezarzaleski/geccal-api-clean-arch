@@ -1,9 +1,9 @@
 import { UniqueEntityId, ValueObject } from '#shared/domain';
 
 
-class Autor extends ValueObject<string> {}
+class Author extends ValueObject<string> {}
 class EditoraId extends UniqueEntityId {}
-class Origem extends ValueObject<string> {}
+class Origin extends ValueObject<string> {}
 
-export { Autor, EditoraId, Origem };
+export { Author, EditoraId, Origin };
 

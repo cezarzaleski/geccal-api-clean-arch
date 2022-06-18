@@ -1,8 +1,8 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
-import SituacaoLivro from '#collection/domain/entities/situacao-livro.vo';
+import StatusBook from '#collection/domain/entities/status-book.vo';
 import { BookValidatorFactory } from '#collection/domain/validators';
 import Entity from '#shared/domain/entity/entity';
-import { Autor, EditoraId, Origem } from '#collection/domain/entities/value-objects';
+import { Author, EditoraId, Origin } from '#collection/domain/entities/value-objects';
 
 
 export type BookProperties = {
@@ -23,12 +23,12 @@ export class Book extends Entity {
   private constructor(
     public nome: string,
     public exemplar: number,
-    public situacao: SituacaoLivro,
+    public situacao: StatusBook,
     public edicao: string,
     public observacao: string,
     public editoraId: EditoraId,
-    public autores: Array<Autor>,
-    public origem: Origem,
+    public autores: Array<Author>,
+    public origem: Origin,
     public readonly criadoEm: Date,
     id: UniqueEntityId
   ) {
@@ -39,9 +39,9 @@ export class Book extends Entity {
     props.criadoEm = props.criadoEm ?? new Date();
     Book.validate(props);
     const editoraId = new EditoraId(props.editoraId)
-    const autoresVo = props.autores.map(autor => new Autor(autor))
-    const origem =  new Origem(props.origem)
-    const situacaoLivro =  SituacaoLivro.from(props.situacao)
+    const autoresVo = props.autores.map(autor => new Author(autor))
+    const origem =  new Origin(props.origem)
+    const situacaoLivro =  StatusBook.from(props.situacao)
     const {nome, exemplar, edicao, observacao, criadoEm} = props
     return new Book(nome, exemplar, situacaoLivro, edicao, observacao, editoraId, autoresVo, origem, criadoEm, id)
   }
@@ -61,8 +61,8 @@ export class Book extends Entity {
     Book.validate({...props, situacao: this.situacao.value});
     const {nome, exemplar, edicao, observacao, editoraId, autores, origem} = props
     const editoraIdVo = new EditoraId(editoraId)
-    const autoresVo = autores.map(autor => new Autor(autor))
-    const origemVo =  new Origem(origem)
+    const autoresVo = autores.map(autor => new Author(autor))
+    const origemVo =  new Origin(origem)
     this.nome = nome
     this.exemplar = exemplar
     this.edicao = edicao
@@ -73,18 +73,18 @@ export class Book extends Entity {
   }
 
   perder() {
-    this.situacao = SituacaoLivro.PERDIDO;
+    this.situacao = StatusBook.PERDIDO;
   }
 
   inapropriar() {
-    this.situacao = SituacaoLivro.INAPROPRIADO;
+    this.situacao = StatusBook.INAPROPRIADO;
   }
 
   doar() {
-    this.situacao = SituacaoLivro.DOADO;
+    this.situacao = StatusBook.DOADO;
   }
 
   extraviar() {
-    this.situacao = SituacaoLivro.EXTRAVIADO;
+    this.situacao = StatusBook.EXTRAVIADO;
   }
 }
