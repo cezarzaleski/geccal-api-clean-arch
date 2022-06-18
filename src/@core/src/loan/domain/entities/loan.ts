@@ -11,7 +11,6 @@ export type LoanProperties = {
   returnedAt?: Date,
   createdAt?: Date,
 }
-//
 
 type LoanPropertiesUpdate = Omit<LoanProperties, 'createdAt'>
 
