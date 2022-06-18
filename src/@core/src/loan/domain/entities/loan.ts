@@ -1,6 +1,7 @@
-import { UniqueEntityId } from '#shared/domain';
+import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entity from '#shared/domain/entity/entity';
 import { BookId, RegistrationId } from '#loan/domain';
+import { LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
 
 
 export type LoanProperties = {
@@ -35,11 +36,10 @@ export class Loan extends Entity {
   }
 
   static validate(props: LoanProperties) {
-    return true
-    // const validator = BookValidatorFactory.create();
-    // const isValid = validator.validate(props);
-    // if (!isValid) {
-    //   throw new EntityValidationError(validator.errors);
-    // }
+    const validator = LoanValidatorFactory.create();
+    const isValid = validator.validate(props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 }
