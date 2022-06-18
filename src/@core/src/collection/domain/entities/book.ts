@@ -1,7 +1,7 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import SituacaoLivro from '#collection/domain/entities/situacao-livro.vo';
 import { BookValidatorFactory } from '#collection/domain/validators';
-import Entityy from '#shared/domain/entity/entityy';
+import Entity from '#shared/domain/entity/entity';
 import { Autor, EditoraId, Origem } from '#collection/domain/entities/value-objects';
 
 
@@ -19,7 +19,7 @@ export type BookProperties = {
 
 type BookPropertiesUpdate = Omit<BookProperties, 'criadoEm' | 'situacao'>
 
-export class Book extends Entityy {
+export class Book extends Entity {
   private constructor(
     public nome: string,
     public exemplar: number,

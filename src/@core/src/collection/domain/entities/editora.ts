@@ -1,5 +1,5 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
-import Entityy from '#shared/domain/entity/entityy';
+import Entity from '#shared/domain/entity/entity';
 import { EditoraValidatorFactory } from '#collection/domain';
 
 export type EditoraProperties = {
@@ -8,7 +8,7 @@ export type EditoraProperties = {
   criadoEm?: Date,
 }
 
-export class Editora extends Entityy {
+export class Editora extends Entity {
 
   private constructor(
     public nome: string,
