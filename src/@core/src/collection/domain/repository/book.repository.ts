@@ -5,7 +5,7 @@ import {
 } from '#shared/domain/repository/repository-contracts';
 import { Book } from '#collection/domain';
 
-export namespace LivroRepository {
+export namespace BookRepository {
   export type Filter = string;
 
   export class SearchParams extends DefaultSearchParams<Filter> {}
@@ -21,4 +21,4 @@ export namespace LivroRepository {
     > {}
 }
 
-export default LivroRepository;
+export default BookRepository;

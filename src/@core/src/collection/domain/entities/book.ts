@@ -1,11 +1,11 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import SituacaoLivro from '#collection/domain/entities/situacao-livro.vo';
-import { LivroValidatorFactory } from '#collection/domain/validators';
+import { BookValidatorFactory } from '#collection/domain/validators';
 import Entityy from '#shared/domain/entity/entityy';
 import { Autor, EditoraId, Origem } from '#collection/domain/entities/value-objects';
 
 
-export type LivroProperties = {
+export type BookProperties = {
   nome: string,
   exemplar: number,
   situacao: string,
@@ -17,7 +17,7 @@ export type LivroProperties = {
   criadoEm?: Date,
 }
 
-type LivroPropertiesUpdate = Omit<LivroProperties, 'criadoEm' | 'situacao'>
+type BookPropertiesUpdate = Omit<BookProperties, 'criadoEm' | 'situacao'>
 
 export class Book extends Entityy {
   private constructor(
@@ -35,7 +35,7 @@ export class Book extends Entityy {
     super(id);
   }
 
-  static from(props: LivroProperties, id?: UniqueEntityId): Book {
+  static from(props: BookProperties, id?: UniqueEntityId): Book {
     props.criadoEm = props.criadoEm ?? new Date();
     Book.validate(props);
     const editoraId = new EditoraId(props.editoraId)
@@ -46,8 +46,8 @@ export class Book extends Entityy {
     return new Book(nome, exemplar, situacaoLivro, edicao, observacao, editoraId, autoresVo, origem, criadoEm, id)
   }
 
-  static validate(props: LivroProperties) {
-    const validator = LivroValidatorFactory.create();
+  static validate(props: BookProperties) {
+    const validator = BookValidatorFactory.create();
     const isValid = validator.validate(props);
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
@@ -55,7 +55,7 @@ export class Book extends Entityy {
   }
 
   update(
-    props: LivroPropertiesUpdate
+    props: BookPropertiesUpdate
   ) {
 
     Book.validate({...props, situacao: this.situacao.value});

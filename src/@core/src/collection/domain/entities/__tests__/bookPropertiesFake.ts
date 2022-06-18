@@ -1,8 +1,8 @@
-import { LivroProperties } from '#collection/domain';
+import { BookProperties } from '#collection/domain';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
 
-export default class LivroPropertiesFake {
+export default class BookPropertiesFake {
   static build({
                  autores = ['maria', 'pedro'],
                  criadoEm = new Date(),
@@ -24,7 +24,7 @@ export default class LivroPropertiesFake {
                  observacao?: string,
                  editoraId?: string
                } = {}
-  ): LivroProperties {
+  ): BookProperties {
     return {
       autores: autores,
       criadoEm: criadoEm,

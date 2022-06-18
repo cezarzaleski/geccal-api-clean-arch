@@ -1,19 +1,19 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { NotFoundError } from '#shared/domain';
-import { UpdateLivroUseCase } from '#collection/application';
-import LivroRepository from '#collection/domain/repository/livro.repository';
+import { UpdateBookUseCase } from '#collection/application';
+import BookRepository from '#collection/domain/repository/book.repository';
 import { Book } from '#collection/domain/entities';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
 describe('UpdateLivroUseCase Unit Tests', () => {
-  let subject: UpdateLivroUseCase.UseCase;
-  let repository: MockProxy<LivroRepository.Repository>
+  let subject: UpdateBookUseCase.UseCase;
+  let repository: MockProxy<BookRepository.Repository>
   let livro: Book
   let props: any
 
   beforeEach(() => {
     repository = mock()
-    subject = new UpdateLivroUseCase.UseCase(repository);
+    subject = new UpdateBookUseCase.UseCase(repository);
     const editoraId = new EditoraId()
     props = {
       autores: ['luiz', 'maria'],

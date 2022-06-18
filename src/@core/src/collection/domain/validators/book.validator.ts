@@ -1,8 +1,8 @@
 import { IsArray, IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString,   NotEquals} from 'class-validator';
-import { LivroProperties } from '#collection/domain';
+import { BookProperties } from '#collection/domain';
 import { ClassValidatorFields } from '#shared/domain';
 
-export class LivroRules {
+export class BookRules {
 
   @IsString()
   @IsNotEmpty()
@@ -54,7 +54,7 @@ export class LivroRules {
                 autores,
                 origem,
                 criadoEm
-              }: LivroProperties
+              }: BookProperties
   ) {
     Object.assign(this, {
       nome,
@@ -70,15 +70,15 @@ export class LivroRules {
   }
 }
 
-export class LivroValidator extends ClassValidatorFields<LivroRules> {
-  validate(data: LivroProperties): boolean {
-    return super.validate(new LivroRules(data ?? {} as any));
+export class BookValidator extends ClassValidatorFields<BookRules> {
+  validate(data: BookProperties): boolean {
+    return super.validate(new BookRules(data ?? {} as any));
   }
 }
 
 
-export class LivroValidatorFactory {
+export class BookValidatorFactory {
   static create() {
-    return new LivroValidator();
+    return new BookValidator();
   }
 }

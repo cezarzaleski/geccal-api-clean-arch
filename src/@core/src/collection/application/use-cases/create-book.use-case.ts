@@ -1,16 +1,16 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
-import { LivroRepository } from '#collection/domain/repository';
+import { BookRepository } from '#collection/domain/repository';
 import { Book } from '#collection/domain';
-import { LivroOutput, LivroOutputMapper } from '#collection/application/dto/livro-output';
+import { BookOutput, BookOutputMapper } from '#collection/application/dto/book-output';
 
-export namespace CreateLivroUseCase {
+export namespace CreateBookUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
-    constructor(private livroRepository: LivroRepository.Repository) {}
+    constructor(private livroRepository: BookRepository.Repository) {}
 
     async execute(input: Input): Promise<Output> {
       const entity = Book.from(input);
       await this.livroRepository.insert(entity);
-      return LivroOutputMapper.toOutput(entity);
+      return BookOutputMapper.toOutput(entity);
     }
   }
 
@@ -26,7 +26,7 @@ export namespace CreateLivroUseCase {
     criadoEm: Date
   };
 
-  export type Output = LivroOutput;
+  export type Output = BookOutput;
 
 }
-export default CreateLivroUseCase;
+export default CreateBookUseCase;

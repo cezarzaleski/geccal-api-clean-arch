@@ -1,7 +1,7 @@
 import { Book } from '#collection/domain';
 
 
-export type LivroOutput = {
+export type BookOutput = {
   id: string
   nome: string
   exemplar: number
@@ -14,8 +14,8 @@ export type LivroOutput = {
   criadoEm: Date
 };
 
-export class LivroOutputMapper {
-  static toOutput(entity: Book): LivroOutput {
+export class BookOutputMapper {
+  static toOutput(entity: Book): BookOutput {
     return {
       id: entity.id,
       nome: entity.nome,

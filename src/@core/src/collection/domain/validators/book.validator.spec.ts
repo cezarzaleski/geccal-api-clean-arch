@@ -1,18 +1,18 @@
-import { LivroProperties, LivroValidator, LivroValidatorFactory } from '#collection/domain';
-import LivroPropertiesFake from '#collection/domain/entities/__tests__/livro.properties.fake';
+import { BookProperties, BookValidator, BookValidatorFactory } from '#collection/domain';
+import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
 
-describe('LivroValidator Tests', () => {
-  let validator: LivroValidator;
-  let props: LivroProperties
+describe('BookValidator Tests', () => {
+  let validator: BookValidator;
+  let props: BookProperties
 
   beforeEach(() => {
-    validator = LivroValidatorFactory.create()
-    props = LivroPropertiesFake.build()
+    validator = BookValidatorFactory.create()
+    props = BookPropertiesFake.build()
 
   });
 
   test('casos inválidos para nome', () => {
-    props = LivroPropertiesFake.build({nome: null})
+    props = BookPropertiesFake.build({nome: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       nome: [
@@ -24,7 +24,7 @@ describe('LivroValidator Tests', () => {
   })
 
   test('casos inválidos para exemplar', () => {
-    props = LivroPropertiesFake
+    props = BookPropertiesFake
       .build({exemplar: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
@@ -35,7 +35,7 @@ describe('LivroValidator Tests', () => {
   })
 
   test('casos inválidos para editoraId', () => {
-    props = LivroPropertiesFake
+    props = BookPropertiesFake
       .build({editoraId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
@@ -48,7 +48,7 @@ describe('LivroValidator Tests', () => {
   })
 
   test('casos inválidos para editoraId', () => {
-    props = LivroPropertiesFake
+    props = BookPropertiesFake
       .build({editoraId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
@@ -61,7 +61,7 @@ describe('LivroValidator Tests', () => {
   })
 
   test('casos inválidos para autores', () => {
-    props = LivroPropertiesFake
+    props = BookPropertiesFake
       .build({autores: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
@@ -74,7 +74,7 @@ describe('LivroValidator Tests', () => {
   })
 
   test('casos inválidos para edicao', () => {
-    props = LivroPropertiesFake
+    props = BookPropertiesFake
       .build({edicao: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
