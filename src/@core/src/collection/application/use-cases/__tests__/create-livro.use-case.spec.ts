@@ -1,13 +1,13 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { CreateLivroUseCase } from '#collection/application';
-import { Livro, LivroRepository } from '#collection/domain';
+import { Book, LivroRepository } from '#collection/domain';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
 describe('CreateLivroUseCase Unit test', function () {
 
   let subject: CreateLivroUseCase.UseCase;
   let repository: MockProxy<LivroRepository.Repository>
-  let livro: Livro
+  let livro: Book
 
   beforeEach(() => {
     repository = mock()

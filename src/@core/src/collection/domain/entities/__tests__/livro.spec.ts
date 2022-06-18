@@ -1,12 +1,12 @@
 import LivroPropertiesFake from '#collection/domain/entities/__tests__/livro.properties.fake';
-import { Livro } from '#collection/domain';
+import { Book } from '#collection/domain';
 
 
-describe('Livro Unit Tests', function () {
+describe('Book Unit Tests', function () {
   test('constructor of livro', () => {
 
     const livroProps = LivroPropertiesFake.build()
-    const subject = Livro.from(livroProps)
+    const subject = Book.from(livroProps)
 
     expect(subject.nome).toBe('livro')
     expect(subject.autores.map(autor => autor.value)).toEqual(livroProps.autores)

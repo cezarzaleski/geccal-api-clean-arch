@@ -1,6 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import { LivroRepository } from '#collection/domain/repository';
-import { Livro } from '#collection/domain';
+import { Book } from '#collection/domain';
 import { LivroOutput, LivroOutputMapper } from '#collection/application/dto/livro-output';
 
 export namespace CreateLivroUseCase {
@@ -8,7 +8,7 @@ export namespace CreateLivroUseCase {
     constructor(private livroRepository: LivroRepository.Repository) {}
 
     async execute(input: Input): Promise<Output> {
-      const entity = Livro.from(input);
+      const entity = Book.from(input);
       await this.livroRepository.insert(entity);
       return LivroOutputMapper.toOutput(entity);
     }

@@ -2,7 +2,7 @@ import SituacaoLivro from '#collection/domain/entities/situacao-livro.vo';
 import InvalidSituacaoLivroError from '#collection/domain/erros/invalid-situacao-livro.error';
 
 
-describe('Situacao Livro Unit Tests', function () {
+describe('Situacao Book Unit Tests', function () {
   test('given situação when invalid then throw InvalidSituacaoLivroError', () => {
     expect(() =>
       SituacaoLivro.from('invalid')

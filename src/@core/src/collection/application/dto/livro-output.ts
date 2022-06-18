@@ -1,4 +1,4 @@
-import { Livro } from '#collection/domain';
+import { Book } from '#collection/domain';
 
 
 export type LivroOutput = {
@@ -15,7 +15,7 @@ export type LivroOutput = {
 };
 
 export class LivroOutputMapper {
-  static toOutput(entity: Livro): LivroOutput {
+  static toOutput(entity: Book): LivroOutput {
     return {
       id: entity.id,
       nome: entity.nome,

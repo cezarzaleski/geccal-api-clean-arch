@@ -3,18 +3,18 @@ import {
   SearchParams as DefaultSearchParams,
   SearchResult as DefaultSearchResult,
 } from '#shared/domain/repository/repository-contracts';
-import { Livro } from '#collection/domain';
+import { Book } from '#collection/domain';
 
 export namespace LivroRepository {
   export type Filter = string;
 
   export class SearchParams extends DefaultSearchParams<Filter> {}
 
-  export class SearchResult extends DefaultSearchResult<Livro, Filter> {}
+  export class SearchResult extends DefaultSearchResult<Book, Filter> {}
 
   export interface Repository
     extends SearchableRepositoryInterface<
-      Livro,
+      Book,
       Filter,
       SearchParams,
       SearchResult

@@ -2,13 +2,13 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { NotFoundError } from '#shared/domain';
 import { UpdateLivroUseCase } from '#collection/application';
 import LivroRepository from '#collection/domain/repository/livro.repository';
-import { Livro } from '#collection/domain/entities';
+import { Book } from '#collection/domain/entities';
 import { EditoraId } from '#collection/domain/entities/value-objects';
 
 describe('UpdateLivroUseCase Unit Tests', () => {
   let subject: UpdateLivroUseCase.UseCase;
   let repository: MockProxy<LivroRepository.Repository>
-  let livro: Livro
+  let livro: Book
   let props: any
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('UpdateLivroUseCase Unit Tests', () => {
   });
 
   it('should update a livro', async () => {
-    const entity = Livro.from(props);
+    const entity = Book.from(props);
     repository.update.mockResolvedValue()
     repository.findById.mockResolvedValue(entity)
     const spyUpdate = jest.spyOn(repository, 'update');

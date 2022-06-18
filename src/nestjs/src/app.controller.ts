@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { EditoraId, Livro } from '@geccal/core/dist/collection/domain';
+import { EditoraId, Book } from '@geccal/core/dist/collection/domain';
 
 @Controller()
 export class AppController {
@@ -27,7 +27,7 @@ export class AppController {
       observacao: 'some description',
     };
 
-    const livro = Livro.from(propsLivro);
+    const livro = Book.from(propsLivro);
     console.log(livro.nome);
 
     return this.appService.getHello();
