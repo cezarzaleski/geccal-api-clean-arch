@@ -8,6 +8,9 @@
       ],
       "#collection/*": [
         "./collection/*"
+      ],
+      "#loan/*": [
+        "./loan/*"
       ]
     },
     "outDir": "./dist",

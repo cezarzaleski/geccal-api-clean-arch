@@ -11,6 +11,9 @@
             ],
             "#collection/*": [
                 "./collection/*"
+            ],
+            "#loan/*": [
+                "./loan/*"
             ]
         }
     }

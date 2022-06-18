@@ -6,12 +6,11 @@
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
     "#book/*": "./dist/book/*.js",
-    "#collection/*": "./dist/collection/*.js"
+    "#collection/*": "./dist/collection/*.js",
+    "#loan/*": "./dist/loan/*.js"
   },
   "exports": {
-    "./@shared/domain": "./dist/@shared/domain/index.js",
-    "./book/domain": "./dist/book/domain/index.js",
-    "./collection/livro/domain": "./dist/collection/livro/domain/index.js"
+    "./@shared/domain": "./dist/@shared/domain/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -20,6 +19,9 @@
       ],
       "@shared/domain": [
         "./dist/@shared/domain/index.d.ts"
+      ],
+      "@loan/domain": [
+        "./dist/@loan/domain/index.d.ts"
       ]
     }
   },
