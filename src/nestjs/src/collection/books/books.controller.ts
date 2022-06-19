@@ -6,15 +6,24 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { CreateBookUseCase } from '@geccal/core/collection/application';
+import { UpdateBookUseCase } from '@geccal/core/collection/application';
 
 @Controller('books')
 export class BooksController {
+  @Inject(CreateBookUseCase.UseCase)
+  private createUseCase: CreateBookUseCase.UseCase;
+
+  @Inject(UpdateBookUseCase.UseCase)
+  private updateBookUseCase: UpdateBookUseCase.UseCase;
+
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
-    return 'success';
+    return this.createUseCase.execute(createBookDto);
   }
 
   @Get()
