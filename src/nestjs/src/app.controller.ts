@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { PublisherId, Book } from '@geccal/core/dist/collection/domain';
+import { Book, PublisherId } from '@geccal/core/collection/domain';
 
 @Controller()
 export class AppController {
@@ -11,7 +11,7 @@ export class AppController {
     const createdAt = new Date();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const publisherId = new PublisherId().value;
+    const publisherId = new PublisherId()?.value;
     const authors = ['maria', 'pedro'];
     const origin = 'donation';
     const status = 'disponivel';
