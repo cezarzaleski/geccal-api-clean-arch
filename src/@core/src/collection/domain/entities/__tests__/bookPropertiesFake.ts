@@ -1,5 +1,5 @@
 import { BookProperties } from '#collection/domain';
-import { EditoraId } from '#collection/domain/entities/value-objects';
+import { PublisherId } from '#collection/domain/entities/value-objects';
 
 
 export default class BookPropertiesFake {
@@ -12,7 +12,7 @@ export default class BookPropertiesFake {
                  note = 'some description',
                  exemplary = 1,
                  edition = '1ª',
-                 publisherId = new EditoraId().value
+                 publisherId = new PublisherId().value
                }: {
                  authors?: string[];
                  createdAt?: Date,

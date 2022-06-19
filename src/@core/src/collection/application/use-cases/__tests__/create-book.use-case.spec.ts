@@ -1,7 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { CreateBookUseCase } from '#collection/application';
 import { Book, BookRepository } from '#collection/domain';
-import { EditoraId } from '#collection/domain/entities/value-objects';
+import { PublisherId } from '#collection/domain/entities/value-objects';
 
 describe('CreateBookUseCase Unit test', function () {
 
@@ -17,7 +17,7 @@ describe('CreateBookUseCase Unit test', function () {
   it('should create a book', async () => {
     repository.insert.mockResolvedValue()
     const spyInsert = jest.spyOn(repository, 'insert');
-    const publisherId = new EditoraId()
+    const publisherId = new PublisherId()
     const props = {
       authors: ['luiz', 'maria'],
       createdAt: new Date(),

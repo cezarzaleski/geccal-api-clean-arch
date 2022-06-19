@@ -11,77 +11,77 @@ describe('BookValidator Tests', () => {
 
   });
 
-  test('casos inválidos para nome', () => {
-    props = BookPropertiesFake.build({nome: null})
+  test('casos inválidos para name', () => {
+    props = BookPropertiesFake.build({name: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      nome: [
-        "nome should not be equal to null",
-        "nome should not be empty",
-        "nome must be a string",
+      name: [
+        "name should not be equal to null",
+        "name should not be empty",
+        "name must be a string",
       ]
     })
   })
 
-  test('casos inválidos para exemplar', () => {
+  test('casos inválidos para exemplary', () => {
     props = BookPropertiesFake
-      .build({exemplar: null})
+      .build({exemplary: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      exemplar: [
-        "exemplar should not be equal to null"
+      exemplary: [
+        "exemplary should not be equal to null"
       ]
     })
   })
 
-  test('casos inválidos para editoraId', () => {
+  test('casos inválidos para publisherId', () => {
     props = BookPropertiesFake
-      .build({editoraId: null})
+      .build({publisherId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      editoraId: [
-        "editoraId should not be equal to null",
-        "editoraId should not be empty",
-        "editoraId must be a string",
+      publisherId: [
+        "publisherId should not be equal to null",
+        "publisherId should not be empty",
+        "publisherId must be a string",
       ]
     })
   })
 
-  test('casos inválidos para editoraId', () => {
+  test('casos inválidos para publisherId', () => {
     props = BookPropertiesFake
-      .build({editoraId: null})
+      .build({publisherId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      editoraId: [
-        "editoraId should not be equal to null",
-        "editoraId should not be empty",
-        "editoraId must be a string",
+      publisherId: [
+        "publisherId should not be equal to null",
+        "publisherId should not be empty",
+        "publisherId must be a string",
       ]
     })
   })
 
-  test('casos inválidos para autores', () => {
+  test('casos inválidos para authors', () => {
     props = BookPropertiesFake
-      .build({autores: null})
+      .build({authors: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      autores: [
-        "autores should not be equal to null",
-        "autores should not be empty",
-        "autores should not be list",
+      authors: [
+        "authors should not be equal to null",
+        "authors should not be empty",
+        "authors should not be list",
       ]
     })
   })
 
-  test('casos inválidos para edicao', () => {
+  test('casos inválidos para edition', () => {
     props = BookPropertiesFake
-      .build({edicao: null})
+      .build({edition: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
-      edicao: [
-        "edicao should not be equal to null",
-        "edicao should not be empty",
-        "edicao must be a string",
+      edition: [
+        "edition should not be equal to null",
+        "edition should not be empty",
+        "edition must be a string",
       ]
     })
   })

@@ -3,7 +3,7 @@ import { NotFoundError } from '#shared/domain';
 import { UpdateBookUseCase } from '#collection/application';
 import BookRepository from '#collection/domain/repository/book.repository';
 import { Book } from '#collection/domain/entities';
-import { EditoraId } from '#collection/domain/entities/value-objects';
+import { PublisherId } from '#collection/domain/entities/value-objects';
 
 describe('UpdateBookUseCase Unit Tests', () => {
   let subject: UpdateBookUseCase.UseCase;
@@ -14,7 +14,7 @@ describe('UpdateBookUseCase Unit Tests', () => {
   beforeEach(() => {
     repository = mock()
     subject = new UpdateBookUseCase.UseCase(repository);
-    const publisherId = new EditoraId()
+    const publisherId = new PublisherId()
     props = {
       authors: ['luiz', 'maria'],
       createdAt: new Date(),
@@ -39,7 +39,7 @@ describe('UpdateBookUseCase Unit Tests', () => {
     repository.update.mockResolvedValue()
     repository.findById.mockResolvedValue(entity)
     const spyUpdate = jest.spyOn(repository, 'update');
-    const publisherId = new EditoraId()
+    const publisherId = new PublisherId()
     props = {
       authors: ['update'],
       edition: '2ª',
