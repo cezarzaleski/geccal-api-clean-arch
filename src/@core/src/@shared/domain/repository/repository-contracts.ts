@@ -7,7 +7,7 @@ export interface RepositoryInterface<E extends Entity> {
   findById(id: string | UniqueEntityId): Promise<E>;
   findAll(): Promise<E[]>;
   update(entity: E): Promise<void>;
-  delete(id: string | UniqueEntityId): Promise<void>;""
+  delete(id: string | UniqueEntityId): Promise<void>;
 }
 
 export type SortDirection = 'asc' | 'desc';
