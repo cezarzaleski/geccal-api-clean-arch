@@ -5,12 +5,15 @@
   "main": "index.js",
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
-    "#book/*": "./dist/book/*.js",
     "#collection/*": "./dist/collection/*.js",
     "#loan/*": "./dist/loan/*.js"
   },
   "exports": {
-    "./@shared/domain": "./dist/@shared/domain/index.js"
+    "./@shared/application": "./dist/@shared/application/index.js",
+    "./@shared/domain": "./dist/@shared/domain/index.js",
+    "./collection/domain": "./dist/collection/domain/index.js",
+    "./collection/application": "./dist/collection/application/index.js",
+    "./collection/infra": "./dist/collection/infra/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -20,8 +23,20 @@
       "@shared/domain": [
         "./dist/@shared/domain/index.d.ts"
       ],
-      "@loan/domain": [
-        "./dist/@loan/domain/index.d.ts"
+      "@shared/infra": [
+        "./dist/@shared/infra/index.d.ts"
+      ],
+      "loan/domain": [
+        "./dist/loan/domain/index.d.ts"
+      ],
+      "collection/domain": [
+        "./dist/collection/domain/index.d.ts"
+      ],
+      "collection/application": [
+        "./dist/collection/application/index.d.ts"
+      ],
+      "collection/infra": [
+        "./dist/collection/infra/index.d.ts"
       ]
     }
   },
