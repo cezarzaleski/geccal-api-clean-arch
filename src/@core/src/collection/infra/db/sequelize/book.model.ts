@@ -18,7 +18,7 @@ type BookModelProperties = {
 @Table({ tableName: 'books', timestamps: false })
 export class BookModel extends Model<BookModelProperties> {
   @PrimaryKey
-  @Column({type: DataType.UUID})
+  @Column({allowNull: true, type: DataType.UUID})
   declare id: string;
 
   @Column({allowNull: false, type: DataType.STRING(255)})
