@@ -1,6 +1,6 @@
 import UpdateBookUseCase from '@geccal/core/dist/collection/application/use-cases/update-book.use-case';
 
-export class UpdateBookDto implements UpdateBookUseCase.Input {
+export class UpdateBookDto implements Omit<UpdateBookUseCase.Input, 'id'> {
   authors: Array<string>;
   createdAt: Date;
   edition: string;

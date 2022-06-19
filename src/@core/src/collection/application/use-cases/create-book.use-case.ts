@@ -5,11 +5,11 @@ import { BookOutput, BookOutputMapper } from '#collection/application/dto/book-o
 
 export namespace CreateBookUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
-    constructor(private livroRepository: BookRepository.Repository) {}
+    constructor(private bookRepository: BookRepository.Repository) {}
 
     async execute(input: Input): Promise<Output> {
       const entity = Book.from(input);
-      await this.livroRepository.insert(entity);
+      await this.bookRepository.insert(entity);
       return BookOutputMapper.toOutput(entity);
     }
   }

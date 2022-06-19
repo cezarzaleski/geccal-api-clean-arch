@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   Inject,
@@ -19,7 +19,7 @@ export class BooksController {
   private createUseCase: CreateBookUseCase.UseCase;
 
   @Inject(UpdateBookUseCase.UseCase)
-  private updateBookUseCase: UpdateBookUseCase.UseCase;
+  private updateUseCase: UpdateBookUseCase.UseCase;
 
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
@@ -36,9 +36,12 @@ export class BooksController {
     return 'success';
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return 'success';
+    return this.updateUseCase.execute({
+      id,
+      ...updateBookDto,
+    });
   }
 
   @Delete(':id')
