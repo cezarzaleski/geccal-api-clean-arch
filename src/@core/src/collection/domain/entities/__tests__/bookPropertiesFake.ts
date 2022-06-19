@@ -4,37 +4,37 @@ import { EditoraId } from '#collection/domain/entities/value-objects';
 
 export default class BookPropertiesFake {
   static build({
-                 autores = ['maria', 'pedro'],
-                 criadoEm = new Date(),
-                 origem = 'donation',
-                 situacao = 'disponivel',
-                 nome = 'livro',
-                 observacao = 'some description',
-                 exemplar = 1,
-                 edicao = '1ª',
-                 editoraId = new EditoraId().value
+                 authors = ['maria', 'pedro'],
+                 createdAt = new Date(),
+                 origin = 'donation',
+                 status = 'disponivel',
+                 name = 'livro',
+                 note = 'some description',
+                 exemplary = 1,
+                 edition = '1ª',
+                 publisherId = new EditoraId().value
                }: {
-                 autores?: string[];
-                 criadoEm?: Date,
-                 origem?: string,
-                 exemplar?: number,
-                 situacao?: string,
-                 nome?: string,
-                 edicao?: string,
-                 observacao?: string,
-                 editoraId?: string
+                 authors?: string[];
+                 createdAt?: Date,
+                 origin?: string,
+                 exemplary?: number,
+                 status?: string,
+                 name?: string,
+                 edition?: string,
+                 note?: string,
+                 publisherId?: string
                } = {}
   ): BookProperties {
     return {
-      autores: autores,
-      criadoEm: criadoEm,
-      edicao: edicao,
-      exemplar: exemplar,
-      origem: origem,
-      editoraId: editoraId,
-      nome: nome,
-      situacao: situacao,
-      observacao: observacao
+      authors: authors,
+      createdAt: createdAt,
+      edition: edition,
+      exemplary: exemplary,
+      origin: origin,
+      publisherId: publisherId,
+      name: name,
+      status: status,
+      note: note
     }
   }
 }

@@ -6,44 +6,44 @@ import { Author, EditoraId, Origin } from '#collection/domain/entities/value-obj
 
 
 export type BookProperties = {
-  nome: string,
-  exemplar: number,
-  situacao: string,
-  edicao: string,
-  observacao?: string,
-  editoraId: string,
-  autores: Array<string>,
-  origem: string,
-  criadoEm?: Date,
+  name: string,
+  exemplary: number,
+  status: string,
+  edition: string,
+  note?: string,
+  publisherId: string,
+  authors: Array<string>,
+  origin: string,
+  createdAt?: Date,
 }
 
-type BookPropertiesUpdate = Omit<BookProperties, 'criadoEm' | 'situacao'>
+type BookPropertiesUpdate = Omit<BookProperties, 'createdAt' | 'status'>
 
 export class Book extends Entity {
   private constructor(
-    public nome: string,
-    public exemplar: number,
-    public situacao: StatusBook,
-    public edicao: string,
-    public observacao: string,
-    public editoraId: EditoraId,
-    public autores: Array<Author>,
-    public origem: Origin,
-    public readonly criadoEm: Date,
+    public name: string,
+    public exemplary: number,
+    public status: StatusBook,
+    public edition: string,
+    public note: string,
+    public publisherId: EditoraId,
+    public authors: Array<Author>,
+    public origin: Origin,
+    public readonly createdAt: Date,
     id: UniqueEntityId
   ) {
     super(id);
   }
 
   static from(props: BookProperties, id?: UniqueEntityId): Book {
-    props.criadoEm = props.criadoEm ?? new Date();
+    props.createdAt = props.createdAt ?? new Date();
     Book.validate(props);
-    const editoraId = new EditoraId(props.editoraId)
-    const autoresVo = props.autores.map(autor => new Author(autor))
-    const origem =  new Origin(props.origem)
-    const situacaoLivro =  StatusBook.from(props.situacao)
-    const {nome, exemplar, edicao, observacao, criadoEm} = props
-    return new Book(nome, exemplar, situacaoLivro, edicao, observacao, editoraId, autoresVo, origem, criadoEm, id)
+    const publisherId = new EditoraId(props.publisherId)
+    const authorsVo = props.authors.map(autor => new Author(autor))
+    const origin =  new Origin(props.origin)
+    const status =  StatusBook.from(props.status)
+    const {name, exemplary, edition, note, createdAt} = props
+    return new Book(name, exemplary, status, edition, note, publisherId, authorsVo, origin, createdAt, id)
   }
 
   static validate(props: BookProperties) {
@@ -58,33 +58,33 @@ export class Book extends Entity {
     props: BookPropertiesUpdate
   ) {
 
-    Book.validate({...props, situacao: this.situacao.value});
-    const {nome, exemplar, edicao, observacao, editoraId, autores, origem} = props
-    const editoraIdVo = new EditoraId(editoraId)
-    const autoresVo = autores.map(autor => new Author(autor))
-    const origemVo =  new Origin(origem)
-    this.nome = nome
-    this.exemplar = exemplar
-    this.edicao = edicao
-    this.observacao = observacao
-    this.editoraId = editoraIdVo
-    this.autores = autoresVo
-    this.origem = origemVo
+    Book.validate({...props, status: this.status.value});
+    const {name, exemplary, edition, note, publisherId, authors, origin} = props
+    const publisherIdVo = new EditoraId(publisherId)
+    const authorsVo = authors.map(autor => new Author(autor))
+    const originVo =  new Origin(origin)
+    this.name = name
+    this.exemplary = exemplary
+    this.edition = edition
+    this.note = note
+    this.publisherId = publisherIdVo
+    this.authors = authorsVo
+    this.origin = originVo
   }
 
   perder() {
-    this.situacao = StatusBook.PERDIDO;
+    this.status = StatusBook.PERDIDO;
   }
 
   inapropriar() {
-    this.situacao = StatusBook.INAPROPRIADO;
+    this.status = StatusBook.INAPROPRIADO;
   }
 
   doar() {
-    this.situacao = StatusBook.DOADO;
+    this.status = StatusBook.DOADO;
   }
 
   extraviar() {
-    this.situacao = StatusBook.EXTRAVIADO;
+    this.status = StatusBook.EXTRAVIADO;
   }
 }

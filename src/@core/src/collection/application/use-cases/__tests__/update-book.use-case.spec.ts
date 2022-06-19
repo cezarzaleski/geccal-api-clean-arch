@@ -14,17 +14,17 @@ describe('UpdateBookUseCase Unit Tests', () => {
   beforeEach(() => {
     repository = mock()
     subject = new UpdateBookUseCase.UseCase(repository);
-    const editoraId = new EditoraId()
+    const publisherId = new EditoraId()
     props = {
-      autores: ['luiz', 'maria'],
-      criadoEm: new Date(),
-      edicao: '1ª',
-      exemplar: 1,
-      origem: 'doacao',
-      editoraId: editoraId.value,
-      nome: 'livro',
-      situacao: 'disponivel',
-      observacao: 'observacao'
+      authors: ['luiz', 'maria'],
+      createdAt: new Date(),
+      edition: '1ª',
+      exemplary: 1,
+      origin: 'doacao',
+      publisherId: publisherId.value,
+      name: 'livro',
+      status: 'disponivel',
+      note: 'note'
     }
   });
   it('should throws error when entity not found', async () => {
@@ -34,37 +34,37 @@ describe('UpdateBookUseCase Unit Tests', () => {
     ).rejects.toThrow(new NotFoundError(`Entity Not Found using ID fake id`));
   });
 
-  it('should update a livro', async () => {
+  it('should update a book', async () => {
     const entity = Book.from(props);
     repository.update.mockResolvedValue()
     repository.findById.mockResolvedValue(entity)
     const spyUpdate = jest.spyOn(repository, 'update');
-    const editoraId = new EditoraId()
+    const publisherId = new EditoraId()
     props = {
-      autores: ['update'],
-      edicao: '2ª',
-      exemplar: 2,
-      origem: 'update',
-      editoraId: editoraId.value,
-      nome: 'update',
-      observacao: 'update'
+      authors: ['update'],
+      edition: '2ª',
+      exemplary: 2,
+      origin: 'update',
+      publisherId: publisherId.value,
+      name: 'update',
+      note: 'update'
     }
 
-    let output = await subject.execute({...props, id: entity.id, nome: 'update'});
+    let output = await subject.execute({...props, id: entity.id, name: 'update'});
 
     livro = repository.update.mock.calls[0][0]
     expect(spyUpdate).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
       id: livro.id,
-      nome: 'update',
-      exemplar: 2,
-      situacao: livro.situacao.value,
-      edicao: '2ª',
-      observacao: 'update',
-      editoraId: editoraId.value,
-      autores: ['update'],
-      origem: 'update',
-      criadoEm: livro.criadoEm
+      name: 'update',
+      exemplary: 2,
+      status: livro.status.value,
+      edition: '2ª',
+      note: 'update',
+      publisherId: publisherId.value,
+      authors: ['update'],
+      origin: 'update',
+      createdAt: livro.createdAt
     });
   })
 });

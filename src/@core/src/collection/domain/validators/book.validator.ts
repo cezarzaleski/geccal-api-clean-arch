@@ -7,34 +7,34 @@ export class BookRules {
   @IsString()
   @IsNotEmpty()
   @NotEquals(null)
-  nome: string;
+  name: string;
 
   @IsString()
   @IsOptional()
-  observacao: string;
+  note: string;
 
   @NotEquals(null)
-  exemplar: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @NotEquals(null)
-  editoraId: string;
-
-  @IsArray({message:"autores should not be list"})
-  @IsNotEmpty()
-  @NotEquals(null)
-  autores: Array<string>;
+  exemplary: number;
 
   @IsString()
   @IsNotEmpty()
   @NotEquals(null)
-  origem: string;
+  publisherId: string;
+
+  @IsArray({message:"authors should not be list"})
+  @IsNotEmpty()
+  @NotEquals(null)
+  authors: Array<string>;
 
   @IsString()
   @IsNotEmpty()
   @NotEquals(null)
-  edicao: string;
+  origin: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @NotEquals(null)
+  edition: string;
 
   @IsBoolean()
   @IsOptional()
@@ -42,30 +42,30 @@ export class BookRules {
 
   @IsDate()
   @IsOptional()
-  criadoEm: Date;
+  createdAt: Date;
 
   constructor({
-                nome,
-                exemplar,
-                situacao,
-                edicao,
-                observacao,
-                editoraId,
-                autores,
-                origem,
-                criadoEm
+                name,
+                exemplary,
+                status,
+                edition,
+                note,
+                publisherId,
+                authors,
+                origin,
+                createdAt
               }: BookProperties
   ) {
     Object.assign(this, {
-      nome,
-      exemplar,
-      situacao,
-      edicao,
-      observacao,
-      editoraId,
-      autores,
-      origem,
-      criadoEm
+      name: name,
+      exemplary: exemplary,
+      status: status,
+      edition: edition,
+      note: note,
+      publisherId: publisherId,
+      authors: authors,
+      origin: origin,
+      createdAt: createdAt
     });
   }
 }

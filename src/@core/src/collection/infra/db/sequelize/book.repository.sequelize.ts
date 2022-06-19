@@ -23,16 +23,16 @@ export class BookRepositorySequelize implements BookRepository.Repository {
   async insert(entity: Book): Promise<void> {
     const bookModel: any = {
       id: entity.id,
-      name: entity.nome,
-      exemplary: entity.exemplar,
-      status: entity.situacao.value,
-      edition: entity.edicao,
-      note: entity.observacao,
-      publisherId: entity.editoraId.value,
-      authors: entity.autores.map(autor => autor.value),
-      origin: entity.origem.value,
-      createdAt: entity.criadoEm,
-      updatedAt: entity.criadoEm
+      name: entity.name,
+      exemplary: entity.exemplary,
+      status: entity.status.value,
+      edition: entity.edition,
+      note: entity.note,
+      publisherId: entity.publisherId.value,
+      authors: entity.authors.map(autor => autor.value),
+      origin: entity.origin.value,
+      createdAt: entity.createdAt,
+      updatedAt: entity.createdAt
     }
     await this.bookModel.create(bookModel)
   }

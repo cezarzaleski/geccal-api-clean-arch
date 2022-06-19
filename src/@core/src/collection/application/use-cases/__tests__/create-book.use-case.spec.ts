@@ -14,20 +14,20 @@ describe('CreateBookUseCase Unit test', function () {
     subject = new CreateBookUseCase.UseCase(repository);
   });
 
-  it('should create livro', async () => {
+  it('should create a book', async () => {
     repository.insert.mockResolvedValue()
     const spyInsert = jest.spyOn(repository, 'insert');
-    const editoraId = new EditoraId()
+    const publisherId = new EditoraId()
     const props = {
-      autores: ['luiz', 'maria'],
-      criadoEm: new Date(),
-      edicao: '1ª',
-      exemplar: 1,
-      origem: 'doacao',
-      editoraId: editoraId.value,
-      nome: 'livro',
-      situacao: 'disponivel',
-      observacao: 'observacao'
+      authors: ['luiz', 'maria'],
+      createdAt: new Date(),
+      edition: '1ª',
+      exemplary: 1,
+      origin: 'doacao',
+      publisherId: publisherId.value,
+      name: 'livro',
+      status: 'disponivel',
+      note: 'note'
     }
 
     const output = await subject.execute(props);
@@ -36,15 +36,15 @@ describe('CreateBookUseCase Unit test', function () {
     expect(spyInsert).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
       id: livro.id,
-      nome: livro.nome,
-      exemplar: livro.exemplar,
-      situacao: livro.situacao.value,
-      edicao: livro.edicao,
-      observacao: livro.observacao,
-      editoraId: livro.editoraId.id,
-      autores: livro.autores.map(autor => autor.value),
-      origem: livro.origem.value,
-      criadoEm: livro.criadoEm
+      name: livro.name,
+      exemplary: livro.exemplary,
+      status: livro.status.value,
+      edition: livro.edition,
+      note: livro.note,
+      publisherId: livro.publisherId.id,
+      authors: livro.authors.map(autor => autor.value),
+      origin: livro.origin.value,
+      createdAt: livro.createdAt
     });
 
   });

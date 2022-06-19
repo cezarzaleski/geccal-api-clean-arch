@@ -18,15 +18,15 @@ export namespace UpdateBookUseCase {
 
   export type Input = {
     id: string;
-    nome: string
-    exemplar: number
-    situacao: string
-    edicao: string
-    observacao: string
-    editoraId: string
-    autores: Array<string>
-    origem: string
-    criadoEm: Date
+    name: string
+    exemplary: number
+    status: string
+    edition: string
+    note: string
+    publisherId: string
+    authors: Array<string>
+    origin: string
+    createdAt: Date
   };
 
   export type Output = BookOutput;
