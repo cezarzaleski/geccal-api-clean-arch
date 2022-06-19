@@ -36,7 +36,7 @@ export class BookModel extends Model<BookModelProperties> {
   @Column({type: DataType.STRING})
   declare note: string | null;
 
-  @Column({allowNull: false, type: DataType.UUID})
+  @Column({allowNull: false, type: DataType.UUID, field: 'publisher_id'})
   declare publisherId: string;
 
   @Column({allowNull: false, type: DataType.JSON})
@@ -45,12 +45,12 @@ export class BookModel extends Model<BookModelProperties> {
   @Column({allowNull: false, type: DataType.STRING})
   declare origin: string;
 
-  @Column({allowNull: false, type: DataType.DATE})
+  @Column({allowNull: false, type: DataType.DATE, field: 'created_at'})
   declare createdAt: Date;
 
-  @Column({type: DataType.DATE})
+  @Column({type: DataType.DATE, field: 'updated_at'})
   declare updatedAt: Date | null;
 
-  @Column({type: DataType.DATE})
+  @Column({type: DataType.DATE, field: 'deleted_at'})
   declare deletedAt: Date | null;
 }
