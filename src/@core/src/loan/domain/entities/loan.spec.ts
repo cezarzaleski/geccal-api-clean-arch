@@ -17,4 +17,12 @@ describe('Loan Unit Tests', function () {
     expect(() => Loan.from(loanProps, 2))
       .toThrow(Error("Registration with 2 loans pending"))
   })
+
+  test('given a loan when call returnABook method then returnedAt is not null', () => {
+    const loanProps = LoanPropertiesFake.build({returnedAt: null})
+    const subject = Loan.from(loanProps)
+    expect(subject.returnedAt).toBeNull()
+    subject.returnABook()
+    expect(subject.returnedAt).not.toBeNull()
+  })
 });

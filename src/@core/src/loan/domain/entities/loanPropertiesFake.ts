@@ -6,7 +6,7 @@ export default class LoanPropertiesFake {
                  registrationId = '9366b7dc-2d71-4799-b91c-c64adb205104',
                  bookId = '9366b7dc-2d71-4799-b91c-c64adb205104',
                  borrowedAt = new Date(),
-                 returnedAt = new Date(),
+                 returnedAt = null,
                  createdAt = new Date(),
                }: {
                  registrationId?: string;
