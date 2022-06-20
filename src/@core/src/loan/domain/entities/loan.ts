@@ -19,7 +19,7 @@ export class Loan extends Entity {
     public registrationId: RegistrationId,
     public bookId: BookId,
     public readonly borrowedAt: Date,
-    public readonly returnedAt: Date,
+    public returnedAt: Date,
     public readonly createdAt: Date,
     id: UniqueEntityId
   ) {
@@ -42,5 +42,9 @@ export class Loan extends Entity {
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
     }
+  }
+
+  returnABook() {
+    this.returnedAt = new Date()
   }
 }
