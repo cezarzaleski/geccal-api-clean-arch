@@ -1,19 +1,19 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { CreateLoanUseCase } from '#loan/application/use-cases/create-loan.use-case';
+import { BorrowBookUseCase } from '#loan/application/use-cases/borrow-book.use-case';
 import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan } from '#loan/domain';
 import { v4 as uuidv4 } from 'uuid';
 
 
-describe('CreateLoanUseCase Unit test', function () {
+describe('BorrowBookUseCase Unit test', function () {
 
-  let subject: CreateLoanUseCase.UseCase;
+  let subject: BorrowBookUseCase.UseCase;
   let repository: MockProxy<LoanRepository.Repository>
   let loan: Loan
 
   beforeEach(() => {
     repository = mock()
-    subject = new CreateLoanUseCase.UseCase(repository);
+    subject = new BorrowBookUseCase.UseCase(repository);
   });
 
   it('given a valid command when call create loan then return id loan', async () => {

@@ -4,7 +4,7 @@ import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan, RegistrationId } from '#loan/domain';
 
 
-export namespace CreateLoanUseCase {
+export namespace BorrowBookUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
     constructor(private loanRepository: LoanRepository.Repository) {}
 
