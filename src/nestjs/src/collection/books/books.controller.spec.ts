@@ -1,4 +1,3 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { BooksController } from './books.controller';
 import {
@@ -13,12 +12,7 @@ describe('BooksController', () => {
   let controller: BooksController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [BooksController],
-      providers: [],
-    }).compile();
-
-    controller = module.get<BooksController>(BooksController);
+    controller = new BooksController();
   });
 
   it('should create a book', async () => {
