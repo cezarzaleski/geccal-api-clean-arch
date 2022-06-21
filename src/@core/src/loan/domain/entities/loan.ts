@@ -44,7 +44,8 @@ export class Loan extends Entity {
     }
   }
 
-  returnABook() {
-    this.returnedAt = new Date()
+  returnABook(aReturnedAt?: Date) {
+    aReturnedAt  = aReturnedAt || new Date()
+    this.returnedAt = aReturnedAt
   }
 }
