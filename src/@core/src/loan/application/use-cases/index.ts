@@ -1,3 +1,5 @@
 // created from 'create-ts-index'
 
-export * from 'loan/application/use-cases/borrow-book.use-case';
+export * from './borrow-book.use-case';
+export * from './loan-properties.fake';
+export * from './return-book.use-case';
