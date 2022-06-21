@@ -1,18 +1,18 @@
 import StatusBook from '#collection/domain/entities/status-book.vo';
-import InvalidSituacaoLivroError from '#collection/domain/erros/invalid-situacao-livro.error';
+import InvalidStatusBookError from '#collection/domain/erros/invalid-status-book.error';
 
 
-describe('Situacao Book Unit Tests', function () {
-  test('given situação when invalid then throw InvalidSituacaoLivroError', () => {
+describe('Status Book Unit Tests', function () {
+  test('given a invalid status when call create book then throw InvalidStatusBookError', () => {
     expect(() =>
       StatusBook.from('invalid')
-    ).toThrow(new InvalidSituacaoLivroError(`Situação do livro inválida`));
+    ).toThrow(new InvalidStatusBookError(`Status of book invalid`));
   })
-  test('given situação when valid then retun SituacaoLivro', () => {
-    const situacaoLivroExpected = 'disponivel'
+  test('given status valid when call create book then return available', () => {
+    const statusBookExpected = 'available'
 
-    const subject = StatusBook.from(situacaoLivroExpected)
+    const subject = StatusBook.from(statusBookExpected)
 
-    expect(subject.value).toBe(situacaoLivroExpected);
+    expect(subject.value).toBe(statusBookExpected);
   })
 });

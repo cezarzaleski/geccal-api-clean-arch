@@ -1,23 +1,22 @@
 import { ValueObject } from '#shared/domain';
-import InvalidSituacaoLivroError from '#collection/domain/erros/invalid-situacao-livro.error';
+import InvalidStatusBookError from '#collection/domain/erros/invalid-status-book.error';
 
 
-enum SituacaoEnum {
-  DISPONIVEL = 'disponivel',
-  EMPRESTADO = 'emprestado',
-  PERDIDO = 'perdido',
-  INAPROPRIADO = 'inapropriado',
-  EXTRAVIADO = 'extraviado',
-  DOADO = 'doado',
+enum StatusBookEnum {
+  AVAILABLE = 'available',
+  BORROWED = 'borrowed',
+  LOST = 'lost',
+  INAPPROPRIATE = 'inappropriate',
+  MISPLACED = 'misplaced',
+  DONATED = 'donated',
 }
-
 export default class StatusBook extends ValueObject<string> {
-  static EMPRESTADO = new StatusBook(SituacaoEnum.EMPRESTADO)
-  static DISPONIVEL = new StatusBook(SituacaoEnum.DISPONIVEL)
-  static PERDIDO = new StatusBook(SituacaoEnum.PERDIDO)
-  static INAPROPRIADO = new StatusBook(SituacaoEnum.INAPROPRIADO)
-  static EXTRAVIADO = new StatusBook(SituacaoEnum.EXTRAVIADO)
-  static DOADO = new StatusBook(SituacaoEnum.DOADO)
+  static BORROWED = new StatusBook(StatusBookEnum.BORROWED)
+  static AVAILABLE = new StatusBook(StatusBookEnum.AVAILABLE)
+  static LOST = new StatusBook(StatusBookEnum.LOST)
+  static INAPPROPRIATE = new StatusBook(StatusBookEnum.INAPPROPRIATE)
+  static MISPLACED = new StatusBook(StatusBookEnum.MISPLACED)
+  static DONATED = new StatusBook(StatusBookEnum.DONATED)
 
   static from (value: string) {
     StatusBook.validate(value)
@@ -25,7 +24,7 @@ export default class StatusBook extends ValueObject<string> {
   }
 
   static validate(value) {
-    const situacaoInvalida = !Object.values(SituacaoEnum).includes(value)
-    if (situacaoInvalida) throw new InvalidSituacaoLivroError();
+    const invalidStatus = !Object.values(StatusBookEnum).includes(value)
+    if (invalidStatus) throw new InvalidStatusBookError();
   }
 }

@@ -7,7 +7,7 @@ export default class BookPropertiesFake {
                  authors = ['maria', 'pedro'],
                  createdAt = new Date(),
                  origin = 'donation',
-                 status = 'disponivel',
+                 status = 'available',
                  name = 'livro',
                  note = 'some description',
                  exemplary = 1,

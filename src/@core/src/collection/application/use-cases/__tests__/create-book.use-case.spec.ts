@@ -26,7 +26,7 @@ describe('CreateBookUseCase Unit test', function () {
       origin: 'doacao',
       publisherId: publisherId.value,
       name: 'livro',
-      status: 'disponivel',
+      status: 'available',
       note: 'note'
     }
 

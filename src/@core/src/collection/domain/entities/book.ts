@@ -72,19 +72,19 @@ export class Book extends Entity {
     this.origin = originVo
   }
 
-  perder() {
-    this.status = StatusBook.PERDIDO;
+  lost() {
+    this.status = StatusBook.LOST;
   }
 
   inapropriar() {
-    this.status = StatusBook.INAPROPRIADO;
+    this.status = StatusBook.INAPPROPRIATE;
   }
 
-  doar() {
-    this.status = StatusBook.DOADO;
+  donate() {
+    this.status = StatusBook.DONATED;
   }
 
-  extraviar() {
-    this.status = StatusBook.EXTRAVIADO;
+  misplace() {
+    this.status = StatusBook.MISPLACED;
   }
 }
