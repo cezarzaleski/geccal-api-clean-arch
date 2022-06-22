@@ -3,7 +3,10 @@ import { BorrowBookUseCase } from '#loan/application/use-cases/borrow-book.use-c
 import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan } from '#loan/domain';
 import { v4 as uuidv4 } from 'uuid';
-import { BookRepository } from '#collection/domain';
+import { Book, BookRepository } from '#collection/domain';
+import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import StatusBook from '#collection/domain/entities/status-book.vo';
+import { BookUnavailableToBorrowError } from '#loan/domain/erros';
 
 
 describe('BorrowBookUseCase Unit test', function () {
@@ -20,11 +23,13 @@ describe('BorrowBookUseCase Unit test', function () {
   });
 
   it('given a valid command when call create loan then return id loan', async () => {
-    loanRepository.insert.mockResolvedValue()
+    const book = Book.from(BookPropertiesFake.build())
+    const bookId = book.id
+    bookRepository.findById.mockResolvedValue(book)
     const spyInsert = jest.spyOn(loanRepository, 'insert');
     const spycountLoansPendingByRegistrationId = jest.spyOn(loanRepository, 'countLoansPendingByRegistrationId');
     const props = {
-      bookId: uuidv4(),
+      bookId: bookId,
       registrationId: uuidv4(),
       borrowedAt: new Date()
     }
@@ -37,5 +42,26 @@ describe('BorrowBookUseCase Unit test', function () {
     expect(output).toStrictEqual({
       id: loan.id
     });
+  });
+
+  it('given a book unavailable when call create loan then throw BookUnavailableToBorrowError', async () => {
+    const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOST.value}))
+    const bookId = book.id
+    loanRepository.insert.mockResolvedValue()
+    bookRepository.findById.mockResolvedValue(book)
+    const spyInsert = jest.spyOn(loanRepository, 'insert');
+    const spyBookRepositoryFindById = jest.spyOn(bookRepository, 'findById');
+    const props = {
+      bookId: bookId,
+      registrationId: uuidv4(),
+      borrowedAt: new Date()
+    }
+
+    await expect(() =>
+      subject.execute(props)
+    ).rejects.toThrow(new BookUnavailableToBorrowError(book));
+
+    expect(spyInsert).toHaveBeenCalledTimes(0);
+    expect(spyBookRepositoryFindById).toHaveBeenCalledTimes(1);
   });
 });
