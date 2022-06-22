@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { CollectionModule } from './collection/collection.module';
 
 @Module({
-  imports: [CollectionModule],
   controllers: [AppController],
   providers: [AppService],
+  imports: [CollectionModule],
 })
 export class AppModule {}

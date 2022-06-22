@@ -1,12 +1,12 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { BooksController } from './books.controller';
 import {
   CreateBookUseCase,
   UpdateBookUseCase,
 } from '@geccal/core/collection/application';
 import { PublisherId } from '@geccal/core/collection/domain';
-import { CreateBookDto } from 'src/collection/books/dto/create-book.dto';
-import { UpdateBookDto } from 'src/collection/books/dto/update-book.dto';
+import { CreateBookDto } from './dto/create-book.dto';
+import { UpdateBookDto } from './dto/update-book.dto';
+import { BooksController } from './books.controller';
 
 describe('BooksController', () => {
   let controller: BooksController;
