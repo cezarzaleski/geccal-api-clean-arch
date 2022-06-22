@@ -29,7 +29,7 @@ export default class StatusBook extends ValueObject<string> {
 
 
   static validate(value) {
-    // const invalidStatus = !Object.values(StatusBookEnum).includes(value)
-    // if (invalidStatus) throw new BookUnavailableToBorrowError();
+    const invalidStatus = !Object.values(StatusBookEnum).includes(value)
+      if (invalidStatus) throw new InvalidStatusBookError();
   }
 }
