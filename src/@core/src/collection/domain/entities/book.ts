@@ -1,8 +1,7 @@
-import { EntityValidationError, UniqueEntityId } from '#shared/domain';
-import StatusBook from '#collection/domain/entities/status-book.vo';
-import { BookValidatorFactory } from '#collection/domain/validators';
-import Entity from '#shared/domain/entity/entity';
-import { Author, PublisherId, Origin } from '#collection/domain/entities/value-objects';
+import { EntityValidationError, UniqueEntityId, Entity } from '../../../@shared/domain';
+import StatusBook from './status-book.vo';
+// import { BookValidatorFactory } from '../validators';
+import { Author, PublisherId, Origin } from './value-objects';
 
 
 export type BookProperties = {
@@ -47,11 +46,11 @@ export class Book extends Entity {
   }
 
   static validate(props: BookProperties) {
-    const validator = BookValidatorFactory.create();
-    const isValid = validator.validate(props);
-    if (!isValid) {
-      throw new EntityValidationError(validator.errors);
-    }
+    // const validator = BookValidatorFactory.create();
+    // const isValid = validator.validate(props);
+    // if (!isValid) {
+    //   throw new EntityValidationError(validator.errors);
+    // }
   }
 
   update(

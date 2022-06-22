@@ -1,5 +1,5 @@
 import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { ClassValidatorFields } from '#shared/domain';
+import { ClassValidatorFields } from '../../../@shared/domain/validators';
 import { EditoraProperties } from '#collection/domain';
 
 export class EditoraRules {

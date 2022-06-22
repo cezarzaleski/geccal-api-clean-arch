@@ -1,6 +1,6 @@
 import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entity from '#shared/domain/entity/entity';
-import { EditoraValidatorFactory } from '#collection/domain';
+import { EditoraValidatorFactory } from '../validators';
 
 export type EditoraProperties = {
   nome: string,

@@ -1,6 +1,6 @@
 import { IsArray, IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString,   NotEquals} from 'class-validator';
-import { BookProperties } from '#collection/domain';
-import { ClassValidatorFields } from '#shared/domain';
+import { BookProperties } from '../entities';
+import { ClassValidatorFields } from '../../../@shared/domain/validators';
 
 export class BookRules {
 

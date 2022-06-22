@@ -1,5 +1,5 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
-import { EditoraOutput, EditoraOutputMapper } from '#collection/application/dto/editora-output';
+import { EditoraOutput, EditoraOutputMapper } from '../dto/editora-output';
 import { EditoraRepository } from '#collection/domain';
 
 export namespace UpdateEditoraUseCase {

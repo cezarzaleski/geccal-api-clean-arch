@@ -6,7 +6,10 @@
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
     "#collection/*": "./dist/collection/*.js",
-    "#loan/*": "./dist/loan/*.js"
+    "#loan/*": "./dist/loan/*.js",
+    "#shared/domain": "./dist/@shared/domain/index.js",
+    "#shared/application": "./dist/@shared/application/index.js",
+    "#collection/domain": "./dist/collection/domain/index.js"
   },
   "exports": {
     "./@shared/application": "./dist/@shared/application/index.js",
