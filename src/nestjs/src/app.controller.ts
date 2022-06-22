@@ -14,7 +14,7 @@ export class AppController {
     const publisherId = new PublisherId()?.value;
     const authors = ['maria', 'pedro'];
     const origin = 'donation';
-    const status = 'disponivel';
+    const status = 'available';
     const propsBook = {
       authors: authors,
       createdAt: createdAt,
