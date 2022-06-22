@@ -16,10 +16,9 @@ describe('BooksController', () => {
   });
 
   it('should create a book', async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+    // @ts-expect-error ignore the error
     const publisherId = new PublisherId().value;
-    const expectedOutput: CreateBookUseCase.Output = {
+    const expectedOutput: Omit<CreateBookUseCase.Output, 'id'> = {
       authors: ['luiz', 'marias'],
       createdAt: new Date(),
       edition: '1ª',
@@ -33,8 +32,7 @@ describe('BooksController', () => {
     const mockCreateUseCase = {
       execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
     };
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error ignore the error
     controller['createUseCase'] = mockCreateUseCase;
     const input: MockProxy<CreateBookDto> = mock();
     const output = await controller.create(input);
@@ -43,8 +41,7 @@ describe('BooksController', () => {
   });
 
   it('should update a book', async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+    // @ts-expect-error ignore the error
     const publisherId = new PublisherId().value;
     const id = '9366b7dc-2d71-4799-b91c-c64adb205104';
     const expectedOutput: UpdateBookUseCase.Output = {
@@ -62,8 +59,7 @@ describe('BooksController', () => {
     const mockUpdateUseCase = {
       execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
     };
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error ignore the error
     controller['updateUseCase'] = mockUpdateUseCase;
     const input: MockProxy<UpdateBookDto> = mock();
     const output = await controller.update(id, input);
