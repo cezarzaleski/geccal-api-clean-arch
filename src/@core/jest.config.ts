@@ -30,6 +30,7 @@ export default {
     '!<rootDir>/**/**/**/**/index.ts',
     '!<rootDir>/**/**/**/index.ts',
     '!<rootDir>/**/index.ts',
+    '!<rootDir>/**/**.fake.ts',
     '!<rootDir>/@shared/application/use-case.ts',
     '!<rootDir>/@shared/application/index.ts',
   ],
