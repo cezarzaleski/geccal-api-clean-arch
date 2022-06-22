@@ -37,3 +37,4 @@ export namespace BorrowBookUseCase {
 
 //rules
 //book available
+// registr

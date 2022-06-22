@@ -23,8 +23,13 @@ export default class StatusBook extends ValueObject<string> {
     return new StatusBook(value)
   }
 
+  equals(aStatusBook: StatusBook) : boolean {
+    return this.value === aStatusBook.value;
+  }
+
+
   static validate(value) {
     // const invalidStatus = !Object.values(StatusBookEnum).includes(value)
-    // if (invalidStatus) throw new InvalidStatusBookError();
+    // if (invalidStatus) throw new BookUnavailableToBorrowError();
   }
 }
