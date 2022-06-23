@@ -1,4 +1,4 @@
 // created from 'create-ts-index'
 
 export * from './borrow-book.use-case';
-export * from './return-book.use-case';
+export * from '#loan/application/use-cases/go-down-loan-use-case';

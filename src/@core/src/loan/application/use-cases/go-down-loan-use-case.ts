@@ -2,7 +2,7 @@ import { default as DefaultUseCase } from '#shared/application/use-case'
 import LoanRepository from '#loan/domain/repository/loan.repository';
 
 
-export namespace ReturnBookUseCase {
+export namespace GoDownLoanUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
     constructor(private loanRepository: LoanRepository.Repository) {}
 

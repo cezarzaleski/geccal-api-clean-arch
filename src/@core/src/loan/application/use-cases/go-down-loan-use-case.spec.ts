@@ -1,21 +1,21 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { ReturnBookUseCase } from '#loan/application';
+import { GoDownLoanUseCase } from '#loan/application';
 import { Loan, LoanRepository } from '#loan/domain';
 import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
 
 
-describe('ReturnBookUseCase Unit test', function () {
+describe('GoDownLoanUseCase Unit test', function () {
 
-  let subject: ReturnBookUseCase.UseCase;
+  let subject: GoDownLoanUseCase.UseCase;
   let repository: MockProxy<LoanRepository.Repository>
   let loan: Loan
 
   beforeEach(() => {
     repository = mock()
-    subject = new ReturnBookUseCase.UseCase(repository);
+    subject = new GoDownLoanUseCase.UseCase(repository);
   });
 
-  it('given a valid command when call return book use case with returned at is not null then return loan', async () => {
+  it('given a valid command when call go down loan use case with returned at is not null then return loan', async () => {
     const loanEntity = Loan.from(LoanPropertiesFake.build());
     repository.findById.mockResolvedValue(loanEntity)
     repository.update.mockResolvedValue()
