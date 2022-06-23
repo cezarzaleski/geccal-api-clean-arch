@@ -1,16 +1,22 @@
-import { Loan } from '#loan/domain';
+import { Loan, LoanProperties } from '#loan/domain';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
 import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
 
-
 describe('Loan Unit Tests', function () {
+  let loanProps: LoanProperties;
+  let subject: Loan;
+  beforeEach(() => {
+    loanProps = LoanPropertiesFake.build()
+    subject = Loan.from(loanProps)
+  });
+
   test('constructor of loan', () => {
 
     const loanProps = LoanPropertiesFake.build()
-    const subject = Loan.from(loanProps)
+    const result = Loan.from(loanProps)
 
-    expect(subject.registrationId.value).toBe(loanProps.registrationId)
-    expect(subject.bookId.value).toBe(loanProps.bookId)
+    expect(result.registrationId.value).toBe(loanProps.registrationId)
+    expect(result.bookId.value).toBe(loanProps.bookId)
   })
 
   test('given a registration pending 2 loans when call create loan should return exception', () => {
@@ -20,23 +26,21 @@ describe('Loan Unit Tests', function () {
   })
 
   test('given a loan when call returnABook method then returnedAt is not null', () => {
-    const loanProps = LoanPropertiesFake.build({returnedAt: null})
+    const returnedAtExpected = new Date()
 
-    const subject = Loan.from(loanProps)
+    subject.returnABook(returnedAtExpected)
 
-    expect(subject.returnedAt).toBeNull()
-    subject.returnABook(StatusLoan.RETURNED)
-    expect(subject.returnedAt).not.toBeNull()
+    expect(subject.returnedAt).toBe(returnedAtExpected)
     expect(subject.status.value).toBe(StatusLoan.RETURNED.value)
   })
 
-  test('should return throw exception when LOSS_WITHOUT_REPOSITION and lossJustification is empty', () => {
-    const loanProps = LoanPropertiesFake.build({returnedAt: null})
-    const subject = Loan.from(loanProps)
+  test('given a loan with returned with reposition book when call returnABook then status book is LOSS_WITHOUT_REPOSITION', () => {
+    const lossJustification = 'lossJustification'
 
-    expect(() =>
-      subject.returnABook(StatusLoan.LOSS_WITHOUT_REPOSITION)
-    ).toThrow(new Error('Loss justification is required'))
+    subject.returnABook(null, lossJustification)
+
+    expect(subject.returnedAt).toBeNull()
+    expect(subject.status.value).toBe(StatusLoan.LOSS_WITHOUT_REPOSITION.value)
+    expect(subject.lossJustification).toBe(lossJustification)
   })
-})
-;
+});
