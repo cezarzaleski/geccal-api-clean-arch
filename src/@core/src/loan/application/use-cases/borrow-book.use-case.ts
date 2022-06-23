@@ -4,6 +4,7 @@ import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan, RegistrationId } from '#loan/domain';
 import { BookRepository } from '#collection/domain';
 import AvailableBookService from '#loan/domain/entities/available-book.service';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 export namespace BorrowBookUseCase {
@@ -20,7 +21,7 @@ export namespace BorrowBookUseCase {
       if (unavailableBook) return
       const countPendingLoanRegistration = await this.loanRepository
         .countLoansPendingByRegistrationId(new RegistrationId(registrationId))
-      const loan = Loan.from(input, countPendingLoanRegistration)
+      const loan = Loan.from({...input, status: StatusLoan.CONFIRMED.value}, countPendingLoanRegistration)
       await this.loanRepository.insert(loan);
       return LoanOutputMapper.toOutput(loan)
     }
@@ -34,7 +35,3 @@ export namespace BorrowBookUseCase {
 
   export type Output = LoanOutput
 }
-
-//rules
-//book available
-// registr

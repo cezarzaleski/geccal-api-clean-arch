@@ -1,4 +1,5 @@
 import { LoanProperties } from 'loan/domain/entities/loan';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 export default class LoanPropertiesFake {
@@ -8,12 +9,14 @@ export default class LoanPropertiesFake {
                  borrowedAt = new Date(),
                  returnedAt = null,
                  createdAt = new Date(),
+                 status = StatusLoan.CONFIRMED.value
                }: {
                  registrationId?: string;
                  bookId?: string;
                  borrowedAt?: Date,
                  returnedAt?: Date,
                  createdAt?: Date
+                 status?: string
                } = {}
   ): LoanProperties {
     return {
@@ -21,7 +24,8 @@ export default class LoanPropertiesFake {
       bookId: bookId,
       borrowedAt: borrowedAt,
       returnedAt: returnedAt,
-      createdAt: createdAt
+      createdAt: createdAt,
+      status: status
     }
   }
 }

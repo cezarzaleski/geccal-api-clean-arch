@@ -2,12 +2,15 @@ import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entity from '#shared/domain/entity/entity';
 import { BookId, RegistrationId } from '#loan/domain';
 import { LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
+import StatusBook from '#collection/domain/entities/status-book.vo';
 
 
 export type LoanProperties = {
   registrationId: string,
   bookId: string,
   borrowedAt: Date,
+  status: string,
   returnedAt?: Date,
   createdAt?: Date,
 }
@@ -21,7 +24,8 @@ export class Loan extends Entity {
     public readonly borrowedAt: Date,
     public returnedAt: Date,
     public readonly createdAt: Date,
-    id: UniqueEntityId
+    id: UniqueEntityId,
+    public status: StatusLoan
   ) {
     super(id);
   }
@@ -33,7 +37,8 @@ export class Loan extends Entity {
     const registrationId = new RegistrationId(props.registrationId)
     const bookId = new BookId(props.bookId)
     const {borrowedAt, returnedAt, createdAt} = props
-    return new Loan(registrationId, bookId, borrowedAt, returnedAt, createdAt, id)
+    const status =  StatusLoan.from(props.status)
+    return new Loan(registrationId, bookId, borrowedAt, returnedAt, createdAt, id, status)
   }
 
   static validate(props: LoanProperties) {
