@@ -6,7 +6,7 @@ import { BookUnavailableToBorrowError } from '#loan/domain/erros';
 
 describe('AvailableBookService Unit Tests', () => {
     it('given a book dont available call method available then throw BookUnavailableToBorrowError', () => {
-        const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOST.toString()}))
+        const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOSS.toString()}))
         expect(() => AvailableBookService.available(book)).toThrow(new BookUnavailableToBorrowError(book))
     });
     it('given a book available call method available then return true', () => {

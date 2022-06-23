@@ -5,7 +5,7 @@ import InvalidStatusBookError from '#collection/domain/erros/invalid-status-book
 enum StatusBookEnum {
   AVAILABLE = 'available',
   BORROWED = 'borrowed',
-  LOST = 'lost',
+  LOSS = 'loss',
   INAPPROPRIATE = 'inappropriate',
   MISPLACED = 'misplaced',
   DONATED = 'donated',
@@ -13,7 +13,7 @@ enum StatusBookEnum {
 export default class StatusBook extends ValueObject<string> {
   static BORROWED = new StatusBook(StatusBookEnum.BORROWED)
   static AVAILABLE = new StatusBook(StatusBookEnum.AVAILABLE)
-  static LOST = new StatusBook(StatusBookEnum.LOST)
+  static LOSS = new StatusBook(StatusBookEnum.LOSS)
   static INAPPROPRIATE = new StatusBook(StatusBookEnum.INAPPROPRIATE)
   static MISPLACED = new StatusBook(StatusBookEnum.MISPLACED)
   static DONATED = new StatusBook(StatusBookEnum.DONATED)

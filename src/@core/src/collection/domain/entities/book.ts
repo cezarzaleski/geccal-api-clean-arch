@@ -72,7 +72,7 @@ export class Book extends Entity {
   }
 
   lost() {
-    this.status = StatusBook.LOST;
+    this.status = StatusBook.LOSS;
   }
 
   inapropriar() {
