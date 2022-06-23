@@ -1,6 +1,7 @@
-import { Loan, LoanProperties } from '#loan/domain';
+import { BookId, Loan, LoanProperties } from '#loan/domain';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
 import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('Loan Unit Tests', function () {
   let loanProps: LoanProperties;
@@ -25,22 +26,34 @@ describe('Loan Unit Tests', function () {
       .toThrow(Error("Registration with 2 loans pending"))
   })
 
-  test('given a loan when call returnABook method then returnedAt is not null', () => {
+  test('given a loan when call goDown method then returnedAt is not null', () => {
     const returnedAtExpected = new Date()
 
-    subject.returnABook(returnedAtExpected)
+    subject.goDown(returnedAtExpected)
 
     expect(subject.returnedAt).toBe(returnedAtExpected)
     expect(subject.status.value).toBe(StatusLoan.RETURNED.value)
   })
 
-  test('given a loan with returned with reposition book when call returnABook then status book is LOSS_WITHOUT_REPOSITION', () => {
+  test('given a loan with returned without reposition book when call goDown then status book is LOSS_WITHOUT_REPOSITION', () => {
     const lossJustification = 'lossJustification'
 
-    subject.returnABook(null, lossJustification)
+    subject.goDown(null, lossJustification)
 
     expect(subject.returnedAt).toBeNull()
     expect(subject.status.value).toBe(StatusLoan.LOSS_WITHOUT_REPOSITION.value)
     expect(subject.lossJustification).toBe(lossJustification)
+    expect(subject.replacedBookId).toBeUndefined()
+  })
+
+  test('given a loan with returned with reposition book when call goDown then status book is LOSS_WITH_REPOSITION', () => {
+    const replacedBookId = new BookId(uuidv4())
+
+    subject.goDown(null, null, replacedBookId)
+
+    expect(subject.returnedAt).toBeNull()
+    expect(subject.status.value).toBe(StatusLoan.LOSS_WITH_REPOSITION.value)
+    expect(subject.replacedBookId).toBe(replacedBookId)
+    expect(subject.lossJustification).toBeNull()
   })
 });

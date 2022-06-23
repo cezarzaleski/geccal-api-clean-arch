@@ -54,7 +54,7 @@ export class Loan extends Entity {
     }
   }
 
-  returnABook(aReturnedAt?: Date, lossJustification?: string, replacedBookId?: BookId): void {
+  goDown(aReturnedAt?: Date, lossJustification?: string, replacedBookId?: BookId): void {
     if (aReturnedAt) {
       this.returnedAt = aReturnedAt;
       this.status = StatusLoan.RETURNED;
@@ -65,6 +65,7 @@ export class Loan extends Entity {
     }
     if (!aReturnedAt && replacedBookId) {
       this.status = StatusLoan.LOSS_WITH_REPOSITION;
+      this.replacedBookId = replacedBookId;
     }
     if (!aReturnedAt && !lossJustification && !replacedBookId) throw new Error('Loss justification is required')
   }

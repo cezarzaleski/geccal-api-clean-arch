@@ -1,7 +1,6 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { ReturnBookUseCase } from '#loan/application';
 import { Loan, LoanRepository } from '#loan/domain';
-import StatusLoan from '#loan/domain/entities/status-loan.vo';
 import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
 
 
