@@ -3,7 +3,6 @@ import Entity from '#shared/domain/entity/entity';
 import { BookId, RegistrationId } from '#loan/domain';
 import { LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
-import StatusBook from '#collection/domain/entities/status-book.vo';
 
 
 export type LoanProperties = {
@@ -11,6 +10,7 @@ export type LoanProperties = {
   bookId: string,
   borrowedAt: Date,
   status: string,
+  lossJustification?: string,
   returnedAt?: Date,
   createdAt?: Date,
 }
@@ -49,8 +49,10 @@ export class Loan extends Entity {
     }
   }
 
-  returnABook(aReturnedAt?: Date) {
+  returnABook(status: StatusLoan, aReturnedAt?: Date, lossJustification?: string) {
     aReturnedAt  = aReturnedAt || new Date()
+    if (!lossJustification && status.equals(StatusLoan.LOSS_WITHOUT_REPOSITION))  throw new Error('Loss justification is required')
+    this.status = status
     this.returnedAt = aReturnedAt
   }
 }

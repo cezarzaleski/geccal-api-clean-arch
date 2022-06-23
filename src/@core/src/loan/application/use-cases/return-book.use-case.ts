@@ -1,5 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case'
 import LoanRepository from '#loan/domain/repository/loan.repository';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 export namespace ReturnBookUseCase {
@@ -7,8 +8,9 @@ export namespace ReturnBookUseCase {
     constructor(private loanRepository: LoanRepository.Repository) {}
 
     async execute(input: Input): Promise<Output> {
-      const loan = await this.loanRepository.findById(input.id)
-      loan.returnABook(input.returnedAt)
+      const {id, returnedAt, status} = input
+      const loan = await this.loanRepository.findById(id)
+      loan.returnABook(StatusLoan.from(status), returnedAt)
       await this.loanRepository.update(loan);
       input.returnedAt = loan.returnedAt
       return {
@@ -20,6 +22,7 @@ export namespace ReturnBookUseCase {
 
   export type Input = {
     id: string,
+    status: string,
     returnedAt?: Date
   };
 
