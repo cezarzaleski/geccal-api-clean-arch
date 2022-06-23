@@ -42,7 +42,7 @@ export class Loan extends Entity {
     let aReplacedBookId: BookId | undefined
     const {borrowedAt, returnedAt, createdAt, replacedBookId, lossJustification} = props
     if (replacedBookId) aReplacedBookId = new BookId(replacedBookId)
-    const status =  StatusLoan.from(props.status)
+    const status = StatusLoan.from(props.status)
     return new Loan(registrationId, bookId, borrowedAt, createdAt, id, status, returnedAt, aReplacedBookId, lossJustification)
   }
 
@@ -54,11 +54,18 @@ export class Loan extends Entity {
     }
   }
 
-  returnABook(status: StatusLoan, aReturnedAt?: Date, lossJustification?: string) {
-    aReturnedAt  = aReturnedAt || new Date()
-    if (!lossJustification && status.equals(StatusLoan.LOSS_WITHOUT_REPOSITION))  throw new Error('Loss justification is required')
-    this.status = status
-    this.returnedAt = aReturnedAt
-    this.lossJustification = lossJustification
+  returnABook(aReturnedAt?: Date, lossJustification?: string, replacedBookId?: BookId): void {
+    if (aReturnedAt) {
+      this.returnedAt = aReturnedAt;
+      this.status = StatusLoan.RETURNED;
+    }
+    if (!aReturnedAt && lossJustification) {
+      this.status = StatusLoan.LOSS_WITHOUT_REPOSITION;
+      this.lossJustification = lossJustification;
+    }
+    if (!aReturnedAt && replacedBookId) {
+      this.status = StatusLoan.LOSS_WITH_REPOSITION;
+    }
+    if (!aReturnedAt && !lossJustification && !replacedBookId) throw new Error('Loss justification is required')
   }
 }
