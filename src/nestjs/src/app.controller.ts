@@ -27,8 +27,7 @@ export class AppController {
       note: 'some description',
     };
 
-    const book = Book.from(propsBook);
-    console.log(book.name);
+    Book.from(propsBook);
 
     return this.appService.getHello();
   }
