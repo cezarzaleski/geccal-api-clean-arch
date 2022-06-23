@@ -58,15 +58,19 @@ export class Loan extends Entity {
     if (aReturnedAt) {
       this.returnedAt = aReturnedAt;
       this.status = StatusLoan.RETURNED;
+      return
     }
     if (!aReturnedAt && lossJustification) {
       this.status = StatusLoan.LOSS_WITHOUT_REPOSITION;
       this.lossJustification = lossJustification;
+      return;
     }
     if (!aReturnedAt && replacedBookId) {
       this.status = StatusLoan.LOSS_WITH_REPOSITION;
       this.replacedBookId = replacedBookId;
+      return;
     }
-    if (!aReturnedAt && !lossJustification && !replacedBookId) throw new Error('Loss justification is required')
+    const goDownNotPossible = !aReturnedAt && !lossJustification && !replacedBookId
+    if (goDownNotPossible) throw new Error('Loss justification is required')
   }
 }
