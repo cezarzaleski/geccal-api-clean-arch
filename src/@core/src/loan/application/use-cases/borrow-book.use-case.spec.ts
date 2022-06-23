@@ -45,7 +45,7 @@ describe('BorrowBookUseCase Unit test', function () {
   });
 
   it('given a book unavailable when call create loan then throw BookUnavailableToBorrowError', async () => {
-    const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOST.value}))
+    const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOSS.value}))
     const bookId = book.id
     loanRepository.insert.mockResolvedValue()
     bookRepository.findById.mockResolvedValue(book)

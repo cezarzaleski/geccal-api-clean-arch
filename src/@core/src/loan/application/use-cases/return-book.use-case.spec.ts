@@ -2,6 +2,7 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { ReturnBookUseCase } from '#loan/application';
 import { Loan, LoanRepository } from '#loan/domain';
 import LoanPropertiesFake from '#loan/domain/entities/loanPropertiesFake';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 describe('ReturnBookUseCase Unit test', function () {
@@ -23,7 +24,8 @@ describe('ReturnBookUseCase Unit test', function () {
     const returnedAtExpected = new Date()
     const props = {
       id: loanEntity.id,
-      returnedAt: returnedAtExpected
+      returnedAt: returnedAtExpected,
+      status: StatusLoan.RETURNED.value
     }
 
     const output = await subject.execute(props);
@@ -43,7 +45,8 @@ describe('ReturnBookUseCase Unit test', function () {
     repository.update.mockResolvedValue()
     const spyUpdate = jest.spyOn(repository, 'update');
     const props = {
-      id: loanEntity.id
+      id: loanEntity.id,
+      status: StatusLoan.RETURNED.value
     }
 
     const output = await subject.execute(props);

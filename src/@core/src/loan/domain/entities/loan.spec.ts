@@ -1,5 +1,6 @@
 import LoanPropertiesFake from '#loan/domain/entities/loanPropertiesFake';
 import { Loan } from '#loan/domain';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 describe('Loan Unit Tests', function () {
@@ -20,9 +21,22 @@ describe('Loan Unit Tests', function () {
 
   test('given a loan when call returnABook method then returnedAt is not null', () => {
     const loanProps = LoanPropertiesFake.build({returnedAt: null})
+
     const subject = Loan.from(loanProps)
+
     expect(subject.returnedAt).toBeNull()
-    subject.returnABook()
+    subject.returnABook(StatusLoan.RETURNED)
     expect(subject.returnedAt).not.toBeNull()
+    expect(subject.status.value).toBe(StatusLoan.RETURNED.value)
   })
-});
+
+  test('should return throw exception when LOSS_WITHOUT_REPOSITION and lossJustification is empty', () => {
+    const loanProps = LoanPropertiesFake.build({returnedAt: null})
+    const subject = Loan.from(loanProps)
+
+    expect(() =>
+      subject.returnABook(StatusLoan.LOSS_WITHOUT_REPOSITION)
+    ).toThrow(new Error('Loss justification is required'))
+  })
+})
+;
