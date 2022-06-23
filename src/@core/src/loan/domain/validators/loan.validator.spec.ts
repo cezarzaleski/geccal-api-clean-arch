@@ -1,6 +1,6 @@
 import { LoanValidator, LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
 import { LoanProperties } from '#loan/domain';
-import LoanPropertiesFake from '#loan/domain/entities/loanPropertiesFake';
+import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
 
 describe('LoanValidator Unit Tests', () => {
   let validator: LoanValidator;

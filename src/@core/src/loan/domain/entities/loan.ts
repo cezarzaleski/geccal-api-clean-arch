@@ -11,6 +11,7 @@ export type LoanProperties = {
   borrowedAt: Date,
   status: string,
   lossJustification?: string,
+  replacedBookId?: string,
   returnedAt?: Date,
   createdAt?: Date,
 }
@@ -22,10 +23,12 @@ export class Loan extends Entity {
     public registrationId: RegistrationId,
     public bookId: BookId,
     public readonly borrowedAt: Date,
-    public returnedAt: Date,
     public readonly createdAt: Date,
     id: UniqueEntityId,
-    public status: StatusLoan
+    public status: StatusLoan,
+    public returnedAt?: Date,
+    public replacedBookId?: BookId,
+    public lossJustification?: string,
   ) {
     super(id);
   }
@@ -36,9 +39,11 @@ export class Loan extends Entity {
     Loan.validate(props);
     const registrationId = new RegistrationId(props.registrationId)
     const bookId = new BookId(props.bookId)
-    const {borrowedAt, returnedAt, createdAt} = props
+    let aReplacedBookId: BookId | undefined
+    const {borrowedAt, returnedAt, createdAt, replacedBookId, lossJustification} = props
+    if (replacedBookId) aReplacedBookId = new BookId(replacedBookId)
     const status =  StatusLoan.from(props.status)
-    return new Loan(registrationId, bookId, borrowedAt, returnedAt, createdAt, id, status)
+    return new Loan(registrationId, bookId, borrowedAt, createdAt, id, status, returnedAt, aReplacedBookId, lossJustification)
   }
 
   static validate(props: LoanProperties) {
@@ -54,5 +59,6 @@ export class Loan extends Entity {
     if (!lossJustification && status.equals(StatusLoan.LOSS_WITHOUT_REPOSITION))  throw new Error('Loss justification is required')
     this.status = status
     this.returnedAt = aReturnedAt
+    this.lossJustification = lossJustification
   }
 }

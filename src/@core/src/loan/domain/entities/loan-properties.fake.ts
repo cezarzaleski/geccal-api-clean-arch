@@ -9,14 +9,18 @@ export default class LoanPropertiesFake {
                  borrowedAt = new Date(),
                  returnedAt = null,
                  createdAt = new Date(),
-                 status = StatusLoan.CONFIRMED.value
+                 status = StatusLoan.CONFIRMED.value,
+                 lossJustification = null,
+                replacedBookId = null,
                }: {
                  registrationId?: string;
                  bookId?: string;
                  borrowedAt?: Date,
                  returnedAt?: Date,
                  createdAt?: Date
-                 status?: string
+                 status?: string,
+                 lossJustification?: string,
+                 replacedBookId?: string,
                } = {}
   ): LoanProperties {
     return {
@@ -25,7 +29,9 @@ export default class LoanPropertiesFake {
       borrowedAt: borrowedAt,
       returnedAt: returnedAt,
       createdAt: createdAt,
-      status: status
+      status: status,
+      lossJustification: lossJustification,
+      replacedBookId: replacedBookId
     }
   }
 }
