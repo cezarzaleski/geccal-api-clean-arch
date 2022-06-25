@@ -10,8 +10,8 @@
 - baixar empréstimo por devolução - OK
 - baixar empréstimo por extravio com reposição - vincular ID do livro cadastrado - ok
 - baixar empréstimo por extravio sem reposição com justificativa - OK
-- alterar empréstimo
-- alterar livro do empréstimo - livro tem que estar disponível
+- alterar empréstimo - OK
+- alterar livro do empréstimo - livro tem que estar disponível - OK: por hora vai ser apenas pelo caso de uso de updateLoan
 - event dispatcher para emissão de eventos de domínio do agregado de empréstimo
 - exclusão lógica será com deleteAt
 - adicionar status no empréstimo de livros - OK
