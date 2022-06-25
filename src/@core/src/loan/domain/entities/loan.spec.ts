@@ -56,4 +56,12 @@ describe('Loan Unit Tests', function () {
     expect(subject.replacedBookId).toBe(replacedBookId)
     expect(subject.lossJustification).toBeNull()
   })
+
+  test('should update fields loan', () => {
+    const loanUpdateProps = LoanPropertiesFake.build({registrationId: uuidv4()})
+
+    subject.update(loanUpdateProps)
+    expect(loanUpdateProps.registrationId).toBe(subject.registrationId.value)
+    expect(loanUpdateProps.bookId).toBe(subject.bookId.value)
+  })
 });
