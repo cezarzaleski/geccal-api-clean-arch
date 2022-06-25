@@ -5,13 +5,15 @@
   "main": "index.js",
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
-    "#book/*": "./dist/book/*.js",
-    "#acervo/*": "./dist/acervo/*.js"
+    "#collection/*": "./dist/collection/*.js",
+    "#loan/*": "./dist/loan/*.js"
   },
   "exports": {
+    "./@shared/application": "./dist/@shared/application/index.js",
     "./@shared/domain": "./dist/@shared/domain/index.js",
-    "./book/domain": "./dist/book/domain/index.js",
-    "./acervo/livro/domain": "./dist/acervo/livro/domain/index.js"
+    "./collection/domain": "./dist/collection/domain/index.js",
+    "./collection/application": "./dist/collection/application/index.js",
+    "./collection/infra": "./dist/collection/infra/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -21,11 +23,20 @@
       "@shared/domain": [
         "./dist/@shared/domain/index.d.ts"
       ],
-      "book/domain": [
-        "./dist/book/domain/index.d.ts"
+      "@shared/infra": [
+        "./dist/@shared/infra/index.d.ts"
       ],
-      "acervo/livro/domain": [
-        "./dist/acervo/livro/domain/index.d.ts"
+      "loan/domain": [
+        "./dist/loan/domain/index.d.ts"
+      ],
+      "collection/domain": [
+        "./dist/collection/domain/index.d.ts"
+      ],
+      "collection/application": [
+        "./dist/collection/application/index.d.ts"
+      ],
+      "collection/infra": [
+        "./dist/collection/infra/index.d.ts"
       ]
     }
   },
@@ -62,6 +73,9 @@
   },
   "dependencies": {
     "class-validator": "^0.13.2",
+    "sequelize": "^6.21.0",
+    "sequelize-typescript": "^2.1.3",
+    "sqlite3": "^5.0.8",
     "uuid": "^8.3.2"
   }
 }

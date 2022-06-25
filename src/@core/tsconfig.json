@@ -6,11 +6,11 @@
       "#shared/*": [
         "./@shared/*"
       ],
-      "#book/*": [
-        "./book/*"
+      "#collection/*": [
+        "./collection/*"
       ],
-      "#acervo/*": [
-        "./acervo/*"
+      "#loan/*": [
+        "./loan/*"
       ]
     },
     "outDir": "./dist",

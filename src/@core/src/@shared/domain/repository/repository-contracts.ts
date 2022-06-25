@@ -1,13 +1,13 @@
 import { UniqueEntityId } from '#shared/domain';
-import Entityy from '#shared/domain/entity/entityy';
+import Entity from '#shared/domain/entity/entity';
 
 
-export interface RepositoryInterface<E extends Entityy> {
+export interface RepositoryInterface<E extends Entity> {
   insert(entity: E): Promise<void>;
   findById(id: string | UniqueEntityId): Promise<E>;
   findAll(): Promise<E[]>;
   update(entity: E): Promise<void>;
-  delete(id: string | UniqueEntityId): Promise<void>;""
+  delete(id: string | UniqueEntityId): Promise<void>;
 }
 
 export type SortDirection = 'asc' | 'desc';
@@ -101,7 +101,7 @@ export class SearchParams<Filter = string> {
   }
 }
 
-type SearchResultProps<E extends Entityy, Filter> = {
+type SearchResultProps<E extends Entity, Filter> = {
   items: E[];
   total: number;
   current_page: number;
@@ -111,7 +111,7 @@ type SearchResultProps<E extends Entityy, Filter> = {
   filter: Filter | null;
 };
 
-export class SearchResult<E extends Entityy = Entityy, Filter = string> {
+export class SearchResult<E extends Entity = Entity, Filter = string> {
   readonly items: E[];
   readonly total: number;
   readonly current_page: number;
@@ -149,7 +149,7 @@ export class SearchResult<E extends Entityy = Entityy, Filter = string> {
 //Entidade e Objetos
 
 export interface SearchableRepositoryInterface<
-  E extends Entityy,
+  E extends Entity,
   Filter = string,
   SearchInput = SearchParams,
   SearchOutput = SearchResult<E, Filter>
