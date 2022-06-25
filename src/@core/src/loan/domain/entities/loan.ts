@@ -73,4 +73,10 @@ export class Loan extends Entity {
     const goDownNotPossible = !aReturnedAt && !lossJustification && !replacedBookId
     if (goDownNotPossible) throw new Error('Loss justification is required')
   }
+
+  update(props: LoanProperties) {
+    Loan.validate(props)
+    this.registrationId = new RegistrationId(props.registrationId)
+    this.bookId = new BookId(props.bookId)
+  }
 }

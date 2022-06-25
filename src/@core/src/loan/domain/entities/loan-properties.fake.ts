@@ -1,11 +1,12 @@
 import { LoanProperties } from 'loan/domain/entities/loan';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default class LoanPropertiesFake {
   static build({
-                 registrationId = '9366b7dc-2d71-4799-b91c-c64adb205104',
-                 bookId = '9366b7dc-2d71-4799-b91c-c64adb205104',
+                 registrationId = uuidv4(),
+                 bookId = uuidv4(),
                  borrowedAt = new Date(),
                  returnedAt = null,
                  createdAt = new Date(),
