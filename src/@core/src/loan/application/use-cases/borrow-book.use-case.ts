@@ -17,8 +17,7 @@ export namespace BorrowBookUseCase {
     async execute(input: Input): Promise<Output> {
       const {bookId, registrationId} = input
       const book = await this.bookRepository.findById(bookId)
-      const unavailableBook = !AvailableBookService.available(book)
-      if (unavailableBook) return
+      AvailableBookService.available(book)
       const countPendingLoanRegistration = await this.loanRepository
         .countLoansPendingByRegistrationId(new RegistrationId(registrationId))
       const loan = Loan.from({...input, status: StatusLoan.CONFIRMED.value}, countPendingLoanRegistration)
