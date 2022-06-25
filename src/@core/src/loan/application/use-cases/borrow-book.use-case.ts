@@ -20,7 +20,7 @@ export namespace BorrowBookUseCase {
       AvailableBookService.available(book)
       const countPendingLoanRegistration = await this.loanRepository
         .countLoansPendingByRegistrationId(new RegistrationId(registrationId))
-      const loan = Loan.from({...input, status: StatusLoan.CONFIRMED.value}, countPendingLoanRegistration)
+      const loan = Loan.from({...input, status: StatusLoan.CREATED.value}, countPendingLoanRegistration)
       await this.loanRepository.insert(loan);
       return LoanOutputMapper.toOutput(loan)
     }

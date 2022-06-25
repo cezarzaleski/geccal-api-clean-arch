@@ -10,7 +10,7 @@ export default class LoanPropertiesFake {
                  borrowedAt = new Date(),
                  returnedAt = null,
                  createdAt = new Date(),
-                 status = StatusLoan.CONFIRMED.value,
+                 status = StatusLoan.CREATED.value,
                  lossJustification = null,
                 replacedBookId = null,
                }: {
