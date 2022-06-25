@@ -1,18 +1,18 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { EditoraOutputMapper, ListEditorasUseCase } from '#collection/application';
-import { Editora, EditoraRepository } from '#collection/domain';
+import { Publisher, PublisherRepository } from '#collection/domain';
+import { ListPublishersUseCase, PublisherOutputMapper } from '#collection/application';
 
-describe('ListEditorasUseCase Unit Tests', () => {
-  let useCase: ListEditorasUseCase.UseCase;
-  let repository: MockProxy<EditoraRepository.Repository>
+describe('ListPublishersUseCase Unit Tests', () => {
+  let useCase: ListPublishersUseCase.UseCase;
+  let repository: MockProxy<PublisherRepository.Repository>
 
   beforeEach(() => {
     repository = mock()
-    useCase = new ListEditorasUseCase.UseCase(repository);
+    useCase = new ListPublishersUseCase.UseCase(repository);
   });
 
   test('toOutput method', () => {
-    let result = new EditoraRepository.SearchResult({
+    let result = new PublisherRepository.SearchResult({
       items: [],
       total: 1,
       current_page: 1,
@@ -30,8 +30,8 @@ describe('ListEditorasUseCase Unit Tests', () => {
       last_page: 1,
     });
 
-    const entity = Editora.from({nome: 'Maria'});
-    result = new EditoraRepository.SearchResult({
+    const entity = Publisher.from({name: 'Maria'});
+    result = new PublisherRepository.SearchResult({
       items: [entity],
       total: 1,
       current_page: 1,
@@ -43,7 +43,7 @@ describe('ListEditorasUseCase Unit Tests', () => {
 
     output = useCase['toOutput'](result);
     expect(output).toStrictEqual({
-      items: [EditoraOutputMapper.toOutput(entity)],
+      items: [PublisherOutputMapper.toOutput(entity)],
       total: 1,
       current_page: 1,
       per_page: 2,
@@ -51,12 +51,12 @@ describe('ListEditorasUseCase Unit Tests', () => {
     });
   });
 
-  it('should returns output using empty input with editoras ordered by created_at', async () => {
-    const items: Array<Editora> = [
-      Editora.from({nome: 'test 1'}),
-      Editora.from({
-        nome: 'test 2',
-        criadoEm: new Date(new Date().getTime() + 100),
+  it('should returns output using empty input with publishers ordered by created_at', async () => {
+    const items: Array<Publisher> = [
+      Publisher.from({name: 'test 1'}),
+      Publisher.from({
+        name: 'test 2',
+        createdAt: new Date(new Date().getTime() + 100),
       }),
     ];
     // @ts-ignore
@@ -70,7 +70,7 @@ describe('ListEditorasUseCase Unit Tests', () => {
 
     const output = await useCase.execute({});
     expect(output).toStrictEqual({
-      items: items.map(item => EditoraOutputMapper.toOutput(item)),
+      items: items.map(item => PublisherOutputMapper.toOutput(item)),
       total: 2,
       current_page: 1,
       per_page: 15,

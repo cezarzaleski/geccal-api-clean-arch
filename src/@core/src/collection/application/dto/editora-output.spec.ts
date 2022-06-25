@@ -1,21 +1,21 @@
-import { EditoraOutputMapper } from '#collection/application/dto/editora-output';
-import { Editora } from '#collection/domain';
+import { PublisherOutputMapper } from '#collection/application/dto/publisher-output';
+import { Publisher } from '#collection/domain';
 
 
-describe('EditoraOutputMapper Unit Tests', () => {
-  it('should convert a editora in output', () => {
-    const criadoEm = new Date();
-    const entity = Editora.from({
-      nome: 'Boa Nova',
+describe('PublisherOutputMapper Unit Tests', () => {
+  it('should convert a publisher in output', () => {
+    const createdAt = new Date();
+    const entity = Publisher.from({
+      name: 'Boa Nova',
       ativo: true,
-      criadoEm,
+      createdAt,
     });
-    const output = EditoraOutputMapper.toOutput(entity);
+    const output = PublisherOutputMapper.toOutput(entity);
     expect(output).toStrictEqual({
         id: entity.id,
-        nome: 'Boa Nova',
+        name: 'Boa Nova',
         ativo: true,
-        criadoEm,
+        createdAt,
     })
   });
 });

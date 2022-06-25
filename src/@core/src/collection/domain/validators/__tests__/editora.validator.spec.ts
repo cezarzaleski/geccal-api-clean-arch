@@ -1,37 +1,37 @@
 import {
-  EditoraRules,
-  EditoraValidator,
-  EditoraValidatorFactory
+  PublisherRules,
+  PublisherValidator,
+  PublisherValidatorFactory
 } from '../../validators';
 
 
-describe("EditoraValidator Tests", () => {
-  let validator: EditoraValidator;
+describe("PublisherValidator Tests", () => {
+  let validator: PublisherValidator;
 
-  beforeEach(() => (validator = EditoraValidatorFactory.create()));
+  beforeEach(() => (validator = PublisherValidatorFactory.create()));
 
-  test.skip("casos inválidos para o nome", () => {
+  test.skip("casos inválidos para o name", () => {
     expect({ validator, data: null }).containsErrorMessages({
-      nome: [
-        "nome should not be empty",
-        "nome must be a string"
+      name: [
+        "name should not be empty",
+        "name must be a string"
       ],
     });
 
-    expect({ validator, data: { nome: null } }).containsErrorMessages({
-      nome: [
-        "nome should not be empty",
-        "nome must be a string"
+    expect({ validator, data: { name: null } }).containsErrorMessages({
+      name: [
+        "name should not be empty",
+        "name must be a string"
       ],
     });
 
-    expect({ validator, data: { nome: "" } }).containsErrorMessages({
-      nome: ["nome should not be empty"],
+    expect({ validator, data: { name: "" } }).containsErrorMessages({
+      name: ["name should not be empty"],
     });
 
-    expect({ validator, data: { nome: 5 as any } }).containsErrorMessages({
-      nome: [
-        "nome must be a string"
+    expect({ validator, data: { name: 5 as any } }).containsErrorMessages({
+      name: [
+        "name must be a string"
       ],
     });
   });
@@ -52,19 +52,19 @@ describe("EditoraValidator Tests", () => {
 
   test("casos válidos de todos os campos", () => {
     type Arrange = {
-      nome: string;
+      name: string;
       ativo?: boolean;
     };
     const arrange: Arrange[] = [
-      { nome: "some value" },
-      { nome: "some value", ativo: true },
-      { nome: "some value", ativo: false },
+      { name: "some value" },
+      { name: "some value", ativo: true },
+      { name: "some value", ativo: false },
     ];
 
     arrange.forEach((item) => {
       const isValid = validator.validate(item);
       expect(isValid).toBeTruthy();
-      expect(validator.validatedData).toStrictEqual(new EditoraRules(item));
+      expect(validator.validatedData).toStrictEqual(new PublisherRules(item));
     });
   });
 });

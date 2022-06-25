@@ -1,15 +1,15 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { NotFoundError } from '#shared/domain';
-import { GetEditoraUseCase } from '#collection/application';
-import { Editora, EditoraRepository } from '#collection/domain';
+import { GetPublisherUseCase } from '#collection/application';
+import { Publisher, PublisherRepository } from '#collection/domain';
 
-describe('GetEditoraUseCase Unit Tests', () => {
-  let useCase: GetEditoraUseCase.UseCase;
-  let repository: MockProxy<EditoraRepository.Repository>
+describe('GetPublisherUseCase Unit Tests', () => {
+  let useCase: GetPublisherUseCase.UseCase;
+  let repository: MockProxy<PublisherRepository.Repository>
 
   beforeEach(() => {
     repository = mock()
-    useCase = new GetEditoraUseCase.UseCase(repository);
+    useCase = new GetPublisherUseCase.UseCase(repository);
   });
 
   it('should throws error when entity not found', async () => {
@@ -19,17 +19,17 @@ describe('GetEditoraUseCase Unit Tests', () => {
     ).rejects.toThrow(new NotFoundError(`Entity Not Found using ID fake id`));
   });
 
-  it('should returns a editora', async () => {
-    const item = Editora.from({nome: 'Maria'});
+  it('should returns a publisher', async () => {
+    const item = Publisher.from({name: 'Maria'});
     repository.findById.mockResolvedValue(item)
     const spyFindById = jest.spyOn(repository, 'findById');
     const output = await useCase.execute({id: item.id});
     expect(spyFindById).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
       id: item.id,
-      nome: 'Maria',
+      name: 'Maria',
       ativo: true,
-      criadoEm: item.criadoEm,
+      createdAt: item.createdAt,
     });
   });
 });

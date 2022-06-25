@@ -1,3 +1,4 @@
 // created from 'create-ts-index'
 
-export * from '#loan/domain/erros/book-unavailable-to-borrow.error';
+export * from './book-unavailable-to-borrow.error';
+export * from './invalid-status-loan.error';
