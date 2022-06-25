@@ -74,9 +74,8 @@ export class Loan extends Entity {
     if (goDownNotPossible) throw new Error('Loss justification is required')
   }
 
-  update(props: LoanPropertiesUpdate) {
-    Loan.validate(props)
-    this.registrationId = new RegistrationId(props.registrationId)
-    this.bookId = new BookId(props.bookId)
+  update(registrationId, bookId) {
+    this.registrationId = new RegistrationId(registrationId)
+    this.bookId = new BookId(bookId)
   }
 }
