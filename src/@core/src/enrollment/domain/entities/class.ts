@@ -18,7 +18,7 @@ export default class Class extends Entity {
     id: UniqueEntityId,
     public readonly createdAt: Date,
     public readonly updateAt: Date,
-    public readonly deletedAt?: Date,
+    public deletedAt?: Date,
   ) {
     super(id);
   }
@@ -28,5 +28,9 @@ export default class Class extends Entity {
     const {startAt, finishAt, year, ciclo, createdAt} = props;
     const aCiclo = Ciclo.from(ciclo);
     return new Class(startAt, finishAt, year, aCiclo, new UniqueEntityId(), createdAt, new Date());
+  }
+
+  delete(deletedAt: Date) {
+    this.deletedAt = deletedAt
   }
 }
