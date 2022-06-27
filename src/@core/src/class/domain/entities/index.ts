@@ -2,3 +2,4 @@
 
 export * from './ciclo.vo';
 export * from './class';
+export * from './evangelizando';
