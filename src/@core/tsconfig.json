@@ -12,8 +12,8 @@
       "#loan/*": [
         "./loan/*"
       ],
-      "#enrollment/*": [
-        "./enrollment/*"
+      "#class/*": [
+        "./class/*"
       ]
     },
     "outDir": "./dist",

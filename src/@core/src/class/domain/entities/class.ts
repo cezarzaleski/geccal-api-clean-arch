@@ -1,5 +1,5 @@
 import { Entity, UniqueEntityId } from '#shared/domain';
-import Ciclo from '#enrollment/domain/entities/ciclo.vo';
+import Ciclo from '#class/domain/entities/ciclo.vo';
 
 export type ClassProperties = {
   startAt: Date;

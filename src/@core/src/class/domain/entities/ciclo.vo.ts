@@ -1,5 +1,5 @@
 import { ValueObject } from '#shared/domain';
-import { InvalidCicloError } from '#enrollment/domain/erros';
+import { InvalidCicloError } from '#class/domain';
 
 
 enum CicloEnum {

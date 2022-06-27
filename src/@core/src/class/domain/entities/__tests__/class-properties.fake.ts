@@ -1,5 +1,5 @@
-import { ClassProperties } from '#enrollment/domain';
-import Ciclo from '#enrollment/domain/entities/ciclo.vo';
+import { ClassProperties } from '#class/domain';
+import Ciclo from '#class/domain/entities/ciclo.vo';
 
 
 export default class ClassPropertiesFake {

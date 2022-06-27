@@ -1,5 +1,5 @@
-import Class from '#enrollment/domain/entities/class';
-import ClassPropertiesFake from '#enrollment/domain/entities/__tests__/class-properties.fake';
+import ClassPropertiesFake from '#class/domain/entities/__tests__/class-properties.fake';
+import Class from '#class/domain/entities/class';
 
 
 describe('Class Unit Test', () => {

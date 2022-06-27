@@ -1,5 +1,5 @@
 import { IsDate, IsNotEmpty, IsString, NotEquals, IsNumber } from 'class-validator';
-import { ClassProperties } from '#enrollment/domain';
+import { ClassProperties } from 'class/domain';
 import { ClassValidatorFields } from '#shared/domain';
 
 export class ClassRules {

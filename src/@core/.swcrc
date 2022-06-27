@@ -15,8 +15,8 @@
             "#loan/*": [
                 "./loan/*"
             ],
-            "#enrollment/*": [
-                "./enrollment/*"
+            "#class/*": [
+                "./class/*"
             ]
         }
     }

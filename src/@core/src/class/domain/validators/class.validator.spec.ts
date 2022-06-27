@@ -1,6 +1,7 @@
-import { ClassValidator, ClassValidatorFactory } from '#enrollment/domain/validators/class.validator';
-import { ClassProperties } from '#enrollment/domain';
-import ClassPropertiesFake from '#enrollment/domain/entities/__tests__/class-properties.fake';
+import { ClassValidator, ClassValidatorFactory } from '#class/domain/validators/class.validator';
+import { ClassProperties } from '#class/domain';
+import ClassPropertiesFake from '#class/domain/entities/__tests__/class-properties.fake';
+
 
 describe('ClassValidator Unit Test', () =>  {
   let validator: ClassValidator
