@@ -4,7 +4,7 @@ import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan } from '#loan/domain';
 import { v4 as uuidv4 } from 'uuid';
 import { Book, BookRepository } from '#collection/domain';
-import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
 import StatusBook from '#collection/domain/entities/status-book.vo';
 import { BookUnavailableToBorrowError } from '#loan/domain/erros';
 
@@ -23,7 +23,7 @@ describe('BorrowBookUseCase Unit test', function () {
   });
 
   it('given a valid command when call create loan then return id loan', async () => {
-    const book = Book.from(BookPropertiesFake.build())
+    const book = Book.from(getBookPropertiesFake())
     const bookId = book.id
     bookRepository.findById.mockResolvedValue(book)
     const spyInsert = jest.spyOn(loanRepository, 'insert');
@@ -45,7 +45,7 @@ describe('BorrowBookUseCase Unit test', function () {
   });
 
   it('given a book unavailable when call create loan then throw BookUnavailableToBorrowError', async () => {
-    const book = Book.from(BookPropertiesFake.build({status: StatusBook.LOSS.value}))
+    const book = Book.from(getBookPropertiesFake({status: StatusBook.LOSS.value}))
     const bookId = book.id
     loanRepository.insert.mockResolvedValue()
     bookRepository.findById.mockResolvedValue(book)

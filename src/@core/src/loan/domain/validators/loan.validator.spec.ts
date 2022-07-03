@@ -1,6 +1,6 @@
 import { LoanValidator, LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
 import { LoanProperties } from '#loan/domain';
-import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
+import { getLoanPropertiesFake } from '#loan/domain/entities/loan-properties.fake';
 
 describe('LoanValidator Unit Tests', () => {
   let validator: LoanValidator;
@@ -8,12 +8,11 @@ describe('LoanValidator Unit Tests', () => {
 
   beforeEach(() => {
     validator = LoanValidatorFactory.create()
-    props = LoanPropertiesFake.build()
 
   });
 
   test('given a loan with registrationId is null return invalid loan', () => {
-    props = LoanPropertiesFake.build({registrationId: null})
+    props = getLoanPropertiesFake({registrationId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       registrationId: [
@@ -25,7 +24,7 @@ describe('LoanValidator Unit Tests', () => {
   })
 
   test('given a loan with bookId is null return invalid loan', () => {
-    props = LoanPropertiesFake.build({bookId: null})
+    props = getLoanPropertiesFake({bookId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       bookId: [
@@ -37,7 +36,7 @@ describe('LoanValidator Unit Tests', () => {
   })
 
   test('given a loan with bookId is empty return invalid loan', () => {
-    props = LoanPropertiesFake.build({bookId: ''})
+    props = getLoanPropertiesFake({bookId: ''})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       bookId: [
@@ -47,7 +46,7 @@ describe('LoanValidator Unit Tests', () => {
   })
 
   test('given a loan with borrowedAt is null return invalid loan', () => {
-    props = LoanPropertiesFake.build({borrowedAt: null})
+    props = getLoanPropertiesFake({borrowedAt: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       borrowedAt: [

@@ -3,7 +3,7 @@ import {
   EvangelizandoValidator,
   EvangelizandoValidatorFactory
 } from '#class/domain/validators/evangelizando.validator';
-import EvangelizandoPropertiesFake from '#class/domain/entities/__tests__/evangelizando-properties.fake';
+import { getEvangelizandoPropertiesFake } from '#class/domain/entities/__tests__/evangelizando-properties.fake';
 
 
 describe('EvangelizandoValidator Unit Test', () =>  {
@@ -15,7 +15,7 @@ describe('EvangelizandoValidator Unit Test', () =>  {
   })
 
   test('should be defined', () => {
-    props = EvangelizandoPropertiesFake.build()
+    props = getEvangelizandoPropertiesFake()
 
     subject.validate(props)
     const result = subject.errors
@@ -24,7 +24,7 @@ describe('EvangelizandoValidator Unit Test', () =>  {
   })
 
   test('should be empty name', () => {
-    props = EvangelizandoPropertiesFake.build({name: null})
+    props = getEvangelizandoPropertiesFake({name: null})
 
     subject.validate(props)
     const result = subject.errors
@@ -38,7 +38,7 @@ describe('EvangelizandoValidator Unit Test', () =>  {
   })
 
   test('should be empty sex', () => {
-    props = EvangelizandoPropertiesFake.build({sex: null})
+    props = getEvangelizandoPropertiesFake({sex: null})
 
     subject.validate(props)
     const result = subject.errors

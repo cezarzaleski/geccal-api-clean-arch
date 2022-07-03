@@ -1,5 +1,5 @@
 import { BookProperties, BookValidator, BookValidatorFactory } from '#collection/domain';
-import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
 
 describe('BookValidator Tests', () => {
   let validator: BookValidator;
@@ -7,12 +7,12 @@ describe('BookValidator Tests', () => {
 
   beforeEach(() => {
     validator = BookValidatorFactory.create()
-    props = BookPropertiesFake.build()
+    props = getBookPropertiesFake()
 
   });
 
   test('casos inválidos para name', () => {
-    props = BookPropertiesFake.build({name: null})
+    props = getBookPropertiesFake({name: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       name: [
@@ -24,8 +24,7 @@ describe('BookValidator Tests', () => {
   })
 
   test('casos inválidos para exemplary', () => {
-    props = BookPropertiesFake
-      .build({exemplary: null})
+    props = getBookPropertiesFake({exemplary: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       exemplary: [
@@ -35,21 +34,7 @@ describe('BookValidator Tests', () => {
   })
 
   test('casos inválidos para publisherId', () => {
-    props = BookPropertiesFake
-      .build({publisherId: null})
-    validator.validate(props)
-    expect(validator.errors).toStrictEqual({
-      publisherId: [
-        "publisherId should not be equal to null",
-        "publisherId should not be empty",
-        "publisherId must be a string",
-      ]
-    })
-  })
-
-  test('casos inválidos para publisherId', () => {
-    props = BookPropertiesFake
-      .build({publisherId: null})
+    props = getBookPropertiesFake({publisherId: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       publisherId: [
@@ -61,8 +46,7 @@ describe('BookValidator Tests', () => {
   })
 
   test('casos inválidos para authors', () => {
-    props = BookPropertiesFake
-      .build({authors: null})
+    props = getBookPropertiesFake({authors: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       authors: [
@@ -74,8 +58,7 @@ describe('BookValidator Tests', () => {
   })
 
   test('casos inválidos para edition', () => {
-    props = BookPropertiesFake
-      .build({edition: null})
+    props = getBookPropertiesFake({edition: null})
     validator.validate(props)
     expect(validator.errors).toStrictEqual({
       edition: [

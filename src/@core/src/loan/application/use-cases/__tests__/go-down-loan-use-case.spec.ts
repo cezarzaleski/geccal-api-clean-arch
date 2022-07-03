@@ -1,7 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { GoDownLoanUseCase } from '#loan/application';
 import { Loan, LoanRepository } from '#loan/domain';
-import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
+import { getLoanPropertiesFake } from '#loan/domain/entities/loan-properties.fake';
 
 
 describe('GoDownLoanUseCase Unit test', function () {
@@ -16,7 +16,7 @@ describe('GoDownLoanUseCase Unit test', function () {
   });
 
   it('given a valid command when call go down loan use case with returned at is not null then return loan', async () => {
-    const loanEntity = Loan.from(LoanPropertiesFake.build());
+    const loanEntity = Loan.from(getLoanPropertiesFake());
     repository.findById.mockResolvedValue(loanEntity)
     repository.update.mockResolvedValue()
     const spyUpdate = jest.spyOn(repository, 'update');

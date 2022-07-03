@@ -1,19 +1,17 @@
 import { BookId, Loan, LoanProperties } from '#loan/domain';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
-import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
+import { getLoanPropertiesFake } from '#loan/domain/entities/loan-properties.fake';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('Loan Unit Tests', function () {
   let loanProps: LoanProperties;
   let subject: Loan;
   beforeEach(() => {
-    loanProps = LoanPropertiesFake.build()
+    loanProps = getLoanPropertiesFake()
     subject = Loan.from(loanProps)
   });
 
   test('constructor of loan', () => {
-
-    const loanProps = LoanPropertiesFake.build()
     const result = Loan.from(loanProps)
 
     expect(result.registrationId.value).toBe(loanProps.registrationId)
@@ -21,7 +19,6 @@ describe('Loan Unit Tests', function () {
   })
 
   test('given a registration pending 2 loans when call create loan should return exception', () => {
-    const loanProps = LoanPropertiesFake.build()
     expect(() => Loan.from(loanProps, 2))
       .toThrow(Error("Registration with 2 loans pending"))
   })

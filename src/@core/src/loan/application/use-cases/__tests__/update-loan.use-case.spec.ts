@@ -3,9 +3,9 @@ import LoanRepository from '#loan/domain/repository/loan.repository';
 import { Loan } from '#loan/domain';
 import { v4 as uuidv4 } from 'uuid';
 import { Book, BookRepository } from '#collection/domain';
-import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
 import { UpdateLoanUseCase } from '#loan/application/use-cases/update-loan.use-case';
-import LoanPropertiesFake from '#loan/domain/entities/loan-properties.fake';
+import { getLoanPropertiesFake } from '#loan/domain/entities/loan-properties.fake';
 
 
 describe('UpdateLoanUseCase Unit test', function () {
@@ -22,8 +22,8 @@ describe('UpdateLoanUseCase Unit test', function () {
   });
 
   it('should return success when call update loan', async () => {
-    const loan = Loan.from(LoanPropertiesFake.build())
-    const book = Book.from(BookPropertiesFake.build())
+    const loan = Loan.from(getLoanPropertiesFake())
+    const book = Book.from(getBookPropertiesFake())
     const bookId = uuidv4()
     const registrationId = uuidv4()
     bookRepository.findById.mockResolvedValue(book)

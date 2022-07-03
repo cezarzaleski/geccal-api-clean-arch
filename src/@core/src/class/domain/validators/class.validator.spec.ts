@@ -1,6 +1,6 @@
 import { ClassValidator, ClassValidatorFactory } from '#class/domain/validators/class.validator';
 import { ClassProperties } from '#class/domain';
-import ClassPropertiesFake from '#class/domain/entities/__tests__/class-properties.fake';
+import { getClassPropertiesFake } from '#class/domain/entities/__tests__/class-properties.fake';
 
 
 describe('ClassValidator Unit Test', () =>  {
@@ -12,7 +12,7 @@ describe('ClassValidator Unit Test', () =>  {
   })
 
   test('should be defined', () => {
-    props = ClassPropertiesFake.build()
+    props = getClassPropertiesFake()
 
     validator.validate(props)
     const subject = validator.errors
@@ -21,7 +21,7 @@ describe('ClassValidator Unit Test', () =>  {
   })
 
   test('should be empty startAt', () => {
-    props = ClassPropertiesFake.build({startAt: null})
+    props = getClassPropertiesFake({startAt: null})
 
     validator.validate(props)
     const subject = validator.errors
@@ -35,7 +35,7 @@ describe('ClassValidator Unit Test', () =>  {
   })
 
   test('should be empty finishAt', () => {
-    props = ClassPropertiesFake.build({finishAt: null})
+    props = getClassPropertiesFake({finishAt: null})
 
     validator.validate(props)
     const subject = validator.errors
