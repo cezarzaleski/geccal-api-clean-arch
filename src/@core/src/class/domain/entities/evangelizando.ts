@@ -1,4 +1,5 @@
-import { Entity, UniqueEntityId } from '#shared/domain';
+import { Entity, EntityValidationError, UniqueEntityId } from '#shared/domain';
+import { EvangelizandoValidatorFactory } from '#class/domain/validators/evangelizando.validator';
 
 export type EvangelizandoProperties = {
   name: string;
@@ -26,8 +27,15 @@ export default class Evangelizando extends Entity {
 
   static from(props: EvangelizandoProperties) {
     props.createdAt = props.createdAt ?? new Date();
+    Evangelizando.validate(props)
     const {name, fatherName, motherName, birthday, sex, createdAt} = props;
     return new Evangelizando(name, sex, new UniqueEntityId(), createdAt, createdAt, fatherName, motherName, birthday);
+  }
+
+  static validate(props: EvangelizandoProperties) {
+    const validator = EvangelizandoValidatorFactory.create()
+    const isInvalid = !validator.validate(props)
+    if (isInvalid) throw new EntityValidationError(validator.errors)
   }
 
   delete(deletedAt: Date) {
