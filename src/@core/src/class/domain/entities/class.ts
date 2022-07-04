@@ -1,6 +1,7 @@
 import { Entity, EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Ciclo from '#class/domain/entities/ciclo.vo';
 import { ClassValidatorFactory } from '#class/domain/validators/class.validator';
+import Enrollment from '#class/domain/entities/enrollment';
 
 export type ClassProperties = {
   startAt: Date;
@@ -17,6 +18,7 @@ export default class Class extends Entity {
     public year: number,
     public ciclo: Ciclo,
     id: UniqueEntityId,
+    public enrollments: Enrollment[],
     public readonly createdAt: Date,
     public readonly updateAt: Date,
     public deletedAt?: Date,
@@ -29,16 +31,29 @@ export default class Class extends Entity {
     Class.validate(props)
     const {startAt, finishAt, year, ciclo, createdAt} = props;
     const aCiclo = Ciclo.from(ciclo);
-    return new Class(startAt, finishAt, year, aCiclo, new UniqueEntityId(), createdAt, new Date());
+    return new Class(
+      startAt,
+      finishAt,
+      year,
+      aCiclo,
+      new UniqueEntityId(),
+      [],
+      createdAt,
+      new Date()
+    );
   }
 
   static validate(props: ClassProperties) {
-   const validator = ClassValidatorFactory.create()
-   const isInvalid = !validator.validate(props)
-   if (isInvalid) throw new EntityValidationError(validator.errors)
+    const validator = ClassValidatorFactory.create()
+    const isInvalid = !validator.validate(props)
+    if (isInvalid) throw new EntityValidationError(validator.errors)
   }
 
   delete(deletedAt: Date) {
     this.deletedAt = deletedAt
+  }
+
+  addEnrollment(evangelizandoId: UniqueEntityId, createAt: Date = new Date()) {
+    this.enrollments.push(Enrollment.from({evangelizandoId, createAt}))
   }
 }
