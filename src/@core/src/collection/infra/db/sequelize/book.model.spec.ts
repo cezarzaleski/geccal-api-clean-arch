@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript'
-import { BookModel } from '#collection/infra/db/sequelize/book.model';
+import { BookSequelize } from '#collection/infra/db/sequelize/book.sequelize';
 
 describe('BookModel Unit Test', () => {
   let sequelize: Sequelize
@@ -9,7 +9,7 @@ describe('BookModel Unit Test', () => {
       dialect: 'sqlite',
       host: ':memory',
       logging: false,
-      models: [BookModel]
+      models: [BookSequelize.BookModel]
     })
   })
 
@@ -32,7 +32,7 @@ describe('BookModel Unit Test', () => {
       publisherId: '9366b7dc-2d71-4799-b91c-c64adb205104',
       origin: 'doado'
     }
-    const subject = await BookModel.create(bookExpected)
+    const subject = await BookSequelize.BookModel.create(bookExpected)
     expect(subject.toJSON()).toStrictEqual(bookExpected)
   });
 });

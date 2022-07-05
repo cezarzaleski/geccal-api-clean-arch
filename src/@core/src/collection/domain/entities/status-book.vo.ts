@@ -23,6 +23,10 @@ export default class StatusBook extends ValueObject<string> {
     return new StatusBook(value)
   }
 
+  static with (value: string) {
+    return new StatusBook(value)
+  }
+
   equals(aStatusBook: StatusBook) : boolean {
     return this.value === aStatusBook.value;
   }

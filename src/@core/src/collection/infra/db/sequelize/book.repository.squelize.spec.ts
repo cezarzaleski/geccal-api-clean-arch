@@ -1,25 +1,24 @@
 import { Sequelize } from 'sequelize-typescript'
-import { BookModel } from '#collection/infra/db/sequelize/book.model';
 import { Book } from '#collection/domain';
 import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
-import { BookRepositorySequelize } from '#collection/infra/db/sequelize/book.repository.sequelize';
+import { BookSequelize } from '#collection/infra/db/sequelize/book.sequelize';
 
 describe('BookRepositorySequelize Integration', () => {
   let sequelize: Sequelize
-  let subject: BookRepositorySequelize
+  let subject: BookSequelize.Repository
 
   beforeAll(() => {
     sequelize = new Sequelize({
       dialect: 'sqlite',
       host: ':memory',
       logging: false,
-      models: [BookModel]
+      models: [BookSequelize.BookModel]
     })
   })
 
   beforeEach(async () => {
     await sequelize.sync({force: true})
-    subject = new BookRepositorySequelize(BookModel)
+    subject = new BookSequelize.Repository(BookSequelize.BookModel)
   })
 
   afterAll(async () => {
@@ -30,7 +29,7 @@ describe('BookRepositorySequelize Integration', () => {
     const bookProps = getBookPropertiesFake()
     const book = Book.from(bookProps)
     await subject.insert(book)
-    const bookModel = await BookModel.findByPk(book.id)
+    const bookModel = await BookSequelize.BookModel.findByPk(book.id)
     expect(bookModel).not.toBeNull()
   });
 });
