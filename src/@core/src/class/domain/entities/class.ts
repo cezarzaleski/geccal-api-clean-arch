@@ -18,7 +18,7 @@ export default class Class extends Entity {
     public year: number,
     public ciclo: Ciclo,
     id: UniqueEntityId,
-    public enrollments: Enrollment[],
+    public readonly enrollments: Enrollment[],
     public readonly createdAt: Date,
     public readonly updateAt: Date,
     public deletedAt?: Date,
