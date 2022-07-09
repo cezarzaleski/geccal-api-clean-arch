@@ -7,6 +7,7 @@ import { Book, BookRepository } from '#collection/domain';
 import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
 import StatusBook from '#collection/domain/entities/status-book.vo';
 import { BookUnavailableToBorrowError } from '#loan/domain/erros';
+import EventDispatcherInterface from '#shared/event/event-dispatcher.interface';
 
 
 describe('BorrowBookUseCase Unit test', function () {
@@ -14,12 +15,14 @@ describe('BorrowBookUseCase Unit test', function () {
   let subject: BorrowBookUseCase.UseCase;
   let loanRepository: MockProxy<LoanRepository.Repository>
   let bookRepository: MockProxy<BookRepository.Repository>
+  let eventDispatcherInterface: EventDispatcherInterface
   let loan: Loan
 
   beforeEach(() => {
     loanRepository = mock()
     bookRepository = mock()
-    subject = new BorrowBookUseCase.UseCase(loanRepository, bookRepository);
+    eventDispatcherInterface = mock()
+    subject = new BorrowBookUseCase.UseCase(loanRepository, bookRepository, eventDispatcherInterface);
   });
 
   it('given a valid command when call create loan then return id loan', async () => {
@@ -27,6 +30,7 @@ describe('BorrowBookUseCase Unit test', function () {
     const bookId = book.id
     bookRepository.findById.mockResolvedValue(book)
     const spyInsert = jest.spyOn(loanRepository, 'insert');
+    const spyNotifyEvent = jest.spyOn(eventDispatcherInterface, 'notify');
     const spycountLoansPendingByRegistrationId = jest.spyOn(loanRepository, 'countLoansPendingByRegistrationId');
     const props = {
       bookId: bookId,
@@ -38,6 +42,7 @@ describe('BorrowBookUseCase Unit test', function () {
 
     loan = loanRepository.insert.mock.calls[0][0]
     expect(spyInsert).toHaveBeenCalledTimes(1);
+    expect(spyNotifyEvent).toHaveBeenCalledTimes(1);
     expect(spycountLoansPendingByRegistrationId).toHaveBeenCalledTimes(1);
     expect(output).toStrictEqual({
       id: loan.id

@@ -5,13 +5,16 @@ import { Loan, RegistrationId } from '#loan/domain';
 import { BookRepository } from '#collection/domain';
 import AvailableBookService from '#loan/domain/entities/available-book.service';
 import StatusLoan from '#loan/domain/entities/status-loan.vo';
+import EventDispatcherInterface from '#shared/event/event-dispatcher.interface';
+import BorrowBookCreated from '#loan/domain/events/borrow-book-created.event';
 
 
 export namespace BorrowBookUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
     constructor(
       private loanRepository: LoanRepository.Repository,
-      private bookRepository: BookRepository.Repository
+      private bookRepository: BookRepository.Repository,
+      private eventDispatcherInterface: EventDispatcherInterface
     ) {}
 
     async execute(input: Input): Promise<Output> {
@@ -22,6 +25,8 @@ export namespace BorrowBookUseCase {
         .countLoansPendingByRegistrationId(new RegistrationId(registrationId))
       const loan = Loan.from({...input, status: StatusLoan.CREATED.value}, countPendingLoanRegistration)
       await this.loanRepository.insert(loan);
+      const borrowBookCreated = new BorrowBookCreated({...loan})
+      this.eventDispatcherInterface.notify(borrowBookCreated)
       return LoanOutputMapper.toOutput(loan)
     }
   }
