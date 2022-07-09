@@ -11,6 +11,7 @@
     "#shared/domain": "./dist/@shared/domain/index.js",
     "#shared/application": "./dist/@shared/application/index.js",
     "#collection/domain": "./dist/collection/domain/index.js",
+    "#collection/infra": "./dist/collection/infra/index.js",
     "#collection/application": "./dist/collection/application/index.js",
     "#class/domain": "./dist/class/domain/index.js",
     "#class/application": "./dist/class/application/index.js"

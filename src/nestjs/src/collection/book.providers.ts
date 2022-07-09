@@ -4,14 +4,14 @@ import {
   CreateBookUseCase,
   UpdateBookUseCase,
 } from '@geccal/core/collection/application';
-import { BookRepositorySequelize } from '@geccal/core/collection/infra';
 import { BookRepository } from '@geccal/core/collection/domain';
+import { BookSequelize } from '@geccal/core/collection/infra';
 
 export namespace BOOK_PROVIDERS {
   export namespace REPOSITORIES {
     export const BOOK_REPOSITORY_SEQUELIZE = {
       provide: 'BookRepositorySequelize',
-      useClass: BookRepositorySequelize,
+      useClass: BookSequelize.Repository
     };
   }
 
