@@ -2,6 +2,7 @@
 
 npm run cti create './src/@shared/application' -- -i '*spec.ts' -b &&
 npm run cti create './src/@shared/domain' -- -i '*spec.ts' -b &&
+npm run cti create './src/@shared/event' -- -i '*spec.ts' -b &&
 
 npm run cti create './src/loan/application' -- -i '*spec.ts' -b &&
 npm run cti create './src/loan/domain' -- -i '*spec.ts' -b &&
