@@ -7,14 +7,12 @@ describe('PublisherOutputMapper Unit Tests', () => {
     const createdAt = new Date();
     const entity = Publisher.from({
       name: 'Boa Nova',
-      ativo: true,
       createdAt,
     });
     const output = PublisherOutputMapper.toOutput(entity);
     expect(output).toStrictEqual({
         id: entity.id,
         name: 'Boa Nova',
-        ativo: true,
         createdAt,
     })
   });

@@ -4,26 +4,28 @@ import { PublisherValidatorFactory } from '../validators';
 
 export type PublisherProperties = {
   name: string,
-  ativo?: boolean,
   createdAt?: Date,
+  updatedAt?: Date,
 }
 
 export class Publisher extends Entity {
 
   private constructor(
     public name: string,
-    public ativo: boolean,
     public readonly createdAt: Date,
-    id?: UniqueEntityId) {
+    id?: UniqueEntityId,
+    public readonly updatedAt?: Date,
+    public readonly deletedAt?: Date,
+    ) {
     super(id);
   }
 
   static from(props: PublisherProperties, id?: UniqueEntityId): Publisher {
-    let {name, ativo, createdAt} = props
-    if (ativo === undefined) ativo = true
+    let {name, createdAt, updatedAt} = props
     props.createdAt = props.createdAt ?? new Date();
+    props.updatedAt = props.updatedAt ?? new Date();
     Publisher.validate(props);
-    return new Publisher(name, ativo, createdAt, id)
+    return new Publisher(name, createdAt, id, updatedAt)
   }
 
   static validate(props: PublisherProperties) {
@@ -37,5 +39,9 @@ export class Publisher extends Entity {
   update(nome: string) {
     Publisher.validate({name: nome});
     this.name = nome;
+  }
+
+  static with(id, name, createdAt, updatedAt, deletedAt) {
+    return new Publisher(name, createdAt, id, updatedAt, deletedAt)
   }
 }

@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { ClassValidatorFields } from '../../../@shared/domain/validators';
 import { PublisherProperties } from '#collection/domain';
 
@@ -7,23 +7,23 @@ export class PublisherRules {
   @IsNotEmpty()
   name: string;
 
-  @IsBoolean()
-  @IsOptional()
-  ativo: boolean;
-
   @IsDate()
   @IsOptional()
   createdAt: Date;
 
+  @IsDate()
+  @IsOptional()
+  updatedAt: Date;
+
   constructor({
                 name,
-                ativo,
-                createdAt
+                createdAt,
+                updatedAt
               }: PublisherProperties) {
     Object.assign(this, {
       name,
-      ativo,
-      createdAt
+      createdAt,
+      updatedAt
     });
   }
 }

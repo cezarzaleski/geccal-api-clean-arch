@@ -28,7 +28,6 @@ describe('GetPublisherUseCase Unit Tests', () => {
     expect(output).toStrictEqual({
       id: item.id,
       name: 'Maria',
-      ativo: true,
       createdAt: item.createdAt,
     });
   });

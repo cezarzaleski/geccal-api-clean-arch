@@ -1,7 +1,8 @@
-import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript"
+import { Column, DataType, Model, PrimaryKey, Table, ForeignKey } from "sequelize-typescript"
 import { Author, Book, BookRepository, Origin, PublisherId } from '#collection/domain';
 import { UniqueEntityId } from '#shared/domain';
 import StatusBook from '#collection/domain/entities/status-book.vo';
+import { PublisherSequelize } from '#collection/infra';
 
 export namespace BookSequelize {
 
@@ -41,6 +42,7 @@ export namespace BookSequelize {
     @Column({type: DataType.STRING})
     declare note: string | null;
 
+    @ForeignKey(() => PublisherSequelize.PublisherModel)
     @Column({allowNull: false, type: DataType.UUID, field: 'publisher_id'})
     declare publisherId: string;
 

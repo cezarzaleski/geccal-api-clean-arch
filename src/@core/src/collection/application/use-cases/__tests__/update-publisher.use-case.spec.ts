@@ -32,7 +32,6 @@ describe('UpdatePublisherUseCase Unit Tests', () => {
     expect(output).toStrictEqual({
       id: publisher.id,
       name: 'update',
-      ativo: publisher.ativo,
       createdAt: publisher.createdAt,
     });
   })
