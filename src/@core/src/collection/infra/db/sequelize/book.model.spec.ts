@@ -1,25 +1,8 @@
-import { Sequelize } from 'sequelize-typescript'
 import { BookSequelize } from '#collection/infra/db/sequelize/book.sequelize';
+import { setupSequelize } from '#shared/infra';
 
 describe('BookModel Unit Test', () => {
-  let sequelize: Sequelize
-
-  beforeAll(() => {
-    sequelize = new Sequelize({
-      dialect: 'sqlite',
-      host: ':memory',
-      logging: false,
-      models: [BookSequelize.BookModel]
-    })
-  })
-
-  beforeEach(async () => {
-    await sequelize.sync({force: true})
-  })
-
-  afterAll(async () => {
-    await sequelize.close()
-  })
+  setupSequelize({models: [BookSequelize.BookModel]})
 
   test('should create new BookModel', async () => {
     const bookExpected = {
