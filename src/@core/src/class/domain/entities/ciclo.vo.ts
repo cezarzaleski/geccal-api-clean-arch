@@ -17,8 +17,12 @@ export default class Ciclo extends ValueObject<string> {
   static PRIMEIROB = new Ciclo(CicloEnum.PRIMEIROB)
   static SEGUNDO = new Ciclo(CicloEnum.SEGUNDO)
 
-  static from (value: string) {
+  static create (value: string) {
     Ciclo.validate(value)
+    return new Ciclo(value)
+  }
+
+  static from (value: string) {
     return new Ciclo(value)
   }
 

@@ -30,7 +30,7 @@ export default class Class extends Entity {
     props.createdAt = props.createdAt ?? new Date();
     Class.validate(props)
     const {startAt, finishAt, year, ciclo, createdAt} = props;
-    const aCiclo = Ciclo.from(ciclo);
+    const aCiclo = Ciclo.create(ciclo);
     return new Class(
       startAt,
       finishAt,
