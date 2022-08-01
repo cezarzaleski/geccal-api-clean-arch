@@ -16,7 +16,7 @@ export namespace CreateEvangelizandoUseCase {
 
   export type Input = {
     name: string;
-    sex: string;
+    gender: string;
     fatherName?: string;
     motherName?: string;
     birthday?: Date;
