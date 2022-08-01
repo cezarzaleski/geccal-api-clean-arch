@@ -1,4 +1,4 @@
-import { Column, DataType, Model, PrimaryKey, Table, ForeignKey } from "sequelize-typescript"
+import { Column, DataType, Model, PrimaryKey, Table, ForeignKey } from 'sequelize-typescript'
 import { Author, Book, BookRepository, Origin, PublisherId } from '#collection/domain';
 import { UniqueEntityId } from '#shared/domain';
 import StatusBook from '#collection/domain/entities/status-book.vo';
