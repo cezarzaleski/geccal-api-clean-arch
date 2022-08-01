@@ -25,11 +25,11 @@ export class EvangelizandoRules {
 
   constructor(
     {
-      name, sex, fatherName, motherName, birthday
+      name, gender, fatherName, motherName, birthday
     }: EvangelizandoProperties) {
     Object.assign(this, {
       name: name,
-      sex: sex,
+      sex: gender,
       fatherName: fatherName,
       motherName: motherName,
       birthday: birthday,

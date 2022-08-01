@@ -38,7 +38,7 @@ describe('EvangelizandoValidator Unit Test', () =>  {
   })
 
   test('should be empty sex', () => {
-    props = getEvangelizandoPropertiesFake({sex: null})
+    props = getEvangelizandoPropertiesFake({gender: null})
 
     subject.validate(props)
     const result = subject.errors

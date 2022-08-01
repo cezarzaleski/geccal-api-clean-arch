@@ -4,7 +4,7 @@ import Evangelizando from '#class/domain/entities/evangelizando';
 export type EvangelizandoOutput = {
   id: string;
   name: string;
-  sex: string;
+  gender: string;
   fatherName?: string;
   motherName?: string;
   birthday?: Date;
@@ -16,7 +16,7 @@ export class EvangelizandoOutputMapper {
     return {
       id: entity.id,
       name: entity.name,
-      sex: entity.sex,
+      gender: entity.gender.value,
       fatherName: entity.fatherName,
       motherName: entity.motherName,
       birthday: entity.birthday,

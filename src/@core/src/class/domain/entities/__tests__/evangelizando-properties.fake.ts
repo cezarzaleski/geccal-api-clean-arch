@@ -1,10 +1,11 @@
 import { EvangelizandoProperties } from '#class/domain';
+import Gender from '#class/domain/entities/gender.vo';
 
 
 const evangelizandoPropertiesFake: EvangelizandoProperties = {
 
   name: 'Evangelizando',
-  sex: 'fem',
+  gender: Gender.FEMALE.value,
   fatherName: 'fatherName',
   motherName: 'motherName',
   birthday: new Date(),
