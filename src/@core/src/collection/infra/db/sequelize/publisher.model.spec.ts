@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import { PublisherSequelize } from '#collection/infra/db/sequelize/publisher.sequelize';
+import publisherRepository from '#collection/domain/repository/publisher.repository';
 
 describe('PublisherModel Unit Test', () => {
   let sequelize: Sequelize
@@ -22,13 +23,13 @@ describe('PublisherModel Unit Test', () => {
   })
 
   test('should create new PublisherModel', async () => {
-    const bookExpected = {
+    const publisherExpected = {
       id: '9366b7dc-2d71-4799-b91c-c64adb205104',
       name: 'publisherFake',
       createdAt: new Date(),
       updatedAt: new Date()
     }
-    const subject = await PublisherSequelize.PublisherModel.create(bookExpected)
-    expect(subject.toJSON()).toStrictEqual(bookExpected)
+    const subject = await PublisherSequelize.PublisherModel.create(publisherExpected)
+    expect(subject.toJSON()).toStrictEqual(publisherExpected)
   });
 });

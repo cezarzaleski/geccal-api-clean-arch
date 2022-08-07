@@ -7,7 +7,7 @@ const publisherPropertiesFake: PublisherProperties = {
   name: 'publisher'
 }
 
-export const getBookPropertiesFake = (
+export const getPublisherPropertiesFake = (
   bookProperties?: Partial<PublisherProperties>,
 ) => ({
   ...publisherPropertiesFake,
