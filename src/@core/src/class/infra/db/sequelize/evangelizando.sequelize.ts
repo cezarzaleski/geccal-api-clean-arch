@@ -1,5 +1,5 @@
 import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript'
-import { UniqueEntityId } from '#shared/domain';
+import { NotFoundError, UniqueEntityId } from '#shared/domain';
 import { EvangelizandoRepository } from '#class/domain';
 import Evangelizando from '#class/domain/entities/evangelizando';
 import Gender from '#class/domain/entities/gender.vo';
@@ -17,7 +17,7 @@ export namespace EvangelizandoSequelize {
     deletedAt: Date | null;
   }
 
-  @Table({tableName: 'books', timestamps: false})
+  @Table({tableName: 'evangelizandos', timestamps: false})
   export class EvangelizandoModel extends Model<EvangelizandoModelProperties> {
     @PrimaryKey
     @Column({allowNull: true, type: DataType.UUID})
@@ -53,29 +53,44 @@ export namespace EvangelizandoSequelize {
 
     constructor(private evangelizandoModel: typeof EvangelizandoSequelize.EvangelizandoModel) {
     }
-
-    delete(id: string | UniqueEntityId): Promise<void> {
-      return Promise.resolve(undefined);
+    async delete(id: string | UniqueEntityId, deletedAt: Date = new Date()): Promise<void> {
+      const _id = `${id}`;
+      const model = await this._get(_id);
+      await this.evangelizandoModel.update({...model, deletedAt}, {
+        where: {id: _id},
+      });
     }
 
     findAll(): Promise<Evangelizando[]> {
       return Promise.resolve([]);
     }
 
-    findById(id: string | UniqueEntityId): Promise<Evangelizando> {
-      return Promise.resolve(undefined);
+    async findById(id: string | UniqueEntityId): Promise<Evangelizando> {
+      const _id = `${id}`;
+      const model = await this._get(_id);
+      return EvangelizandoModelMapper.toEntity(model);
     }
 
     async insert(entity: Evangelizando): Promise<void> {
       await this.evangelizandoModel.create(EvangelizandoModelMapper.toModel(entity));
     }
 
-    update(entity: Evangelizando): Promise<void> {
-      return Promise.resolve(undefined);
+    async update(entity: Evangelizando): Promise<void> {
+      await this._get(entity.id);
+      await this.evangelizandoModel.update(EvangelizandoModelMapper.toModel(entity), {
+        where: {id: entity.id},
+      });
     }
 
     search(props: EvangelizandoRepository.SearchParams): Promise<EvangelizandoRepository.SearchResult> {
       return Promise.resolve(undefined);
+    }
+
+    private async _get(id: string): Promise<EvangelizandoModel> {
+      return this.evangelizandoModel.findOne({
+        where: {deletedAt: null, id: id},
+        rejectOnEmpty: new NotFoundError(`Entity Not Found using ID ${id}`),
+      });
     }
   }
 

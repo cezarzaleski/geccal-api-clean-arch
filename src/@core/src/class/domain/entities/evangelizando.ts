@@ -9,6 +9,7 @@ export type EvangelizandoProperties = {
   motherName?: string;
   birthday?: Date;
   createdAt?: Date;
+  deletedAt?: Date;
 }
 
 export default class Evangelizando extends Entity {
@@ -29,9 +30,9 @@ export default class Evangelizando extends Entity {
   static from(props: EvangelizandoProperties) {
     props.createdAt = props.createdAt ?? new Date();
     Evangelizando.validate(props)
-    const {name, fatherName, motherName, birthday, gender, createdAt} = props;
+    const {name, fatherName, motherName, birthday, gender, createdAt, deletedAt} = props;
     const aGender = Gender.create(gender);
-    return new Evangelizando(name, aGender, new UniqueEntityId(), createdAt, createdAt, fatherName, motherName, birthday);
+    return new Evangelizando(name, aGender, new UniqueEntityId(), createdAt, createdAt, fatherName, motherName, birthday, deletedAt);
   }
 
   static with(props: {
