@@ -31,7 +31,7 @@ describe('CreateEvangelizandoUseCase Unit test', function () {
       birthday: evangelizando.birthday,
       fatherName: evangelizando.fatherName,
       motherName: evangelizando.motherName,
-      sex: evangelizando.gender,
+      gender: evangelizando.gender.value,
     });
   });
 
