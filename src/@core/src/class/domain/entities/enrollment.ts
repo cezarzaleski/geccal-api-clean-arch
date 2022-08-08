@@ -9,7 +9,7 @@ export type EnrollmentProperties = {
 export default class Enrollment extends Entity {
   private constructor(
     public evangelizandoId: EvangelizandoId,
-    public createAt: Date,
+    public createdAt: Date,
     id?: UniqueEntityId,
   ) {
     super(id);

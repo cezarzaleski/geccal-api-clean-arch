@@ -9,6 +9,8 @@ export type ClassProperties = {
   year: number;
   ciclo: string;
   createdAt?: Date;
+  updateAt?: Date,
+  deletedAt?: Date,
 }
 
 export default class Class extends Entity {
@@ -29,7 +31,7 @@ export default class Class extends Entity {
   static from(props: ClassProperties) {
     props.createdAt = props.createdAt ?? new Date();
     Class.validate(props)
-    const {startAt, finishAt, year, ciclo, createdAt} = props;
+    const {startAt, finishAt, year, ciclo, createdAt, deletedAt} = props;
     const aCiclo = Ciclo.create(ciclo);
     return new Class(
       startAt,
@@ -39,7 +41,8 @@ export default class Class extends Entity {
       new UniqueEntityId(),
       [],
       createdAt,
-      new Date()
+      new Date(),
+      deletedAt
     );
   }
 
@@ -55,5 +58,20 @@ export default class Class extends Entity {
 
   addEnrollment(evangelizandoId: UniqueEntityId, createAt: Date = new Date()) {
     this.enrollments.push(Enrollment.from({evangelizandoId, createAt}))
+  }
+
+  static with(props: {
+    createdAt: Date;
+    deletedAt: Date;
+    ciclo: Ciclo;
+    year: number;
+    updateAt: Date;
+    id: UniqueEntityId;
+    startAt: Date;
+    finishAt: Date,
+    enrollments: Enrollment[]
+  }) {
+    const {ciclo, year, updateAt, createdAt, startAt, finishAt, id, deletedAt, enrollments} = props
+    return new Class(startAt, finishAt, year, ciclo, id, enrollments, createdAt, updateAt, deletedAt)
   }
 }

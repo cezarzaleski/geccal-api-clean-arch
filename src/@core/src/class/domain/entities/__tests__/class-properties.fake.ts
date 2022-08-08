@@ -8,6 +8,7 @@ const classPropertiesFake: ClassProperties = {
   year: 2020,
   ciclo: Ciclo.MATERNAL.value,
   createdAt: new Date(),
+  updateAt: new Date(),
 }
 
 export const getClassPropertiesFake = (
