@@ -4,9 +4,8 @@ import { setupSequelize } from '#shared/infra';
 import { getPublisherPropertiesFake } from '#collection/domain/entities/__tests__/publisherPropertiesFake';
 
 describe('PublisherSequelize Integration', () => {
-  let subject: PublisherSequelize.Repository
-
   setupSequelize({models: [PublisherSequelize.PublisherModel]})
+  let subject: PublisherSequelize.Repository
 
   beforeEach(async () => {
     subject = new PublisherSequelize.Repository(PublisherSequelize.PublisherModel)
@@ -18,5 +17,10 @@ describe('PublisherSequelize Integration', () => {
     await subject.insert(publisher)
     const publisherModel = await PublisherSequelize.PublisherModel.findByPk(publisher.id)
     expect(publisherModel).not.toBeNull()
+    expect(publisherModel.id).not.toBeNull()
+    expect(publisherModel.name).toEqual(publisherProps.name)
+    expect(publisherModel.deletedAt).toBeNull()
+    expect(publisherModel.createdAt).toEqual(publisherProps.createdAt)
+    expect(publisherModel.updatedAt).toEqual(publisherProps.updatedAt)
   });
 });
