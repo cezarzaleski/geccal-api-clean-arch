@@ -30,7 +30,7 @@ export namespace BookSequelize {
     @Column({allowNull: false, type: DataType.STRING(255)})
     declare name: string;
 
-    @Column({type: DataType.STRING(255)})
+    @Column({type: DataType.NUMBER})
     declare exemplary: number | null;
 
     @Column({allowNull: false, type: DataType.STRING})
