@@ -15,14 +15,14 @@ describe('BorrowBookUseCase Unit test', function () {
   let subject: BorrowBookUseCase.UseCase;
   let loanRepository: MockProxy<LoanRepository.Repository>
   let bookRepository: MockProxy<BookRepository.Repository>
-  let eventDispatcherInterface: EventDispatcherInterface
+  let eventDispatcher: EventDispatcherInterface
   let loan: Loan
 
   beforeEach(() => {
     loanRepository = mock()
     bookRepository = mock()
-    eventDispatcherInterface = mock()
-    subject = new BorrowBookUseCase.UseCase(loanRepository, bookRepository, eventDispatcherInterface);
+    eventDispatcher = mock()
+    subject = new BorrowBookUseCase.UseCase(loanRepository, bookRepository, eventDispatcher);
   });
 
   it('given a valid command when call create loan then return id loan', async () => {
@@ -30,7 +30,7 @@ describe('BorrowBookUseCase Unit test', function () {
     const bookId = book.id
     bookRepository.findById.mockResolvedValue(book)
     const spyInsert = jest.spyOn(loanRepository, 'insert');
-    const spyNotifyEvent = jest.spyOn(eventDispatcherInterface, 'notify');
+    const spyNotifyEvent = jest.spyOn(eventDispatcher, 'notify');
     const spycountLoansPendingByRegistrationId = jest.spyOn(loanRepository, 'countLoansPendingByRegistrationId');
     const props = {
       bookId: bookId,
