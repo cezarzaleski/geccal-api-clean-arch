@@ -1,0 +1,33 @@
+POST http://localhost:3000/publishers
+Content-Type: application/json
+
+{
+  "name": "Boa Nova"
+}
+
+###
+
+GET http://localhost:3000/books
+
+###
+GET http://localhost:3000/books/b4452093-964b-4ab8-9876-74da32ced784
+
+###
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+    "name": "Movie"
+}
+
+###
+PUT http://localhost:3000/books/b4452093-964b-4ab8-9876-74da32ced784
+Content-Type: application/json
+
+{
+    "name": "Movie111111"
+}
+
+###
+DELETE  http://localhost:3000/books/b4452093-964b-4ab8-9876-74da32ced784
+Content-Type: application/json
