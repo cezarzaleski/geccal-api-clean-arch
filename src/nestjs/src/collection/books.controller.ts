@@ -1,18 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Put,
-  Param,
-  Delete,
-  Inject,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, } from '@nestjs/common';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { CreateBookUseCase } from '@geccal/core/collection/application';
-import { UpdateBookUseCase } from '@geccal/core/collection/application';
-import { BOOK_PROVIDERS } from './book.providers';
+import { CreateBookUseCase, UpdateBookUseCase } from '@geccal/core/collection/application';
 
 @Controller('books')
 export class BooksController {

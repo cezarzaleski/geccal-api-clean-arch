@@ -1,4 +1,4 @@
-import CreateBookUseCase from '@geccal/core/dist/collection/application/use-cases/create-book.use-case';
+import { CreateBookUseCase } from '@geccal/core/collection/application';
 
 export class CreateBookDto implements CreateBookUseCase.Input {
   authors: Array<string>;
