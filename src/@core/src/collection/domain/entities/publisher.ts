@@ -6,6 +6,7 @@ export type PublisherProperties = {
   name: string,
   createdAt?: Date,
   updatedAt?: Date,
+  deletedAt?: Date;
 }
 
 export class Publisher extends Entity {
@@ -24,8 +25,8 @@ export class Publisher extends Entity {
     props.createdAt = props.createdAt ?? new Date();
     props.updatedAt = props.updatedAt ?? new Date();
     Publisher.validate(props);
-    const {name, createdAt, updatedAt} = props
-    return new Publisher(name, createdAt, id, updatedAt)
+    const {name, createdAt, updatedAt, deletedAt} = props
+    return new Publisher(name, createdAt, id, updatedAt, deletedAt)
   }
 
   static validate(props: PublisherProperties) {

@@ -1,6 +1,6 @@
 import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript"
 import { Publisher, PublisherRepository } from '#collection/domain';
-import { UniqueEntityId } from '#shared/domain';
+import { NotFoundError, UniqueEntityId } from '#shared/domain';
 
 export namespace PublisherSequelize {
 
@@ -37,16 +37,22 @@ export namespace PublisherSequelize {
     constructor(private publisherModel: typeof PublisherSequelize.PublisherModel) {
     }
 
-    delete(id: string | UniqueEntityId): Promise<void> {
-      return Promise.resolve(undefined);
+    async delete(id: string | UniqueEntityId, deletedAt: Date = new Date()): Promise<void> {
+      const _id = `${id}`;
+      const model = await this._get(_id);
+      await this.publisherModel.update({...model, deletedAt}, {
+        where: {id: _id},
+      });
     }
 
     findAll(): Promise<Publisher[]> {
       return Promise.resolve([]);
     }
 
-    findById(id: string | UniqueEntityId): Promise<Publisher> {
-      return Promise.resolve(undefined);
+    async findById(id: string | UniqueEntityId): Promise<Publisher> {
+      const _id = `${id}`;
+      const model = await this._get(_id);
+      return PublisherModelMapper.toEntity(model);
     }
 
     async insert(entity: Publisher): Promise<void> {
@@ -60,13 +66,20 @@ export namespace PublisherSequelize {
     search(props: PublisherRepository.SearchParams): Promise<PublisherRepository.SearchResult> {
       return Promise.resolve(undefined);
     }
+
+    private async _get(id: string): Promise<PublisherModel> {
+      return this.publisherModel.findOne({
+        where: {deletedAt: null, id: id},
+        rejectOnEmpty: new NotFoundError(`Entity Not Found using ID ${id}`),
+      });
+    }
   }
 
   export class PublisherModelMapper {
     static toEntity(model: PublisherModel): Publisher {
       const {id, name, createdAt, updatedAt, deletedAt} = model
       const publisherId =  new UniqueEntityId(id)
-      return Publisher.with(name, publisherId, createdAt, updatedAt, deletedAt);
+      return Publisher.with(publisherId, name, createdAt, updatedAt, deletedAt);
     }
     static toModel(entity: Publisher): unknown {
       return {
@@ -74,7 +87,7 @@ export namespace PublisherSequelize {
         name: entity.name,
         createdAt: entity.createdAt,
         updatedAt: entity.updatedAt,
-        deletedAt: undefined
+        deletedAt: entity.deletedAt
       }
     }
   }

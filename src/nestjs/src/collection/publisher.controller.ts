@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put, } from '@nestjs/common';
 import { CreatePublisherInput } from './input/create-publisher.input';
 import { UpdatePublisherInput } from './input/update-publisher.input';
-import { CreatePublisherUseCase, UpdatePublisherUseCase } from '@geccal/core/collection/application';
+import { CreatePublisherUseCase, UpdatePublisherUseCase, GetPublisherUseCase } from '@geccal/core/collection/application';
 
 @Controller('publishers')
 export class PublishersController {
@@ -9,6 +9,8 @@ export class PublishersController {
   private updateUseCase: UpdatePublisherUseCase.UseCase;
   @Inject(CreatePublisherUseCase.UseCase)
   private createUseCase: CreatePublisherUseCase.UseCase;
+  @Inject(GetPublisherUseCase.UseCase)
+  private getUseCase: GetPublisherUseCase.UseCase;
 
   @Post()
   create(@Body() createPublisherDto: CreatePublisherInput) {
@@ -22,7 +24,7 @@ export class PublishersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return 'success';
+    return this.getUseCase.execute({id: id});
   }
 
   @Put(':id')
