@@ -1,6 +1,6 @@
 import { CreateBookUseCase } from '@geccal/core/collection/application';
 
-export class CreateBookDto implements CreateBookUseCase.Input {
+export class CreateBookInput implements CreateBookUseCase.Input {
   authors: Array<string>;
   createdAt: Date;
   edition: string;

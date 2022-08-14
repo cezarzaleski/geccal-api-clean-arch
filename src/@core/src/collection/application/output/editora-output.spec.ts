@@ -1,4 +1,4 @@
-import { PublisherOutputMapper } from '#collection/application/dto/publisher-output';
+import { PublisherOutputMapper } from '#collection/application/output/publisher-output';
 import { Publisher } from '#collection/domain';
 
 

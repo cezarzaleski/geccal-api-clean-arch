@@ -1,7 +1,7 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import EvangelizandoRepository from '#class/domain/repository/evangelizando.repository';
 import Evangelizando from '#class/domain/entities/evangelizando';
-import { EvangelizandoOutput, EvangelizandoOutputMapper } from '#class/application/dto/evangelizando-output';
+import { EvangelizandoOutput, EvangelizandoOutputMapper } from '#class/application/output/evangelizando-output';
 
 export namespace CreateEvangelizandoUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {

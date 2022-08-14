@@ -1,7 +1,7 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { CreatePublisherUseCase, UpdatePublisherUseCase, } from '@geccal/core/collection/application';
-import { CreatePublisherDto } from './dto/create-publisher.dto';
-import { UpdatePublisherDto } from './dto/update-publisher.dto';
+import { CreatePublisherInput } from './input/create-publisher.input';
+import { UpdatePublisherInput } from './input/update-publisher.input';
 import { PublishersController } from './publisher.controller';
 
 describe('PublishersController', () => {
@@ -21,7 +21,7 @@ describe('PublishersController', () => {
     };
     // @ts-expect-error ignore the error
     controller['createUseCase'] = mockCreateUseCase;
-    const input: MockProxy<CreatePublisherDto> = mock();
+    const input: MockProxy<CreatePublisherInput> = mock();
     const output = await controller.create(input);
     expect(mockCreateUseCase.execute).toHaveBeenCalledWith(input);
     expect(expectedOutput).toStrictEqual(output);
@@ -39,7 +39,7 @@ describe('PublishersController', () => {
     };
     // @ts-expect-error ignore the error
     controller['updateUseCase'] = mockUpdateUseCase;
-    const input: MockProxy<UpdatePublisherDto> = mock();
+    const input: MockProxy<UpdatePublisherInput> = mock();
     const output = await controller.update(id, input);
     expect(mockUpdateUseCase.execute).toHaveBeenCalledWith({ id, ...input });
     expect(expectedOutput).toStrictEqual(output);

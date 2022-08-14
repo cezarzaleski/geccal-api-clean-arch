@@ -4,8 +4,8 @@ import {
   UpdateBookUseCase,
 } from '@geccal/core/collection/application';
 import { PublisherId } from '@geccal/core/collection/domain';
-import { CreateBookDto } from './dto/create-book.dto';
-import { UpdateBookDto } from './dto/update-book.dto';
+import { CreateBookInput } from './input/create-book.input';
+import { UpdateBookInput } from './input/update-book.input';
 import { BooksController } from './books.controller';
 
 describe('BooksController', () => {
@@ -34,7 +34,7 @@ describe('BooksController', () => {
     };
     // @ts-expect-error ignore the error
     controller['createUseCase'] = mockCreateUseCase;
-    const input: MockProxy<CreateBookDto> = mock();
+    const input: MockProxy<CreateBookInput> = mock();
     const output = await controller.create(input);
     expect(mockCreateUseCase.execute).toHaveBeenCalledWith(input);
     expect(expectedOutput).toStrictEqual(output);
@@ -61,7 +61,7 @@ describe('BooksController', () => {
     };
     // @ts-expect-error ignore the error
     controller['updateUseCase'] = mockUpdateUseCase;
-    const input: MockProxy<UpdateBookDto> = mock();
+    const input: MockProxy<UpdateBookInput> = mock();
     const output = await controller.update(id, input);
     expect(mockUpdateUseCase.execute).toHaveBeenCalledWith({ id, ...input });
     expect(expectedOutput).toStrictEqual(output);

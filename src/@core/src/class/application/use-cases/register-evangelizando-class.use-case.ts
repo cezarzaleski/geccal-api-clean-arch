@@ -1,6 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import EvangelizandoRepository from '#class/domain/repository/evangelizando.repository';
-import { EvangelizandoOutput } from '#class/application/dto/evangelizando-output';
+import { EvangelizandoOutput } from '#class/application/output/evangelizando-output';
 import { ClassRepository } from '#class/domain';
 import { ClassOutputMapper } from '#class/application';
 import EventDispatcherInterface from '#shared/event/event-dispatcher.interface';

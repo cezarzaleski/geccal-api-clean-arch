@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put, } from '@nestjs/common';
-import { CreatePublisherDto } from './dto/create-publisher.dto';
-import { UpdatePublisherDto } from './dto/update-publisher.dto';
+import { CreatePublisherInput } from './input/create-publisher.input';
+import { UpdatePublisherInput } from './input/update-publisher.input';
 import { CreatePublisherUseCase, UpdatePublisherUseCase } from '@geccal/core/collection/application';
 
 @Controller('publishers')
@@ -11,7 +11,7 @@ export class PublishersController {
   private createUseCase: CreatePublisherUseCase.UseCase;
 
   @Post()
-  create(@Body() createPublisherDto: CreatePublisherDto) {
+  create(@Body() createPublisherDto: CreatePublisherInput) {
     return this.createUseCase.execute(createPublisherDto);
   }
 
@@ -26,7 +26,7 @@ export class PublishersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updatePublisherDto: UpdatePublisherDto) {
+  update(@Param('id') id: string, @Body() updatePublisherDto: UpdatePublisherInput) {
     return this.updateUseCase.execute({
       id,
       ...updatePublisherDto,
