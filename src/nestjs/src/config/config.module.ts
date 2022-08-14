@@ -1,8 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import {
-  ConfigModule as NestConfigModule,
-  ConfigModuleOptions,
-} from '@nestjs/config';
+import { ConfigModule as NestConfigModule, ConfigModuleOptions, } from '@nestjs/config';
 import { join } from 'path';
 import * as Joi from 'joi';
 
