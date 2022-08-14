@@ -26,5 +26,6 @@ describe('CreatePublisherUseCase Unit Tests', () => {
       name: publisher.name,
       createdAt: publisher.createdAt,
     });
+    expect(publisher.createdAt).not.toBeUndefined()
   });
 });

@@ -21,10 +21,10 @@ export class Publisher extends Entity {
   }
 
   static from(props: PublisherProperties, id?: UniqueEntityId): Publisher {
-    let {name, createdAt, updatedAt} = props
     props.createdAt = props.createdAt ?? new Date();
     props.updatedAt = props.updatedAt ?? new Date();
     Publisher.validate(props);
+    const {name, createdAt, updatedAt} = props
     return new Publisher(name, createdAt, id, updatedAt)
   }
 

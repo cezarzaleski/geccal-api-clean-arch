@@ -20,6 +20,8 @@ describe('PublisherSequelize Integration', () => {
     expect(publisherModel.id).not.toBeNull()
     expect(publisherModel.name).toEqual(publisherProps.name)
     expect(publisherModel.deletedAt).toBeNull()
+    expect(publisherModel.createdAt).not.toBeNull()
+    expect(publisherModel.updatedAt).not.toBeNull()
     expect(publisherModel.createdAt).toEqual(publisherProps.createdAt)
     expect(publisherModel.updatedAt).toEqual(publisherProps.updatedAt)
   });

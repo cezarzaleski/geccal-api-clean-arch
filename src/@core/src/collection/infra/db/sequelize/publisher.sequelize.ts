@@ -68,7 +68,7 @@ export namespace PublisherSequelize {
       const publisherId =  new UniqueEntityId(id)
       return Publisher.with(name, publisherId, createdAt, updatedAt, deletedAt);
     }
-    static toModel(entity: Publisher): any {
+    static toModel(entity: Publisher): unknown {
       return {
         id: entity.id,
         name: entity.name,
