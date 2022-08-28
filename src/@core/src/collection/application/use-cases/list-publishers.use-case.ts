@@ -6,7 +6,6 @@ import { PublisherOutput, PublisherOutputMapper } from '#collection/application'
 export namespace ListPublishersUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
     constructor(private publisherRepository: PublisherRepository.Repository) {}
-
     async execute(input: Input): Promise<Output> {
       const params = new PublisherRepository.SearchParams(input);
       const searchResult = await this.publisherRepository.search(params);
@@ -14,7 +13,8 @@ export namespace ListPublishersUseCase {
     }
 
     private toOutput(searchResult: PublisherRepository.SearchResult): Output {
-      const items = searchResult.items.map((i) => {
+      console.log(searchResult)
+      const items = searchResult?.items.map((i) => {
         return PublisherOutputMapper.toOutput(i);
       });
       return PaginationOutputMapper.toOutput(items, searchResult);

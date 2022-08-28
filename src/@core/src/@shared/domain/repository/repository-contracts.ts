@@ -14,9 +14,9 @@ export type SortDirection = 'asc' | 'desc';
 
 export type SearchProps<Filter = string> = {
   page?: number;
-  per_page?: number;
+  perPage?: number;
   sort?: string | null;
-  sort_dir?: SortDirection | null;
+  sortDir?: SortDirection | null;
   filter?: Filter | null;
 };
 
@@ -29,9 +29,9 @@ export class SearchParams<Filter = string> {
 
   constructor(props: SearchProps<Filter> = {}) {
     this.page = props.page;
-    this.per_page = props.per_page;
+    this.per_page = props.perPage;
     this.sort = props.sort;
-    this.sort_dir = props.sort_dir;
+    this.sort_dir = props.sortDir;
     this.filter = props.filter;
   }
 
@@ -104,31 +104,31 @@ export class SearchParams<Filter = string> {
 type SearchResultProps<E extends Entity, Filter> = {
   items: E[];
   total: number;
-  current_page: number;
-  per_page: number;
+  currentPage: number;
+  perPage: number;
   sort: string | null;
-  sort_dir: string | null;
+  sortDir: string | null;
   filter: Filter | null;
 };
 
 export class SearchResult<E extends Entity = Entity, Filter = string> {
   readonly items: E[];
   readonly total: number;
-  readonly current_page: number;
-  readonly per_page: number;
-  readonly last_page: number;
+  readonly currentPage: number;
+  readonly perPage: number;
+  readonly lastPage: number;
   readonly sort: string | null;
-  readonly sort_dir: string | null;
+  readonly sortDir: string | null;
   readonly filter: Filter;
 
   constructor(props: SearchResultProps<E, Filter>) {
     this.items = props.items;
     this.total = props.total;
-    this.current_page = props.current_page;
-    this.per_page = props.per_page;
-    this.last_page = Math.ceil(this.total / this.per_page);
+    this.currentPage = props.currentPage;
+    this.perPage = props.perPage;
+    this.lastPage = Math.ceil(this.total / this.perPage);
     this.sort = props.sort;
-    this.sort_dir = props.sort_dir;
+    this.sortDir = props.sortDir;
     this.filter = props.filter;
   }
 
@@ -136,11 +136,11 @@ export class SearchResult<E extends Entity = Entity, Filter = string> {
     return {
       items: this.items,
       total: this.total,
-      current_page: this.current_page,
-      per_page: this.per_page,
-      last_page: this.last_page,
+      current_page: this.currentPage,
+      per_page: this.perPage,
+      last_page: this.lastPage,
       sort: this.sort,
-      sort_dir: this.sort_dir,
+      sort_dir: this.sortDir,
       filter: this.filter,
     };
   }

@@ -1,6 +1,7 @@
-import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript"
+import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript'
 import { Publisher, PublisherRepository } from '#collection/domain';
 import { NotFoundError, UniqueEntityId } from '#shared/domain';
+import { Op } from 'sequelize';
 
 export namespace PublisherSequelize {
 
@@ -33,7 +34,6 @@ export namespace PublisherSequelize {
 
   export class Repository implements PublisherRepository.Repository {
     sortableFields: string[] = ['name', 'createdAt'];
-
     constructor(private publisherModel: typeof PublisherSequelize.PublisherModel) {
     }
 
@@ -63,8 +63,28 @@ export namespace PublisherSequelize {
       return Promise.resolve(undefined);
     }
 
-    search(props: PublisherRepository.SearchParams): Promise<PublisherRepository.SearchResult> {
-      return Promise.resolve(undefined);
+    async search(props: PublisherRepository.SearchParams): Promise<PublisherRepository.SearchResult> {
+      const offset = (props.page - 1) * props.per_page;
+      const limit = props.per_page;
+      const {rows: models, count} = await this.publisherModel.findAndCountAll({
+        ...(props.filter && {
+          where: {name: {[Op.like]: `%${props.filter}%`}},
+        }),
+        ...(props.sort && this.sortableFields.includes(props.sort)
+          ? {order: [[props.sort, props.sort_dir]]}
+          : {order: [['created_at', 'DESC']]}),
+        offset,
+        limit,
+      });
+      return new PublisherRepository.SearchResult({
+        items: models.map((m) => PublisherModelMapper.toEntity(m)),
+        currentPage: props.page,
+        perPage: props.per_page,
+        total: count,
+        filter: props.filter,
+        sort: props.sort,
+        sortDir: props.sort_dir,
+      });
     }
 
     private async _get(id: string): Promise<PublisherModel> {

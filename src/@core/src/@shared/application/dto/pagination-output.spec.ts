@@ -7,19 +7,19 @@ describe('PaginationOutputMapper Unit Tests', () => {
     const result = new SearchResult({
       items: ['fake'] as any,
       total: 1,
-      current_page: 1,
-      per_page: 1,
+      currentPage: 1,
+      perPage: 1,
       sort: 'name',
-      sort_dir: 'desc',
+      sortDir: 'desc',
       filter: 'fake',
     });
     const output = PaginationOutputMapper.toOutput(result.items, result);
     expect(output).toStrictEqual({
       items: ['fake'],
       total: 1,
-      current_page: 1,
-      last_page: 1,
-      per_page: 1,
+      currentPage: 1,
+      lastPage: 1,
+      perPage: 1,
     });
   });
 });

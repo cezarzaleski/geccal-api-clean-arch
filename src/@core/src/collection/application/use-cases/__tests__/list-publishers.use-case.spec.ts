@@ -15,29 +15,29 @@ describe('ListPublishersUseCase Unit Tests', () => {
     let result = new PublisherRepository.SearchResult({
       items: [],
       total: 1,
-      current_page: 1,
-      per_page: 2,
+      currentPage: 1,
+      perPage: 2,
       sort: null,
-      sort_dir: null,
+      sortDir: null,
       filter: null,
     });
     let output = useCase['toOutput'](result);
     expect(output).toStrictEqual({
       items: [],
       total: 1,
-      current_page: 1,
-      per_page: 2,
-      last_page: 1,
+      currentPage: 1,
+      perPage: 2,
+      lastPage: 1,
     });
 
     const entity = Publisher.from({name: 'Maria'});
     result = new PublisherRepository.SearchResult({
       items: [entity],
       total: 1,
-      current_page: 1,
-      per_page: 2,
+      currentPage: 1,
+      perPage: 2,
       sort: null,
-      sort_dir: null,
+      sortDir: null,
       filter: null,
     });
 
@@ -45,9 +45,9 @@ describe('ListPublishersUseCase Unit Tests', () => {
     expect(output).toStrictEqual({
       items: [PublisherOutputMapper.toOutput(entity)],
       total: 1,
-      current_page: 1,
-      per_page: 2,
-      last_page: 1,
+      currentPage: 1,
+      perPage: 2,
+      lastPage: 1,
     });
   });
 
@@ -63,18 +63,18 @@ describe('ListPublishersUseCase Unit Tests', () => {
     repository.search.mockResolvedValue({
       items: items,
       total: 2,
-      current_page: 1,
-      per_page: 15,
-      last_page: 1,
+      currentPage: 1,
+      perPage: 15,
+      lastPage: 1,
     })
 
     const output = await useCase.execute({});
     expect(output).toStrictEqual({
       items: items.map(item => PublisherOutputMapper.toOutput(item)),
       total: 2,
-      current_page: 1,
-      per_page: 15,
-      last_page: 1,
+      currentPage: 1,
+      perPage: 15,
+      lastPage: 1,
     });
   });
 });
