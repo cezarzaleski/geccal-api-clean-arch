@@ -4,7 +4,8 @@ import {
   CreatePublisherUseCase,
   UpdatePublisherUseCase,
   GetPublisherUseCase,
-  ListPublishersUseCase
+  ListPublishersUseCase,
+  DeletePublisherUseCase
 } from '@geccal/core/collection/application';
 
 import { getModelToken } from '@nestjs/sequelize';
@@ -56,6 +57,14 @@ export namespace PUBLISHER_PROVIDERS {
       provide: ListPublishersUseCase.UseCase,
       useFactory: (publisherRepo: PublisherRepository.Repository) => {
         return new ListPublishersUseCase.UseCase(publisherRepo);
+      },
+      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
+    };
+
+    export const DELETE_PUBLISHER_USE_CASE = {
+      provide: DeletePublisherUseCase.UseCase,
+      useFactory: (publisherRepo: PublisherRepository.Repository) => {
+        return new DeletePublisherUseCase.UseCase(publisherRepo);
       },
       inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
     };
