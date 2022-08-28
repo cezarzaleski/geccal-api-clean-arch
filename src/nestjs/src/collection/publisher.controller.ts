@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from '@nestjs/common';
 import { CreatePublisherInput } from './input/create-publisher.input';
 import { UpdatePublisherInput } from './input/update-publisher.input';
-import { CreatePublisherUseCase, UpdatePublisherUseCase, GetPublisherUseCase } from '@geccal/core/collection/application';
+import { CreatePublisherUseCase, UpdatePublisherUseCase, GetPublisherUseCase, ListPublishersUseCase } from '@geccal/core/collection/application';
+import { SearchCategoryInput } from './input/search-publisher.input';
 
 @Controller('publishers')
 export class PublishersController {
@@ -11,6 +12,8 @@ export class PublishersController {
   private createUseCase: CreatePublisherUseCase.UseCase;
   @Inject(GetPublisherUseCase.UseCase)
   private getUseCase: GetPublisherUseCase.UseCase;
+  @Inject(ListPublishersUseCase.UseCase)
+  private listUseCase: ListPublishersUseCase.UseCase;
 
   @Post()
   create(@Body() createPublisherDto: CreatePublisherInput) {
@@ -18,8 +21,8 @@ export class PublishersController {
   }
 
   @Get()
-  findAll() {
-    return 'success';
+  search(@Query() searchParams: SearchCategoryInput) {
+    return this.listUseCase.execute(searchParams);
   }
 
   @Get(':id')
@@ -37,6 +40,8 @@ export class PublishersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return 'success';
+    return {
+      success: 'success'
+    }
   }
 }
