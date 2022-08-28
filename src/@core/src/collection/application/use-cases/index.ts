@@ -6,3 +6,4 @@ export * from './get-publisher.use-case';
 export * from './list-publishers.use-case';
 export * from './update-book.use-case';
 export * from './update-publisher.use-case';
+export * from './delete-publisher.use-case';
