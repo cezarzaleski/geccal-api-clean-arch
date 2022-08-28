@@ -20,7 +20,7 @@ describe('GetPublisherUseCase Unit Tests', () => {
   });
 
   it('should returns a publisher', async () => {
-    const item = Publisher.from({name: 'Maria'});
+    const item = Publisher.from({name: 'Maria', active: true});
     repository.findById.mockResolvedValue(item)
     const spyFindById = jest.spyOn(repository, 'findById');
     const output = await useCase.execute({id: item.id});
@@ -29,6 +29,7 @@ describe('GetPublisherUseCase Unit Tests', () => {
       id: item.id,
       name: 'Maria',
       createdAt: item.createdAt,
+      active: true
     });
   });
 });

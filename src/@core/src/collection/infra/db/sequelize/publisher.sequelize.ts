@@ -22,6 +22,9 @@ export namespace PublisherSequelize {
     @Column({allowNull: false, type: DataType.STRING(255)})
     declare name: string;
 
+    @Column({allowNull: false, type: DataType.BOOLEAN})
+    declare active: boolean;
+
     @Column({allowNull: false, type: DataType.DATE, field: 'created_at'})
     declare createdAt: Date;
 
@@ -68,7 +71,7 @@ export namespace PublisherSequelize {
       const limit = props.per_page;
       const {rows: models, count} = await this.publisherModel.findAndCountAll({
         ...(props.filter && {
-          where: {name: {[Op.like]: `%${props.filter}%`}},
+          where: {name: {[Op.like]: `%${props.filter}%`}, deletedAt: null},
         }),
         ...(props.sort && this.sortableFields.includes(props.sort)
           ? {order: [[props.sort, props.sort_dir]]}
@@ -97,14 +100,15 @@ export namespace PublisherSequelize {
 
   export class PublisherModelMapper {
     static toEntity(model: PublisherModel): Publisher {
-      const {id, name, createdAt, updatedAt, deletedAt} = model
+      const {id, name, createdAt, updatedAt, deletedAt, active} = model
       const publisherId =  new UniqueEntityId(id)
-      return Publisher.with(publisherId, name, createdAt, updatedAt, deletedAt);
+      return Publisher.with(publisherId, name, active, createdAt, updatedAt, deletedAt);
     }
     static toModel(entity: Publisher): unknown {
       return {
         id: entity.id,
         name: entity.name,
+        active: entity.active,
         createdAt: entity.createdAt,
         updatedAt: entity.updatedAt,
         deletedAt: entity.deletedAt

@@ -30,7 +30,7 @@ describe('ListPublishersUseCase Unit Tests', () => {
       lastPage: 1,
     });
 
-    const entity = Publisher.from({name: 'Maria'});
+    const entity = Publisher.from({name: 'Maria', active: true});
     result = new PublisherRepository.SearchResult({
       items: [entity],
       total: 1,
@@ -53,9 +53,10 @@ describe('ListPublishersUseCase Unit Tests', () => {
 
   it('should returns output using empty input with publishers ordered by created_at', async () => {
     const items: Array<Publisher> = [
-      Publisher.from({name: 'test 1'}),
+      Publisher.from({name: 'test 1', active: true}),
       Publisher.from({
         name: 'test 2',
+        active: true,
         createdAt: new Date(new Date().getTime() + 100),
       }),
     ];

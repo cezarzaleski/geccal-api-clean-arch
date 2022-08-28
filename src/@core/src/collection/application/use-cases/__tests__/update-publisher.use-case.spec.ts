@@ -20,7 +20,7 @@ describe('UpdatePublisherUseCase Unit Tests', () => {
   });
 
   it('should update a publisher', async () => {
-    const entity = Publisher.from({name: 'John'});
+    const entity = Publisher.from({name: 'John', active: true});
     repository.update.mockResolvedValue()
     repository.findById.mockResolvedValue(entity)
     const spyUpdate = jest.spyOn(repository, 'update');
@@ -33,6 +33,7 @@ describe('UpdatePublisherUseCase Unit Tests', () => {
       id: publisher.id,
       name: 'update',
       createdAt: publisher.createdAt,
+      active: publisher.active
     });
   })
 });

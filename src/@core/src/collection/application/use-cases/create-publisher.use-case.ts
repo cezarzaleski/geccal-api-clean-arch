@@ -16,7 +16,7 @@ export namespace CreatePublisherUseCase {
 
   export type Input = {
     name: string;
-    ativo?: boolean;
+    active?: boolean;
   };
 
   export type Output = PublisherOutput;

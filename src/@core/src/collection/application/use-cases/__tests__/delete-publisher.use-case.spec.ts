@@ -19,7 +19,7 @@ describe('DeletePublisherUseCase Unit Tests', () => {
   });
 
   it('should delete a publisher', async () => {
-    const entity = Publisher.from({name: 'John'});
+    const entity = Publisher.from({name: 'John', active: true});
     repository.update.mockResolvedValue()
     repository.findById.mockResolvedValue(entity)
     const spyUpdate = jest.spyOn(repository, 'delete');

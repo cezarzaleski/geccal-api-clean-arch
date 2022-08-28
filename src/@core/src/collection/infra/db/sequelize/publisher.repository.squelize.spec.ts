@@ -18,7 +18,8 @@ describe('PublisherSequelize Integration', () => {
     await subject.insert(publisher)
     const publisherModel = await PublisherSequelize.PublisherModel.findByPk(publisher.id)
     expect(publisherModel).not.toBeNull()
-    expect(publisherModel.id).not.toBeNull()
+    expect(publisherModel.id).toEqual(publisher.id)
+    expect(publisherModel.active).toBeTruthy()
     expect(publisherModel.name).toEqual(publisherProps.name)
     expect(publisherModel.deletedAt).toBeNull()
     expect(publisherModel.createdAt).not.toBeNull()
@@ -34,6 +35,7 @@ describe('PublisherSequelize Integration', () => {
     expect(publisherFind).not.toBeUndefined()
     expect(publisher.id).toEqual(publisherFind.id)
     expect(publisher.name).toEqual(publisherFind.name)
+    expect(publisher.active).toEqual(publisherFind.active)
     expect(publisher.deletedAt).toBeUndefined()
   });
 
