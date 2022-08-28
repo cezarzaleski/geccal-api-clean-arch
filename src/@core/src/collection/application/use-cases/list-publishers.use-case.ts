@@ -13,7 +13,6 @@ export namespace ListPublishersUseCase {
     }
 
     private toOutput(searchResult: PublisherRepository.SearchResult): Output {
-      console.log(searchResult)
       const items = searchResult?.items.map((i) => {
         return PublisherOutputMapper.toOutput(i);
       });
