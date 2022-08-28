@@ -1,12 +1,13 @@
 import { Book, Publisher } from '#collection/domain';
 import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import { getPublisherPropertiesFake } from '#collection/domain/entities/__tests__/publisherPropertiesFake';
 import { BookSequelize } from '#collection/infra/db/sequelize/book.sequelize';
 import { PublisherSequelize } from '#collection/infra';
 import { setupSequelize } from '#shared/infra/testing/helpers/db';
 
 describe('BookRepositorySequelize Integration', () => {
   let subject: BookSequelize.Repository
-  const publisherProps = getBookPropertiesFake()
+  const publisherProps = getPublisherPropertiesFake()
   const publisher = Publisher.from(publisherProps)
 
   setupSequelize({models: [BookSequelize.BookModel, PublisherSequelize.PublisherModel]})
