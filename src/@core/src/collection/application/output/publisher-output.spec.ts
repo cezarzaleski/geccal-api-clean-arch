@@ -11,9 +11,10 @@ describe('PublisherOutputMapper Unit Tests', () => {
     });
     const output = PublisherOutputMapper.toOutput(entity);
     expect(output).toStrictEqual({
-        id: entity.id,
-        name: 'Boa Nova',
-        createdAt,
+      id: entity.id,
+      name: 'Boa Nova',
+      active: entity.active,
+      createdAt,
     })
   });
 });

@@ -25,6 +25,7 @@ describe('CreatePublisherUseCase Unit Tests', () => {
       id: publisher.id,
       name: publisher.name,
       createdAt: publisher.createdAt,
+      active: publisher.active
     });
     expect(publisher.createdAt).not.toBeUndefined()
   });
