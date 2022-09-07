@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { BooksController } from 'src/collection/books.controller';
-import { BOOK_PROVIDERS } from 'src/collection/book.providers';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { BookSequelize } from '@geccal/core/collection/infra';
-import { PUBLISHER_PROVIDERS } from 'src/collection/publisher.providers';
 import { PublisherSequelize } from '@geccal/core/collection/infra';
-import { PublishersController } from 'src/collection/publisher.controller';
+import { BooksController } from './books.controller';
+import { PublishersController } from './publisher.controller';
+import { BOOK_PROVIDERS } from './book.providers';
+import { PUBLISHER_PROVIDERS } from './publisher.providers';
 
 @Module({
   imports: [SequelizeModule.forFeature([BookSequelize.BookModel, PublisherSequelize.PublisherModel])],

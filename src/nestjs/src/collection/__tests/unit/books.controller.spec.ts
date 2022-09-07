@@ -4,9 +4,9 @@ import {
   UpdateBookUseCase,
 } from '@geccal/core/collection/application';
 import { PublisherId } from '@geccal/core/collection/domain';
-import { CreateBookInput } from './input/create-book.input';
-import { UpdateBookInput } from './input/update-book.input';
-import { BooksController } from './books.controller';
+import { CreateBookInput } from '../../input/create-book.input';
+import { UpdateBookInput } from '../../input/update-book.input';
+import { BooksController } from '../../books.controller';
 
 describe('BooksController', () => {
   let controller: BooksController;

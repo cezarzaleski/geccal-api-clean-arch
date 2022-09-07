@@ -5,9 +5,9 @@ import {
   ListPublishersUseCase,
   UpdatePublisherUseCase
 } from '@geccal/core/collection/application';
-import { CreatePublisherInput } from './input/create-publisher.input';
-import { UpdatePublisherInput } from './input/update-publisher.input';
-import { PublishersController } from './publisher.controller';
+import { CreatePublisherInput } from '../../input/create-publisher.input';
+import { UpdatePublisherInput } from '../../input/update-publisher.input';
+import { PublishersController } from '../../publisher.controller';
 import { SortDirection } from '@geccal/core/@shared/domain';
 
 describe('PublishersController', () => {
