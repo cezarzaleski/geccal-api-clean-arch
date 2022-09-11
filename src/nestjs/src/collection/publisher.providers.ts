@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-
 import {
   CreatePublisherUseCase,
   UpdatePublisherUseCase,
@@ -7,24 +6,22 @@ import {
   ListPublishersUseCase,
   DeletePublisherUseCase
 } from '@geccal/core/collection/application';
-
-import { getModelToken } from '@nestjs/sequelize';
-import { PublisherSequelize } from '@geccal/core/collection/infra';
 import { PublisherRepository } from '@geccal/core/collection/domain';
-
+import { PublisherSequelize } from '@geccal/core/collection/infra';
+import { getModelToken } from '@nestjs/sequelize';
 export namespace PUBLISHER_PROVIDERS {
   export namespace REPOSITORIES {
-    export const PUBLISHER_REPOSITORY_SEQUELIZE = {
-      provide: 'PublisherRepositorySequelize',
+    export const PUBLISHER_SEQUELIZE_REPOSITORY = {
+      provide: 'PublisherSequelizeRepository',
       useFactory: (publisherModel: typeof PublisherSequelize.PublisherModel) => {
         return new PublisherSequelize.Repository(publisherModel);
       },
       inject: [getModelToken(PublisherSequelize.PublisherModel)],
     };
 
-    export const BOOK_REPOSITORY = {
+    export const PUBLISHER_REPOSITORY = {
       provide: 'PublisherRepository',
-      useExisting: 'PublisherRepositorySequelize',
+      useExisting: 'PublisherSequelizeRepository',
     };
   }
 
@@ -34,7 +31,7 @@ export namespace PUBLISHER_PROVIDERS {
       useFactory: (publisherRepo: PublisherRepository.Repository) => {
         return new CreatePublisherUseCase.UseCase(publisherRepo);
       },
-      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
+      inject: [REPOSITORIES.PUBLISHER_REPOSITORY.provide],
     };
 
     export const UPDATE_PUBLISHER_USE_CASE = {
@@ -42,7 +39,15 @@ export namespace PUBLISHER_PROVIDERS {
       useFactory: (publisherRepo: PublisherRepository.Repository) => {
         return new UpdatePublisherUseCase.UseCase(publisherRepo);
       },
-      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
+      inject: [REPOSITORIES.PUBLISHER_REPOSITORY.provide],
+    };
+
+    export const LIST_PUBLISHERS_USE_CASE = {
+      provide: ListPublishersUseCase.UseCase,
+      useFactory: (publisherRepo: PublisherRepository.Repository) => {
+        return new ListPublishersUseCase.UseCase(publisherRepo);
+      },
+      inject: [REPOSITORIES.PUBLISHER_REPOSITORY.provide],
     };
 
     export const GET_PUBLISHER_USE_CASE = {
@@ -50,15 +55,7 @@ export namespace PUBLISHER_PROVIDERS {
       useFactory: (publisherRepo: PublisherRepository.Repository) => {
         return new GetPublisherUseCase.UseCase(publisherRepo);
       },
-      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
-    };
-
-    export const LIST_PUBLISHER_USE_CASE = {
-      provide: ListPublishersUseCase.UseCase,
-      useFactory: (publisherRepo: PublisherRepository.Repository) => {
-        return new ListPublishersUseCase.UseCase(publisherRepo);
-      },
-      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
+      inject: [REPOSITORIES.PUBLISHER_REPOSITORY.provide],
     };
 
     export const DELETE_PUBLISHER_USE_CASE = {
@@ -66,7 +63,7 @@ export namespace PUBLISHER_PROVIDERS {
       useFactory: (publisherRepo: PublisherRepository.Repository) => {
         return new DeletePublisherUseCase.UseCase(publisherRepo);
       },
-      inject: [REPOSITORIES.BOOK_REPOSITORY.provide],
+      inject: [REPOSITORIES.PUBLISHER_REPOSITORY.provide],
     };
   }
 }
