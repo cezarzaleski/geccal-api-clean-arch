@@ -1,21 +1,47 @@
 import { PublishersController } from '../../publisher.controller';
-import { TestingModule, Test } from '@nestjs/testing'
+import { Test } from '@nestjs/testing';
 import { ConfigModule } from '../../../config/config.module';
 import { DatabaseModule } from '../../../database/database.module';
 import { CollectionModule } from '../../collection.module';
+import { CreatePublisherUseCase, UpdatePublisherUseCase, GetPublisherUseCase, ListPublishersUseCase, DeletePublisherUseCase } from '@geccal/core/collection/application';
 
 
 describe('PublisherController Integration Tests', function () {
   let controller: PublishersController
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot(), DatabaseModule, CollectionModule]
+    const module = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot(), CollectionModule, DatabaseModule],
     }).compile()
-    controller = module.get(PublishersController)
-  })
+    controller = await module.get<PublishersController>(PublishersController)
+  });
 
-  it('should ', function () {
-    console.log('deu bom')
+  test('should be defined', function () {
+    expect(controller).toBeDefined()
+    expect(controller['createUseCase']).toBeInstanceOf(
+      CreatePublisherUseCase.UseCase
+    )
+    expect(controller['updateUseCase']).toBeInstanceOf(
+      UpdatePublisherUseCase.UseCase
+    )
+    expect(controller['getUseCase']).toBeInstanceOf(
+      GetPublisherUseCase.UseCase
+    )
+    expect(controller['listUseCase']).toBeInstanceOf(
+      ListPublishersUseCase.UseCase
+    )
+    expect(controller['deleteUseCase']).toBeInstanceOf(
+      DeletePublisherUseCase.UseCase
+    )
+  });
+
+  test('should create a publisher', async function () {
+    const nameExpected = 'teste'
+    const output: any = await controller.create({
+      name: nameExpected
+    })
+    expect(output.name).toBe(nameExpected)
+    expect(output.active).toBeTruthy()
+    expect(output.createdAt).toBeDefined()
   });
 });
