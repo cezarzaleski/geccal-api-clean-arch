@@ -3,7 +3,8 @@ import {
   CreatePublisherUseCase,
   GetPublisherUseCase,
   ListPublishersUseCase,
-  UpdatePublisherUseCase
+  UpdatePublisherUseCase,
+  DeletePublisherUseCase
 } from '@geccal/core/collection/application';
 import { CreatePublisherInput } from '../../input/create-publisher.input';
 import { UpdatePublisherInput } from '../../input/update-publisher.input';
@@ -12,9 +13,25 @@ import { SortDirection } from '@geccal/core/@shared/domain';
 
 describe('PublishersController', () => {
   let controller: PublishersController;
+  let createUseCase: MockProxy<CreatePublisherUseCase.UseCase>
+  let updateUseCase: MockProxy<UpdatePublisherUseCase.UseCase>
+  let deleteUseCase: MockProxy<DeletePublisherUseCase.UseCase>
+  let getUseCase: MockProxy<GetPublisherUseCase.UseCase>
+  let listUseCase: MockProxy<ListPublishersUseCase.UseCase>
 
   beforeEach(async () => {
-    controller = new PublishersController();
+    createUseCase = mock()
+    updateUseCase = mock()
+    deleteUseCase = mock()
+    getUseCase = mock()
+    listUseCase = mock()
+    controller = new PublishersController(
+      createUseCase,
+      updateUseCase,
+      deleteUseCase,
+      getUseCase,
+      listUseCase
+    );
   });
 
   it('should create a publisher', async () => {
@@ -22,14 +39,10 @@ describe('PublishersController', () => {
       name: 'publisher',
       ativo: true
     };
-    const mockCreateUseCase = {
-      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
-    };
-    // @ts-expect-error ignore the error
-    controller['createUseCase'] = mockCreateUseCase;
+    createUseCase.execute.mockReturnValue(Promise.resolve(expectedOutput))
     const input: MockProxy<CreatePublisherInput> = mock();
     const output = await controller.create(input);
-    expect(mockCreateUseCase.execute).toHaveBeenCalledWith(input);
+    expect(createUseCase.execute).toHaveBeenCalledWith(input);
     expect(expectedOutput).toStrictEqual(output);
   });
 
@@ -40,14 +53,10 @@ describe('PublishersController', () => {
       name: 'publisher',
       ativo: true
     };
-    const mockUpdateUseCase = {
-      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
-    };
-    // @ts-expect-error ignore the error
-    controller['updateUseCase'] = mockUpdateUseCase;
+    updateUseCase.execute.mockReturnValue(Promise.resolve(expectedOutput))
     const input: MockProxy<UpdatePublisherInput> = mock();
     const output = await controller.update(id, input);
-    expect(mockUpdateUseCase.execute).toHaveBeenCalledWith({ id, ...input });
+    expect(updateUseCase.execute).toHaveBeenCalledWith({ id, ...input });
     expect(expectedOutput).toStrictEqual(output);
   });
 
@@ -58,13 +67,9 @@ describe('PublishersController', () => {
       name: 'publisher',
       ativo: true
     };
-    const mockGetUseCase = {
-      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
-    };
-    // @ts-expect-error ignore the error
-    controller['getUseCase'] = mockGetUseCase;
+    getUseCase.execute.mockReturnValue(Promise.resolve(expectedOutput))
     const output = await controller.findOne(id);
-    expect(mockGetUseCase.execute).toHaveBeenCalledWith({ id});
+    expect(getUseCase.execute).toHaveBeenCalledWith({ id});
     expect(expectedOutput).toStrictEqual(output);
   })
 
@@ -83,11 +88,7 @@ describe('PublishersController', () => {
       perPage: 1,
       total: 1,
     };
-    const mockListUseCase = {
-      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
-    };
-    // @ts-expect-error ignore the error
-    controller['listUseCase'] = mockListUseCase;
+    listUseCase.execute.mockReturnValue(Promise.resolve(expectedOutput))
     const searchParams = {
       page: 1,
       perPage: 2,
@@ -96,20 +97,14 @@ describe('PublishersController', () => {
       filter: 'test',
     };
     const output = await controller.search(searchParams);
-    expect(mockListUseCase.execute).toHaveBeenCalledWith(searchParams);
     expect(expectedOutput).toStrictEqual(output);
   })
 
   it('should delete a publisher by ID', async () => {
     const id = '9366b7dc-2d71-4799-b91c-c64adb205104';
     const expectedOutput = undefined
-    const mockDeleteUseCase = {
-      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
-    };
-    // @ts-expect-error ignore the error
-    controller['deleteUseCase'] = mockDeleteUseCase;
+    deleteUseCase.execute.mockReturnValue(Promise.resolve(expectedOutput))
     const output = await controller.remove(id);
-    expect(mockDeleteUseCase.execute).toHaveBeenCalledWith({ id});
     expect(expectedOutput).toStrictEqual(output);
   })
 });

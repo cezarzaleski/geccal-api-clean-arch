@@ -1,21 +1,26 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CreatePublisherInput } from './input/create-publisher.input';
 import { UpdatePublisherInput } from './input/update-publisher.input';
-import { CreatePublisherUseCase, UpdatePublisherUseCase, GetPublisherUseCase, ListPublishersUseCase, DeletePublisherUseCase   } from '@geccal/core/collection/application';
+import {
+  CreatePublisherUseCase,
+  DeletePublisherUseCase,
+  GetPublisherUseCase,
+  ListPublishersUseCase,
+  UpdatePublisherUseCase
+} from '@geccal/core/collection/application';
 import { SearchCategoryInput } from './input/search-publisher.input';
 
 @Controller('publishers')
 export class PublishersController {
-  @Inject(UpdatePublisherUseCase.UseCase)
-  private updateUseCase: UpdatePublisherUseCase.UseCase;
-  @Inject(CreatePublisherUseCase.UseCase)
-  private createUseCase: CreatePublisherUseCase.UseCase;
-  @Inject(GetPublisherUseCase.UseCase)
-  private getUseCase: GetPublisherUseCase.UseCase;
-  @Inject(ListPublishersUseCase.UseCase)
-  private listUseCase: ListPublishersUseCase.UseCase;
-  @Inject(DeletePublisherUseCase.UseCase)
-  private deleteUseCase: DeletePublisherUseCase.UseCase;
+
+
+  constructor(
+    private createUseCase: CreatePublisherUseCase.UseCase,
+    private updateUseCase: UpdatePublisherUseCase.UseCase,
+    private deleteUseCase: DeletePublisherUseCase.UseCase,
+    private getUseCase: GetPublisherUseCase.UseCase,
+    private listUseCase: ListPublishersUseCase.UseCase,
+  ) {}
 
   @Post()
   create(@Body() createPublisherDto: CreatePublisherInput) {
