@@ -1,4 +1,4 @@
-import { EntityValidationError, UniqueEntityId } from '#shared/domain';
+import { EntityValidationError, isEmpty, UniqueEntityId } from '#shared/domain';
 import Entity from '#shared/domain/entity/entity';
 import { PublisherValidatorFactory } from '../validators';
 
@@ -24,8 +24,8 @@ export class Publisher extends Entity {
   }
 
   static from(props: PublisherProperties, id?: UniqueEntityId): Publisher {
-    props.createdAt = props.createdAt ?? new Date();
-    props.updatedAt = props.updatedAt ?? new Date();
+    props.createdAt = isEmpty(props.createdAt) ? new Date() : props.createdAt;
+    props.updatedAt = isEmpty(props.updatedAt) ? new Date() : props.updatedAt;
     props.active = props.active ?? true;
     Publisher.validate(props);
     const {name, createdAt, updatedAt, deletedAt, active} = props
@@ -35,6 +35,7 @@ export class Publisher extends Entity {
   static validate(props: PublisherProperties) {
     const validator = PublisherValidatorFactory.create();
     const isValid = validator.validate(props);
+    console.log(isValid)
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
     }
