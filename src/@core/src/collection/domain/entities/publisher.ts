@@ -28,22 +28,21 @@ export class Publisher extends Entity {
     props.updatedAt = isEmpty(props.updatedAt) ? new Date() : props.updatedAt;
     props.active = props.active ?? true;
     Publisher.validate(props);
-    const {name, createdAt, updatedAt, deletedAt, active} = props
-    return new Publisher(name, active, createdAt, id, updatedAt, deletedAt)
+    const {name, createdAt, updatedAt, active} = props
+    return new Publisher(name, active, createdAt, id, updatedAt)
   }
 
   static validate(props: PublisherProperties) {
     const validator = PublisherValidatorFactory.create();
     const isValid = validator.validate(props);
-    console.log(isValid)
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
     }
   }
 
-  update(nome: string) {
-    Publisher.validate({name: nome, active: true});
-    this.name = nome;
+  update(name: string, active: boolean) {
+    Publisher.validate({name: name, active: active});
+    this.name = name;
   }
 
   static with(id, name, active, createdAt, updatedAt, deletedAt) {

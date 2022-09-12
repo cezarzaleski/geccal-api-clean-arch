@@ -10,7 +10,7 @@ export namespace UpdatePublisherUseCase {
 
     async execute(input: Input): Promise<Output> {
       const publisher = await this.publisherRepository.findById(input.id);
-      publisher.update(input.name);
+      publisher.update(input.name, input.active);
       await this.publisherRepository.update(publisher);
       return PublisherOutputMapper.toOutput(publisher);
     }
@@ -19,7 +19,7 @@ export namespace UpdatePublisherUseCase {
   export type Input = {
     id: string;
     name: string;
-    ativo?: boolean;
+    active?: boolean;
   };
 
   export type Output = PublisherOutput;
