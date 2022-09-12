@@ -70,6 +70,7 @@ export namespace PublisherSequelize {
       const offset = (props.page - 1) * props.per_page;
       const limit = props.per_page;
       const {rows: models, count} = await this.publisherModel.findAndCountAll({
+        where: {deletedAt: null},
         ...(props.filter && {
           where: {name: {[Op.like]: `%${props.filter}%`}, deletedAt: null},
         }),
