@@ -43,6 +43,7 @@ export class Publisher extends Entity {
   update(name: string, active: boolean) {
     Publisher.validate({name: name, active: active});
     this.name = name;
+    this.active = active;
   }
 
   static with(id, name, active, createdAt, updatedAt, deletedAt) {

@@ -37,6 +37,7 @@ export namespace PublisherSequelize {
 
   export class Repository implements PublisherRepository.Repository {
     sortableFields: string[] = ['name', 'createdAt'];
+
     constructor(private publisherModel: typeof PublisherSequelize.PublisherModel) {
     }
 
@@ -62,8 +63,11 @@ export namespace PublisherSequelize {
       await this.publisherModel.create(PublisherModelMapper.toModel(entity));
     }
 
-    update(entity: Publisher): Promise<void> {
-      return Promise.resolve(undefined);
+    async update(entity: Publisher): Promise<void> {
+      await this._get(entity.id);
+      await this.publisherModel.update(PublisherModelMapper.toModel(entity), {
+        where: {id: entity.id},
+      });
     }
 
     async search(props: PublisherRepository.SearchParams): Promise<PublisherRepository.SearchResult> {
@@ -102,9 +106,10 @@ export namespace PublisherSequelize {
   export class PublisherModelMapper {
     static toEntity(model: PublisherModel): Publisher {
       const {id, name, createdAt, updatedAt, deletedAt, active} = model
-      const publisherId =  new UniqueEntityId(id)
+      const publisherId = new UniqueEntityId(id)
       return Publisher.with(publisherId, name, active, createdAt, updatedAt, deletedAt);
     }
+
     static toModel(entity: Publisher): unknown {
       return {
         id: entity.id,
