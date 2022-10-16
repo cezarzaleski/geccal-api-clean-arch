@@ -28,8 +28,8 @@ export class Publisher extends Entity {
     props.updatedAt = isEmpty(props.updatedAt) ? new Date() : props.updatedAt;
     props.active = props.active ?? true;
     Publisher.validate(props);
-    const {name, createdAt, updatedAt, active} = props
-    return new Publisher(name, active, createdAt, id, updatedAt)
+    const {name, createdAt, updatedAt, active, deletedAt} = props
+    return new Publisher(name, active, createdAt, id, updatedAt, deletedAt)
   }
 
   static validate(props: PublisherProperties) {
