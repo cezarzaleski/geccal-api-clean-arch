@@ -20,6 +20,7 @@ describe('UpdateBookUseCase Unit Tests', () => {
       createdAt: new Date(),
       edition: '1ª',
       exemplary: 1,
+      year: 2022,
       origin: 'doacao',
       publisherId: publisherId.value,
       name: 'livro',
@@ -44,10 +45,10 @@ describe('UpdateBookUseCase Unit Tests', () => {
       authors: ['update'],
       edition: '2ª',
       exemplary: 2,
+      year: 2022,
       origin: 'update',
       publisherId: publisherId.value,
       name: 'update',
-      note: 'update'
     }
 
     let output = await subject.execute({...props, id: entity.id, name: 'update'});
@@ -60,7 +61,7 @@ describe('UpdateBookUseCase Unit Tests', () => {
       exemplary: 2,
       status: livro.status.value,
       edition: '2ª',
-      note: 'update',
+      year: 2022,
       publisherId: publisherId.value,
       authors: ['update'],
       origin: 'update',

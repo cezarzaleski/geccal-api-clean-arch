@@ -22,7 +22,7 @@ export namespace UpdateBookUseCase {
     exemplary: number
     status: string
     edition: string
-    note: string
+    year: number
     publisherId: string
     authors: Array<string>
     origin: string

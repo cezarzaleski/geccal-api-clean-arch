@@ -28,7 +28,7 @@ describe('BookRepositorySequelize Integration', () => {
     expect(bookModel.authors).toEqual(bookProps.authors)
     expect(bookModel.origin).toEqual(bookProps.origin)
     expect(bookModel.status).toEqual(bookProps.status)
-    expect(bookModel.note).toEqual(bookProps.note)
+    expect(bookModel.year).toEqual(bookProps.year)
     expect(bookModel.exemplary).toEqual(bookProps.exemplary)
     expect(bookModel.edition).toEqual(bookProps.edition)
     expect(bookModel.publisherId).toEqual(bookProps.publisherId)

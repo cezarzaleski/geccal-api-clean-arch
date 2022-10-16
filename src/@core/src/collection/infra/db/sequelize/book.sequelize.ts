@@ -12,7 +12,7 @@ export namespace BookSequelize {
     exemplary: number | null;
     status: string;
     edition: string | null;
-    note: string | null;
+    year: number;
     publisherId: string;
     authors: Array<string>;
     origin: string;
@@ -39,8 +39,8 @@ export namespace BookSequelize {
     @Column({type: DataType.STRING})
     declare edition: string | null;
 
-    @Column({type: DataType.STRING})
-    declare note: string | null;
+    @Column({type: DataType.NUMBER})
+    declare year: number;
 
     @ForeignKey(() => PublisherSequelize.PublisherModel)
     @Column({allowNull: false, type: DataType.UUID, field: 'publisher_id'})
@@ -101,7 +101,7 @@ export namespace BookSequelize {
         exemplary: model.exemplary,
         status: StatusBook.with(model.status),
         edition: model.edition,
-        note: model.note,
+        year: model.year,
         publisherId: new PublisherId(model.publisherId),
         authors: model.authors.map(author => new Author(author)),
         origin: new Origin(model.origin),
@@ -115,7 +115,7 @@ export namespace BookSequelize {
         exemplary: entity.exemplary,
         status: entity.status.value,
         edition: entity.edition,
-        note: entity.note,
+        year: entity.year,
         publisherId: entity.publisherId.value,
         authors: entity.authors.map(autor => autor.value),
         origin: entity.origin.value,

@@ -7,7 +7,7 @@ export type BookOutput = {
   exemplary: number
   status: string
   edition: string
-  note: string
+  year: number
   publisherId: string
   authors: Array<string>
   origin: string
@@ -20,7 +20,7 @@ export class BookOutputMapper {
       id: entity.id,
       name: entity.name,
       exemplary: entity.exemplary,
-      note: entity.note,
+      year: entity.year,
       publisherId: entity.publisherId.value,
       origin: entity.origin.value,
       authors: entity.authors.map(autor => autor.value),

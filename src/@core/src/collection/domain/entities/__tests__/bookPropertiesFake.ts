@@ -10,7 +10,7 @@ const bookPropertiesFake: BookProperties = {
   origin: 'donation',
   status: 'available',
   name: 'livro',
-  note: 'some description',
+  year: 'some description',
   exemplary: 1,
   edition: '1ª',
   publisherId: new PublisherId().value

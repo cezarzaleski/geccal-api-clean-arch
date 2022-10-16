@@ -9,7 +9,7 @@ export type BookProperties = {
   exemplary: number,
   status: string,
   edition: string,
-  note?: string,
+  year: number,
   publisherId: string,
   authors: Array<string>,
   origin: string,
@@ -19,12 +19,12 @@ export type BookProperties = {
 type BookPropertiesUpdate = Omit<BookProperties, 'createdAt' | 'status'>
 
 export class Book extends Entity {
-  private constructor(
+  constructor(
     public name: string,
     public exemplary: number,
     public status: StatusBook,
     public edition: string,
-    public note: string,
+    public year: number,
     public publisherId: PublisherId,
     public authors: Array<Author>,
     public origin: Origin,
@@ -41,8 +41,8 @@ export class Book extends Entity {
     const authorsVo = props.authors.map(autor => new Author(autor))
     const origin = new Origin(props.origin)
     const status = StatusBook.from(props.status)
-    const {name, exemplary, edition, note, createdAt} = props
-    return new Book(name, exemplary, status, edition, note, publisherId, authorsVo, origin, createdAt, id)
+    const {name, exemplary, edition, year, createdAt} = props
+    return new Book(name, exemplary, status, edition, year, publisherId, authorsVo, origin, createdAt, id)
   }
 
   static validate(props: BookProperties) {
@@ -58,15 +58,15 @@ export class Book extends Entity {
     exemplary: number,
     status: StatusBook,
     edition: string,
-    note: string,
+    year: number,
     publisherId: PublisherId,
     authors: Array<Author>,
     origin: Origin,
     createdAt: Date,
     id: UniqueEntityId
   }): Book {
-    const {name, exemplary, edition, note, createdAt, status, publisherId, authors, origin, id} = props
-    return new Book(name, exemplary, status, edition, note, publisherId, authors, origin, createdAt, id)
+    const {name, exemplary, edition, year, createdAt, status, publisherId, authors, origin, id} = props
+    return new Book(name, exemplary, status, edition, year, publisherId, authors, origin, createdAt, id)
   }
 
 
@@ -75,14 +75,14 @@ export class Book extends Entity {
   ) {
 
     Book.validate({...props, status: this.status.value});
-    const {name, exemplary, edition, note, publisherId, authors, origin} = props
+    const {name, exemplary, edition, year, publisherId, authors, origin} = props
     const publisherIdVo = new PublisherId(publisherId)
     const authorsVo = authors.map(autor => new Author(autor))
     const originVo = new Origin(origin)
     this.name = name
     this.exemplary = exemplary
     this.edition = edition
-    this.note = note
+    this.year = year
     this.publisherId = publisherIdVo
     this.authors = authorsVo
     this.origin = originVo

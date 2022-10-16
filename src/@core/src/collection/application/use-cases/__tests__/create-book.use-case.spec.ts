@@ -27,7 +27,7 @@ describe('CreateBookUseCase Unit test', function () {
       publisherId: publisherId.value,
       name: 'livro',
       status: 'available',
-      note: 'note'
+      year: 2022
     }
 
     const output = await subject.execute(props);
@@ -40,7 +40,7 @@ describe('CreateBookUseCase Unit test', function () {
       exemplary: livro.exemplary,
       status: livro.status.value,
       edition: livro.edition,
-      note: livro.note,
+      year: livro.year,
       publisherId: livro.publisherId.id,
       authors: livro.authors.map(autor => autor.value),
       origin: livro.origin.value,
