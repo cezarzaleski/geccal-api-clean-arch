@@ -13,7 +13,7 @@ describe('Book Unit Tests', function () {
     expect(subject.exemplary).toBe(1)
     expect(subject.status.value).toBe(bookProps.status)
     expect(subject.edition).toBe('1ª')
-    expect(subject.year).toBe('some description')
+    expect(subject.year).toBe(2022)
     expect(subject.publisherId.value).toBe(bookProps.publisherId)
     expect(subject.origin.value).toBe(bookProps.origin)
     expect(subject.createdAt).toBe(bookProps.createdAt)
