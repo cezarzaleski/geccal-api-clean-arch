@@ -28,7 +28,7 @@ export class AppController {
       publisherId: publisherId,
       name: 'livro',
       status: status,
-      note: 'some description',
+      year: 2022,
     };
 
     Book.from(propsBook);

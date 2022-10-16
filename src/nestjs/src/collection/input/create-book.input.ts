@@ -6,7 +6,7 @@ export class CreateBookInput implements CreateBookUseCase.Input {
   edition: string;
   exemplary: number;
   name: string;
-  note: string;
+  year: number;
   origin: string;
   publisherId: string;
   status: string;

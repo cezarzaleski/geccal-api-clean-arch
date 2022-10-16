@@ -7,7 +7,7 @@ export class UpdateBookInput implements Omit<UpdateBookUseCase.Input, 'id'> {
   exemplary: number;
   id: string;
   name: string;
-  note: string;
+  year: number;
   origin: string;
   publisherId: string;
   status: string;
