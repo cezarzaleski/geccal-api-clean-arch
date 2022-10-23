@@ -1,7 +1,20 @@
-version: '3'
+version: '3.8'
 
 services:
-  db:
+  app_prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      target: ${STAGE:-testing}
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/dist
+      - /home/node/app/node_modules
+    depends_on:
+      - db_prod
+  db_prod:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
     container_name: db
@@ -10,7 +23,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_DATABASE=geccal_biblioteca_infatil
+      - MYSQL_DATABASE=geccal_biblioteca_infantil
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - geccal-biblioteca-infantil-network
