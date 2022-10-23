@@ -1,6 +1,6 @@
 FROM node:16.16.0-slim as build
 
-USER root
+USER node
 
 RUN mkdir -p /home/node/app
 
@@ -9,8 +9,9 @@ WORKDIR /home/node/app
 COPY --chown=node:node package.json package-lock.json ./
 #RUN npm ci
 COPY --chown=node:node . .
-RUN npm install --global rimraf
-RUN npm install -g @nestjs/cli@7.5.6
+#RUN npm install --global rimraf
+#RUN npm install -g @nestjs/cli@7.5.6
+RUN npm install
 RUN npm run build
 
 ENV NODE_ENV=prod
