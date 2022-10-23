@@ -27,7 +27,7 @@ describe('BooksController', () => {
       publisherId: publisherId,
       name: 'livro',
       status: 'disponivel',
-      note: 'note',
+      year: 2022,
     };
     const mockCreateUseCase = {
       execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
@@ -54,7 +54,7 @@ describe('BooksController', () => {
       publisherId: publisherId,
       name: 'livro',
       status: 'disponivel',
-      note: 'note',
+      year: 2022,
     };
     const mockUpdateUseCase = {
       execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
