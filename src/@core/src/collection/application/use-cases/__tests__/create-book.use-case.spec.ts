@@ -20,7 +20,7 @@ describe('CreateBookUseCase Unit test', function () {
     const publisherId = new PublisherId()
     const props = {
       authors: ['luiz', 'maria'],
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
       edition: '1ª',
       exemplary: 1,
       origin: 'doacao',

@@ -14,6 +14,7 @@ export type BookProperties = {
   authors: Array<string>,
   origin: string,
   createdAt?: Date,
+  updatedAt?: Date,
 }
 
 type BookPropertiesUpdate = Omit<BookProperties, 'createdAt' | 'status'>
@@ -36,6 +37,7 @@ export class Book extends Entity {
 
   static from(props: BookProperties, id?: UniqueEntityId): Book {
     props.createdAt = props.createdAt ?? new Date();
+    props.updatedAt = props.updatedAt ?? new Date();
     Book.validate(props);
     const publisherId = new PublisherId(props.publisherId)
     const authorsVo = props.authors.map(autor => new Author(autor))
