@@ -6,14 +6,26 @@
   "imports": {
     "#shared/*": "./dist/@shared/*.js",
     "#collection/*": "./dist/collection/*.js",
-    "#loan/*": "./dist/loan/*.js"
+    "#loan/*": "./dist/loan/*.js",
+    "#class/*": "./dist/class/*.js",
+    "#shared/domain": "./dist/@shared/domain/index.js",
+    "#shared/application": "./dist/@shared/application/index.js",
+    "#collection/domain": "./dist/collection/domain/index.js",
+    "#collection/infra": "./dist/collection/infra/index.js",
+    "#collection/application": "./dist/collection/application/index.js",
+    "#class/domain": "./dist/class/domain/index.js",
+    "#class/application": "./dist/class/application/index.js",
+    "#class/infra": "./dist/class/infra/index.js"
   },
   "exports": {
     "./@shared/application": "./dist/@shared/application/index.js",
     "./@shared/domain": "./dist/@shared/domain/index.js",
     "./collection/domain": "./dist/collection/domain/index.js",
     "./collection/application": "./dist/collection/application/index.js",
-    "./collection/infra": "./dist/collection/infra/index.js"
+    "./collection/infra": "./dist/collection/infra/index.js",
+    "./class/domain": "./dist/class/domain/index.js",
+    "./class/application": "./dist/class/application/index.js",
+    "./class/infra": "./dist/class/infra/index.js"
   },
   "typesVersions": {
     ">=4.0": {
@@ -37,6 +49,15 @@
       ],
       "collection/infra": [
         "./dist/collection/infra/index.d.ts"
+      ],
+      "class/domain": [
+        "./dist/class/domain/index.d.ts"
+      ],
+      "class/application": [
+        "./dist/class/application/index.d.ts"
+      ],
+      "class/infra": [
+        "./dist/class/infra/index.d.ts"
       ]
     }
   },
@@ -47,7 +68,7 @@
     "build": "tsc -b ./tsconfig.json",
     "build:w": "tsc -b ./tsconfig.json -w",
     "clean:tsc": "rm tsconfig.tsbuildinfo",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:cov": "npm run test -- --coverage",
     "cti": "cti",
     "cti:@core": "sh ./cti.sh"
@@ -73,6 +94,7 @@
   },
   "dependencies": {
     "class-validator": "^0.13.2",
+    "dotenv": "^16.0.1",
     "sequelize": "^6.21.0",
     "sequelize-typescript": "^2.1.3",
     "sqlite3": "^5.0.8",

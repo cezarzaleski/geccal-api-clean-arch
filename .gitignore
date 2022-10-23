@@ -40,3 +40,5 @@ lerna-debug.log*
 
 __coverage
 tsconfig.tsbuildinfo
+/src/@core/:memory
+/:memory

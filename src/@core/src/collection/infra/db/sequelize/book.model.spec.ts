@@ -1,27 +1,15 @@
-import { Sequelize } from 'sequelize-typescript'
-import { BookModel } from '#collection/infra/db/sequelize/book.model';
+import { BookSequelize } from '#collection/infra/db/sequelize/book.sequelize';
+import { setupSequelize } from '#shared/infra';
+import { PublisherSequelize } from '#collection/infra';
+import { getPublisherPropertiesFake } from '#collection/domain/entities/__tests__/publisherPropertiesFake';
+import { Publisher } from '#collection/domain';
 
 describe('BookModel Unit Test', () => {
-  let sequelize: Sequelize
-
-  beforeAll(() => {
-    sequelize = new Sequelize({
-      dialect: 'sqlite',
-      host: ':memory',
-      logging: false,
-      models: [BookModel]
-    })
-  })
-
-  beforeEach(async () => {
-    await sequelize.sync({force: true})
-  })
-
-  afterAll(async () => {
-    await sequelize.close()
-  })
-
+  setupSequelize({models: [BookSequelize.BookModel, PublisherSequelize.PublisherModel]})
   test('should create new BookModel', async () => {
+    const publisherProps = getPublisherPropertiesFake()
+    const publisher = Publisher.from(publisherProps)
+    await PublisherSequelize.PublisherModel.create(publisher)
     const bookExpected = {
       id: '9366b7dc-2d71-4799-b91c-c64adb205104',
       createdAt: new Date(),
@@ -29,10 +17,10 @@ describe('BookModel Unit Test', () => {
       edition: '1ª',
       name: 'A new Book',
       status: 'disponivel',
-      publisherId: '9366b7dc-2d71-4799-b91c-c64adb205104',
+      publisherId: publisher.id,
       origin: 'doado'
     }
-    const subject = await BookModel.create(bookExpected)
+    const subject = await BookSequelize.BookModel.create(bookExpected)
     expect(subject.toJSON()).toStrictEqual(bookExpected)
   });
 });

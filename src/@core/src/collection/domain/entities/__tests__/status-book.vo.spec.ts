@@ -9,8 +9,7 @@ describe('Status Book Unit Tests', function () {
     ).toThrow(new InvalidStatusBookError(`Status of book invalid`));
   })
   test('given status valid when call create book then return available', () => {
-    const statusBookExpected = 'available'
-
+    const statusBookExpected = 'available';
     const subject = StatusBook.from(statusBookExpected)
 
     expect(subject.value).toBe(statusBookExpected);
