@@ -1,6 +1,7 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import { Publisher, PublisherRepository } from '#collection/domain';
 import { PublisherOutput, PublisherOutputMapper } from '#collection/application';
+import { isEmpty } from '#shared/domain';
 
 export namespace CreatePublisherUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {
@@ -8,7 +9,13 @@ export namespace CreatePublisherUseCase {
     }
 
     async execute(input: Input): Promise<Output> {
-      const entity = Publisher.from(input);
+      delete input.createdAt
+      const entity = Publisher.from({
+        name: input.name,
+        active: input.active,
+        createdAt: isEmpty(input.createdAt) ? null : new Date(input.createdAt),
+        updatedAt: isEmpty(input.updatedAt) ? null : new Date(input.updatedAt)
+      });
       await this.publisherRepository.insert(entity);
       return PublisherOutputMapper.toOutput(entity);
     }
@@ -17,6 +24,8 @@ export namespace CreatePublisherUseCase {
   export type Input = {
     name: string;
     active?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
   };
 
   export type Output = PublisherOutput;
