@@ -7,7 +7,7 @@ RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
 COPY --chown=node:node package.json package-lock.json ./
-RUN npm ci
+#RUN npm ci
 
 COPY --chown=node:node . .
 
@@ -25,7 +25,7 @@ RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
 COPY --from=build --chown=node:node /home/node/app/package*.json ./
-RUN npm ci --omit=dev
+RUN #npm ci --omit=dev
 
 COPY --from=build --chown=node:node /home/node/app .
 
