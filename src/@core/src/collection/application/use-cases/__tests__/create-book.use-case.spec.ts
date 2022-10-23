@@ -1,5 +1,5 @@
 import { mock, MockProxy } from 'jest-mock-extended';
-import { CreateBookUseCase } from '#collection/application';
+import { CreateBookUseCase } from '../create-book.use-case';
 import { Book, BookRepository } from '#collection/domain';
 import { PublisherId } from '#collection/domain/entities/value-objects';
 

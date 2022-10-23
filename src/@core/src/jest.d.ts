@@ -1,4 +1,4 @@
-import { FieldsErrors } from '@shared/domain/validators/validator-field-interface';
+import { FieldsErrors } from '#shared/domain';
 
 
 declare global {

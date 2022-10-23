@@ -49,7 +49,7 @@ describe('Search Unit Tests', () => {
       ];
 
       arrange.forEach((i) => {
-        expect(new SearchParams({ per_page: i.per_page as any }).per_page).toBe(
+        expect(new SearchParams({ perPage: i.per_page as any }).per_page).toBe(
           i.expected
         );
       });
@@ -105,7 +105,7 @@ describe('Search Unit Tests', () => {
 
       arrange.forEach((i) => {
         expect(
-          new SearchParams({ sort: 'field', sort_dir: i.sort_dir as any })
+          new SearchParams({ sort: 'field', sortDir: i.sort_dir as any })
             .sort_dir
         ).toBe(i.expected);
       });
@@ -142,10 +142,10 @@ describe('Search Unit Tests', () => {
       let result = new SearchResult({
         items: ['entity1', 'entity2'] as any,
         total: 4,
-        current_page: 1,
-        per_page: 2,
+        currentPage: 1,
+        perPage: 2,
         sort: null,
-        sort_dir: null,
+        sortDir: null,
         filter: null,
       });
 
@@ -163,10 +163,10 @@ describe('Search Unit Tests', () => {
       result = new SearchResult({
         items: ['entity1', 'entity2'] as any,
         total: 4,
-        current_page: 1,
-        per_page: 2,
+        currentPage: 1,
+        perPage: 2,
         sort: 'name',
-        sort_dir: 'asc',
+        sortDir: 'asc',
         filter: 'test',
       });
 
@@ -186,28 +186,28 @@ describe('Search Unit Tests', () => {
       const result = new SearchResult({
         items: [] as any,
         total: 4,
-        current_page: 1,
-        per_page: 15,
+        currentPage: 1,
+        perPage: 15,
         sort: 'name',
-        sort_dir: 'asc',
+        sortDir: 'asc',
         filter: 'test',
       });
 
-      expect(result.last_page).toBe(1);
+      expect(result.lastPage).toBe(1);
     });
 
     test('last_page prop when total is not a multiple of per_page', () => {
       const result = new SearchResult({
         items: [] as any,
         total: 101,
-        current_page: 1,
-        per_page: 20,
+        currentPage: 1,
+        perPage: 20,
         sort: 'name',
-        sort_dir: 'asc',
+        sortDir: 'asc',
         filter: 'test',
       });
 
-      expect(result.last_page).toBe(6);
+      expect(result.lastPage).toBe(6);
     });
   });
 });

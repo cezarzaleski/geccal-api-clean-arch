@@ -2,12 +2,16 @@ import { EntityValidationError, UniqueEntityId } from '#shared/domain';
 import Entity from '#shared/domain/entity/entity';
 import { BookId, RegistrationId } from '#loan/domain';
 import { LoanValidatorFactory } from '#loan/domain/validators/loan.validator';
+import StatusLoan from '#loan/domain/entities/status-loan.vo';
 
 
 export type LoanProperties = {
   registrationId: string,
   bookId: string,
   borrowedAt: Date,
+  status: string,
+  lossJustification?: string,
+  replacedBookId?: string,
   returnedAt?: Date,
   createdAt?: Date,
 }
@@ -19,9 +23,12 @@ export class Loan extends Entity {
     public registrationId: RegistrationId,
     public bookId: BookId,
     public readonly borrowedAt: Date,
-    public returnedAt: Date,
     public readonly createdAt: Date,
-    id: UniqueEntityId
+    id: UniqueEntityId,
+    public status: StatusLoan,
+    public returnedAt?: Date,
+    public replacedBookId?: BookId,
+    public lossJustification?: string,
   ) {
     super(id);
   }
@@ -32,8 +39,11 @@ export class Loan extends Entity {
     Loan.validate(props);
     const registrationId = new RegistrationId(props.registrationId)
     const bookId = new BookId(props.bookId)
-    const {borrowedAt, returnedAt, createdAt} = props
-    return new Loan(registrationId, bookId, borrowedAt, returnedAt, createdAt, id)
+    let aReplacedBookId: BookId | undefined
+    const {borrowedAt, returnedAt, createdAt, replacedBookId, lossJustification} = props
+    if (replacedBookId) aReplacedBookId = new BookId(replacedBookId)
+    const status = StatusLoan.from(props.status)
+    return new Loan(registrationId, bookId, borrowedAt, createdAt, id, status, returnedAt, aReplacedBookId, lossJustification)
   }
 
   static validate(props: LoanProperties) {
@@ -44,8 +54,28 @@ export class Loan extends Entity {
     }
   }
 
-  returnABook(aReturnedAt?: Date) {
-    aReturnedAt  = aReturnedAt || new Date()
-    this.returnedAt = aReturnedAt
+  goDown(aReturnedAt?: Date, lossJustification?: string, replacedBookId?: BookId): void {
+    if (aReturnedAt) {
+      this.returnedAt = aReturnedAt;
+      this.status = StatusLoan.RETURNED;
+      return
+    }
+    if (!aReturnedAt && lossJustification) {
+      this.status = StatusLoan.LOSS_WITHOUT_REPOSITION;
+      this.lossJustification = lossJustification;
+      return;
+    }
+    if (!aReturnedAt && replacedBookId) {
+      this.status = StatusLoan.LOSS_WITH_REPOSITION;
+      this.replacedBookId = replacedBookId;
+      return;
+    }
+    const goDownNotPossible = !aReturnedAt && !lossJustification && !replacedBookId
+    if (goDownNotPossible) throw new Error('Loss justification is required')
+  }
+
+  update(registrationId, bookId) {
+    this.registrationId = new RegistrationId(registrationId)
+    this.bookId = new BookId(bookId)
   }
 }

@@ -11,6 +11,9 @@
       ],
       "#loan/*": [
         "./loan/*"
+      ],
+      "#class/*": [
+        "./class/*"
       ]
     },
     "outDir": "./dist",

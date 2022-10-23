@@ -10,7 +10,7 @@
   "scripts": {
     "prestart:dev": "npm run build -w @geccal/core",
     "start:dev": "npm run build:w -w @geccal/core & npm run start:dev -w nestjs",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",

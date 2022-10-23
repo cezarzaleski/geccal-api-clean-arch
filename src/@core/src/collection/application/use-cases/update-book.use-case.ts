@@ -1,6 +1,6 @@
 import { default as DefaultUseCase } from '#shared/application/use-case';
 import { BookRepository } from '#collection/domain';
-import { BookOutput, BookOutputMapper } from '#collection/application';
+import { BookOutput, BookOutputMapper } from '../output/book-output';
 
 export namespace UpdateBookUseCase {
   export class UseCase implements DefaultUseCase<Input, Output> {

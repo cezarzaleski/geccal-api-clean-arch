@@ -1,11 +1,11 @@
-import BookPropertiesFake from '#collection/domain/entities/__tests__/bookPropertiesFake';
+import { getBookPropertiesFake } from '#collection/domain/entities/__tests__/bookPropertiesFake';
 import { Book } from '#collection/domain';
 
 
 describe('Book Unit Tests', function () {
   test('constructor of livro', () => {
 
-    const bookProps = BookPropertiesFake.build()
+    const bookProps = getBookPropertiesFake();
     const subject = Book.from(bookProps)
 
     expect(subject.name).toBe('livro')

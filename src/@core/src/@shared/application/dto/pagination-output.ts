@@ -3,9 +3,9 @@ import { SearchResult } from '../../domain/repository/repository-contracts';
 export type PaginationOutputDto<Item = any> = {
   items: Item[];
   total: number;
-  current_page: number;
-  last_page: number;
-  per_page: number;
+  currentPage: number;
+  lastPage: number;
+  perPage: number;
 };
 
 export class PaginationOutputMapper {
@@ -14,11 +14,11 @@ export class PaginationOutputMapper {
     result: SearchResult
   ): PaginationOutputDto<Item> {
     return {
-      items, 
+      items,
       total: result.total,
-      current_page: result.current_page,
-      last_page: result.last_page,
-      per_page: result.per_page,
+      currentPage: result.currentPage,
+      lastPage: result.lastPage,
+      perPage: result.perPage,
     };
   }
 }

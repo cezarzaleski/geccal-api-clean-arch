@@ -80,39 +80,6 @@ describe('ValidatorRules Unit Tests', () => {
     });
   });
 
-  test('string validation rule', () => {
-    let arrange: Values[] = [
-      {value: 5, property: 'field'},
-      {value: {}, property: 'field'},
-      {value: false, property: 'field'},
-    ];
-    const error = new ValidationError('The field must be a string');
-    arrange.forEach((item) => {
-      assertIsInvalid({
-        value: item.value,
-        property: item.property,
-        rule: 'string',
-        error,
-      });
-    });
-
-    //valid cases
-    arrange = [
-      {value: null, property: 'field'},
-      {value: undefined, property: 'field'},
-      {value: 'test', property: 'field'},
-    ];
-
-    arrange.forEach((item) => {
-      assertIsValid({
-        value: item.value,
-        property: item.property,
-        rule: 'string',
-        error,
-      });
-    });
-  });
-
   test('maxLength validation rule', () => {
     //invalid cases
     let arrange: Values[] = [{value: 'aaaaaa', property: 'field'}];

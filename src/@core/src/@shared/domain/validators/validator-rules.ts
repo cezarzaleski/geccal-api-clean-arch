@@ -39,7 +39,7 @@ export class ValidatorRules {
 }
 
 export function isEmpty(value: any) {
-  return value === undefined || value === null;
+  return  typeof value == 'undefined' || !value || value.length === 0 || value === "" || !/[^\s]/.test(value) || /^\s*$/.test(value) || (''+value).replace(/\s/g,"") === "";
 }
 
 
