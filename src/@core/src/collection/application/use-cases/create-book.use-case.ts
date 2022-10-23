@@ -12,7 +12,7 @@ export namespace CreateBookUseCase {
     async execute(input: Input): Promise<Output> {
       const entity = Book.from({
         name: input.name,
-        exemplary: input.exemplary,
+        exemplary: 1,
         status: StatusBook.AVAILABLE.toString(),
         edition: input.edition,
         year: input.year,
@@ -29,7 +29,6 @@ export namespace CreateBookUseCase {
 
   export type Input = {
     name: string
-    exemplary: number
     edition: string
     year: number
     publisherId: string
