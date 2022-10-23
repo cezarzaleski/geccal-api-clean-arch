@@ -1,6 +1,6 @@
 FROM node:16.16.0-slim as build
 
-USER node
+USER root
 
 RUN mkdir -p /home/node/app
 
@@ -8,9 +8,8 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node package.json package-lock.json ./
 #RUN npm ci
-
 COPY --chown=node:node . .
-RUN npm install --global rimraf && npm install --global parcel-bundler
+RUN npm install --global rimraf
 RUN npm run build
 
 ENV NODE_ENV=prod
